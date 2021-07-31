@@ -72,6 +72,11 @@ $ npm install -g yarn
 yarn start
 ```
 
+## Coding Conventions
+
+- 모든 리액트 파일은 `.jsx` 확장자로 작성해주세요.
+- 레이아웃 작성 시 `position`, `float` 사용을 최대한 지양해주시고, `flex` 를 사용해주세요.
+
 ## Contributors
 
 <table>

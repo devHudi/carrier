@@ -1,0 +1,15 @@
+addReviewers: true
+
+addAssignees: author
+
+reviewers:
+  - devHudi
+  - adultlee
+  - pcpark98
+  - yeonsooSo
+  - dlwnsgus07
+
+skipKeywords:
+  - wip
+
+numberOfReviewers: 0
