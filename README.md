@@ -86,5 +86,6 @@ yarn start
       <td align="center"><a href="https://github.com/dlwnsgus07"><img src="https://avatars.githubusercontent.com/u/37991960?v=4" width="100px;" alt=""/><br /><sub><b>dlwnsgus07<br/>(Junhyun Lee)</b></sub></a></td>
       <td align="center"><a href="https://github.com/pcpark98"><img src="https://avatars.githubusercontent.com/u/34507976?v=4" width="100px;" alt=""/><br /><sub><b>pcpark98<br/>(SangJun Park)</b></sub></a></td>
       <td align="center"><a href="https://github.com/yeonsooSo"><img src="https://avatars.githubusercontent.com/u/65909443?v=4" width="100px;" alt=""/><br /><sub><b>yeonsooSo<br/>(YeongSoo So)</b></sub></a></td>
+      <td align="center"><a href="https://github.com/jiae0119"><img src="https://avatars.githubusercontent.com/u/82093525?v=4" width="100px;" alt=""/><br /><sub><b>jiae0119<br/>(JiAe Shin)</b></sub></a></td>
    </tr>
 </table>
