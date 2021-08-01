@@ -7,15 +7,11 @@
     "import/no-unresolved": "off",
     "object-curly-newline": "off",
     "import/prefer-default-export": "off",
-    "no-console": "off",
-    "react/jsx-one-expression-per-line": "off"
     "operator-linebreak": "off",
-<<<<<<< master
-=======
     "no-console": "off",
     "implicit-arrow-linebreak": "off",
     "indent": "off",
     "no-confusing-arrow": "off"
->>>>>>> feat: fix eslint
+    "react/jsx-one-expression-per-line": "off"
   }
 }
