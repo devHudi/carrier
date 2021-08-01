@@ -9,6 +9,6 @@ firestore
     });
   });
 
-const Main = () => <>Main Page</>;
+const Main = () => <>I am Main Page</>;
 
 export default Main;
