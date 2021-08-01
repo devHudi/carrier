@@ -9,6 +9,14 @@ import reportWebVitals from './reportWebVitals';
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: ${(props) => props.theme.colors.primary};
+  }
 `;
 
 ReactDOM.render(
