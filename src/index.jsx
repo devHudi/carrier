@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import Router from 'routes';
+import theme from 'assets/theme';
+
 import reportWebVitals from './reportWebVitals';
 
 const GlobalStyles = createGlobalStyle`
@@ -11,8 +13,10 @@ const GlobalStyles = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles />
-    <Router />
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Router />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
