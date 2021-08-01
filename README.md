@@ -33,7 +33,6 @@
 간략화된 Git-Flow 전략을 사용합니다. (참고: https://techblog.woowahan.com/2553/)
 
 - `master`: 제품으로 출시된 브랜치
-- `develop`: 다음 출시 버전을 개발하는 브랜치
   - `feature/yymmdd-branch-name` : 각 기능별 브랜치
 - `hotfix`: 출시 버전에서 발생한 버그수정 브랜치
 
