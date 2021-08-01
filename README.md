@@ -64,18 +64,34 @@ $ npm install -g yarn
 
 위 명령을 통해 Yarn 을 설치해주세요.
 
+### 패키지 설치
+
+```
+$ yarn
+```
+
+위 명령을 통해 모든 Dependencies 를 설치합니다.
+
 ### 개발 서버 실행
 
 아래 명령을 통해 프로젝트를 시작할 수 있습니다.
 
 ```
-yarn start
+$ yarn start
 ```
+
+### Prettier
+
+본 프로젝트는 Prettier 를 이용하여, 코드를 포매팅 합니다.
+
+VSCode Extension 에서 Prettier 를 검색하여 설치해주세요. 그리고 Preferences > Settings 에서 Default Formatter 를 Prettier 로 설정해주신 다음, Format on Save 를 True 로 변경해주세요. 이 과정을 거치면 코드를 저장할 때마다 코드가 보기좋게 정리됩니다.
 
 ## Coding Conventions
 
 - 모든 리액트 파일은 `.jsx` 확장자로 작성해주세요.
 - 레이아웃 작성 시 `position`, `float` 사용을 최대한 지양해주시고, `flex` 를 사용해주세요.
+- 비동기 처리 시 `then ~ catch` 대신 `async ~ await` 를 사용해주세요.
+- 모든 라우트명은 `kebab-case` 로 작성해주세요.
 
 ## Contributors
 
