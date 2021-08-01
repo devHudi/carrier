@@ -1,9 +1,8 @@
 import React from 'react';
-import _ from 'lodash';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-import { Typography, Margin } from 'carrier-ui';
+import { Typography } from 'carrier-ui';
 
 const Input = styled.input`
   border: 1px solid ${(props) => props.theme.colors.black};
@@ -50,14 +49,13 @@ const Input = styled.input`
   ${(props) =>
     props.search &&
     `
-    background-image: url(${searchIcon});
     background-repeat: no-repeat;
     background-position: 10px center;
     padding: 10px 12px 10px 40px;
     `}
 `;
 
-function TextField({ label, value, search, disabled, ...rest }) {
+function TextField({ label, value, search }) {
   return (
     <div>
       {label && (
@@ -65,7 +63,7 @@ function TextField({ label, value, search, disabled, ...rest }) {
           {label}
         </Typography>
       )}
-      <Input value={value} search={search} disabled={disabled} {...rest} />
+      <Input value={value} search={search} />
     </div>
   );
 }
@@ -73,25 +71,13 @@ function TextField({ label, value, search, disabled, ...rest }) {
 TextField.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
-  success: PropTypes.string,
-  error: PropTypes.string,
-  comment: PropTypes.string,
-  validate: PropTypes.bool,
   search: PropTypes.bool,
-  noMessage: PropTypes.bool,
-  noMargin: PropTypes.bool,
 };
 
 TextField.defaultProps = {
   label: undefined,
   value: '',
-  success: '',
-  error: '',
-  comment: '',
-  validate: undefined,
   search: false,
-  noMessage: false,
-  noMargin: false,
 };
 
 export default withTheme(TextField);

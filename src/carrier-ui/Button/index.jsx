@@ -42,8 +42,8 @@ const Button = styled.button`
   ${(props) =>
     props.primary &&
     css`
-      background-color: ${(props) => props.theme.colors.primary};
-      color: ${(props) => props.theme.colors.primary};
+      background-color: ${(prop) => prop.theme.colors.primary};
+      color: ${(prop) => prop.theme.colors.primary};
     `}
 
   ${(props) =>
