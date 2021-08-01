@@ -86,6 +86,12 @@ $ yarn start
 
 VSCode Extension 에서 Prettier 를 검색하여 설치해주세요. 그리고 Preferences > Settings 에서 Default Formatter 를 Prettier 로 설정해주신 다음, Format on Save 를 True 로 변경해주세요. 이 과정을 거치면 코드를 저장할 때마다 코드가 보기좋게 정리됩니다.
 
+### ESLint
+
+본 프로젝트는 ESLint 를 사용하여 코드를 검사합니다.
+
+VSCode Extension 에서 ESLint 를 검색하여 설치해주세요.
+
 ## Coding Conventions
 
 - 모든 리액트 파일은 `.jsx` 확장자로 작성해주세요.
