@@ -6,6 +6,7 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "object-curly-newline": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-console": "off"
   }
 }

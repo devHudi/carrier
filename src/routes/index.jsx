@@ -6,8 +6,44 @@ import { Main } from 'pages';
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         <Main />
+      </Route>
+      <Route exact path="/search">
+        여행지 검색 페이지
+      </Route>
+      <Route exact path="/hire">
+        선택지 페이지
+      </Route>
+      <Route exact path="/hire/result">
+        가이드 추천 결과
+      </Route>
+      <Route exact path="/hire/result/more">
+        가이드 더보기
+      </Route>
+      <Route exact path="/sign-in">
+        로그인 페이지
+      </Route>
+      <Route exact path="/sign-up">
+        회원가입 페이지
+      </Route>
+      <Route exact path="/sign-up/success">
+        회원가입 성공 페이지 (환영페이지)
+      </Route>
+      <Route exact path="/chat/:uid">
+        채팅방
+      </Route>
+      <Route exact path="/chat">
+        채팅 리스트
+      </Route>
+      <Route exact path="/profile">
+        내 프로필
+      </Route>
+      <Route exact path="/profile/:uid">
+        특정 사용자 프로필
+      </Route>
+      <Route exact path="/profile/edit">
+        내 프로필 수정
       </Route>
     </Switch>
   </BrowserRouter>
