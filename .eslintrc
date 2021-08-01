@@ -1,0 +1,11 @@
+{
+  "extends": ["react-app", "prettier", "airbnb"],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "react/react-in-jsx-scope": "off",
+    "import/no-unresolved": "off",
+    "object-curly-newline": "off",
+    "import/prefer-default-export": "off"
+  }
+}
