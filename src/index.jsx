@@ -9,8 +9,6 @@ const GlobalStyles = createGlobalStyle`
   ${reset}
 `;
 
-const a = '';
-
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyles />
