@@ -98,6 +98,7 @@ VSCode Extension 에서 ESLint 를 검색하여 설치해주세요.
 - 레이아웃 작성 시 `position`, `float` 사용을 최대한 지양해주시고, `flex` 를 사용해주세요.
 - 비동기 처리 시 `then ~ catch` 대신 `async ~ await` 를 사용해주세요.
 - 모든 라우트명은 `kebab-case` 로 작성해주세요.
+- 특별한일이 없는 이상 색상은 styled components 의 theme 을 사용해주세요.
 
 ## Contributors
 
