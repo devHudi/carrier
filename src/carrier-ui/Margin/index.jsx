@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
 
 const Margin = styled.div`
-  height: calc(${props => props.size} * 1rem);
+  height: calc(${(props) => props.size} * 1rem);
 
-  ${props =>
+  ${(props) =>
     props.row &&
     css`
       height: 0;

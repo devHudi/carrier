@@ -6,7 +6,7 @@ import styled, { withTheme } from 'styled-components';
 import { Typography, Margin } from 'carrier-ui';
 
 const Input = styled.input`
-  border: 1px solid ${props => props.theme.colors.black};
+  border: 1px solid ${(props) => props.theme.colors.black};
   border-radius: 10px;
   font-size: 1rem;
   padding: 10px;
@@ -16,15 +16,15 @@ const Input = styled.input`
   outline: none;
 
   &::placeholder {
-    color: ${props => props.theme.colors.gray};
+    color: ${(props) => props.theme.colors.gray};
   }
 
   &:focus {
-    border: 1px solid ;
-    border-color : black;
+    border: 1px solid;
+    border-color: black;
   }
 
-  ${props =>
+  ${(props) =>
     props.large &&
     `
       width: 450px;
@@ -32,14 +32,14 @@ const Input = styled.input`
       padding: 15px;
     `}
 
-  ${props =>
+  ${(props) =>
     props.medium &&
     `
     width: 300px;
     height: 50px;
   `}
 
-  ${props =>
+  ${(props) =>
     props.small &&
     `
     width: 250px;
@@ -47,7 +47,7 @@ const Input = styled.input`
     padding: 8px;
   `}
 
-  ${props =>
+  ${(props) =>
     props.search &&
     `
     background-image: url(${searchIcon});
@@ -55,16 +55,9 @@ const Input = styled.input`
     background-position: 10px center;
     padding: 10px 12px 10px 40px;
     `}
-
 `;
 
-function TextField({
-  label,
-  value,
-  search,
-  disabled,
-  ...rest
-}) {
+function TextField({ label, value, search, disabled, ...rest }) {
   return (
     <div>
       {label && (
@@ -73,7 +66,6 @@ function TextField({
         </Typography>
       )}
       <Input value={value} search={search} disabled={disabled} {...rest} />
-  
     </div>
   );
 }
