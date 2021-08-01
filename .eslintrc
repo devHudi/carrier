@@ -7,6 +7,7 @@
     "import/no-unresolved": "off",
     "object-curly-newline": "off",
     "import/prefer-default-export": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "react/jsx-one-expression-per-line": "off"
   }
 }
