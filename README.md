@@ -9,7 +9,7 @@
 - React Router
 - Redux
 - lodash
-- dayjs
+- moment
 - slick
 - react-dates
 
@@ -24,7 +24,6 @@
 **Devops**
 
 - Github Actions
-  - Super Linter
   - Auto Assign
 - Netlify
 
