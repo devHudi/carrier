@@ -23,7 +23,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check:lint": "eslint . --ext .js,.jsx",
+    "fix:lint": "eslint . --fix --ext .js,.jsx",
+    "check:prettier": "prettier -c .",
+    "fix:prettier": "prettier -c --write ."
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +48,9 @@
     ]
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.3.2"
   }
 }
