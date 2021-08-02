@@ -7,7 +7,11 @@
     "import/no-unresolved": "off",
     "object-curly-newline": "off",
     "import/prefer-default-export": "off",
+    "operator-linebreak": "off",
     "no-console": "off",
+    "implicit-arrow-linebreak": "off",
+    "indent": "off",
+    "no-confusing-arrow": "off",
     "react/jsx-one-expression-per-line": "off"
   }
 }
