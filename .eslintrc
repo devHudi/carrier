@@ -11,7 +11,7 @@
     "no-console": "off",
     "implicit-arrow-linebreak": "off",
     "indent": "off",
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
     "react/jsx-one-expression-per-line": "off"
   }
 }
