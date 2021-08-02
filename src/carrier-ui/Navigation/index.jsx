@@ -8,13 +8,15 @@ const Wrapper = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
-  padding: 25px;
+  padding: 37px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
 const Icon = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 25px;
   color: ${(props) => props.theme.colors.white};
   cursor: pointer;
