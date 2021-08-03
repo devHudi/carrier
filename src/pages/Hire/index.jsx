@@ -19,9 +19,22 @@ const Hire = () => {
     setStep(_step);
   };
 
+  const onLeftIconClick = () => {
+    if (step > 1) {
+      setStep(step - 1);
+    } else {
+      history.push('/');
+    }
+  };
+
   return (
     <>
-      <Navigation>
+      <Navigation
+        leftIcon="back"
+        rightIcon="home"
+        onLeftIconClick={onLeftIconClick}
+        onRightIconClick={() => history.push('/')}
+      >
         <ProgressBar size={3} current={step} onClick={onProgressBarClick} />
       </Navigation>
 
