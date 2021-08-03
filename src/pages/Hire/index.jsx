@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { firestore } from 'misc/firebase';
-import { Container, Navigation, ProgressBar } from 'carrier-ui';
+import { Container, Navigation, ProgressBar, PageSpinner } from 'carrier-ui';
 
 import Title from './components/Title';
 import Form from './components/Form';
@@ -9,6 +9,7 @@ import LoginGuide from './components/LoginGuide';
 
 const Hire = () => {
   const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
   const [submitId, setSubmitId] = useState();
 
@@ -36,6 +37,8 @@ const Hire = () => {
   };
 
   const onSubmit = async (data) => {
+    setLoading(true);
+
     const docRef = await firestore.collection('submits').add({
       ...data,
       employer_uid: null,
@@ -45,6 +48,8 @@ const Hire = () => {
 
     setSubmitId(docRef.id);
 
+    setLoading(false);
+
     if (currentUser) {
       setLogin(true);
     }
@@ -52,6 +57,7 @@ const Hire = () => {
 
   return (
     <>
+      {loading && <PageSpinner />}
       {login && <LoginGuide submitId={submitId} />}
 
       <Navigation
