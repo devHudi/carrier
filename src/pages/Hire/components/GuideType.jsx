@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const IconWrapper = styled.div`
+const IllustrationWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +54,10 @@ const Wrapper = styled.button`
 
 const GuideType = ({ name, activated, icon, title, subtitle, onClick }) => (
   <Wrapper name={name} activated={activated} onClick={onClick}>
-    <IconWrapper>{icon}</IconWrapper>
+    <IllustrationWrapper>
+      <img src="http://placehold.it/60x60" />
+      {icon}
+    </IllustrationWrapper>
     <Title>{title}</Title>
     <Subtitle>{subtitle}</Subtitle>
   </Wrapper>
