@@ -11,13 +11,13 @@ export default [
   {
     id: 'companion',
     title: '동행 가이드',
-    subtitle: '가이드 당신과 함께 여행 중 동행하며 가이드를 진행합니다.',
+    subtitle: '가이드 당신과 함께 동행하며 가이드를 진행합니다.',
     icon: <FaWheelchair />,
   },
   {
     id: 'online',
     title: '온라인 가이드',
-    subtitle: '가이드가 메신저 또는 음성 대화로 실시간 가이드를 진행합니다.',
+    subtitle: '가이드가 채팅 또는 음성으로 실시간 가이드를 진행합니다.',
     icon: <MdPregnantWoman />,
   },
 ];
