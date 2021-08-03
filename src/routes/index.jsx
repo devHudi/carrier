@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Main } from 'pages';
+import { Main, Hire } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
 
@@ -13,7 +13,7 @@ const Router = () => (
         여행지 검색 페이지
       </Route>
       <Route exact path="/hire">
-        선택지 페이지
+        <Hire />
       </Route>
       <Route exact path="/hire/result">
         가이드 추천 결과
