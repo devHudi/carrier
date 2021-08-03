@@ -5,6 +5,10 @@ export default {
     blue: '#5062FF',
     red: '#FF5353',
     black: '#000000',
-    gray: '#6E7175',
+    disabled: '#F1F1F1',
+    inputBorder: '#707070',
+    inputText: '#4D4D4D',
+    inputPlaceholder: '#8E9191',
+    divider: '#D8D8D8',
   },
 };

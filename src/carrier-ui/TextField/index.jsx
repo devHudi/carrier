@@ -1,83 +1,35 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-import { Typography } from 'carrier-ui';
-
-const Input = styled.input`
-  border: 1px solid ${(props) => props.theme.colors.black};
+const TextField = styled.input`
+  width: 100%;
+  border: 1px solid ${(props) => props.theme.colors.inputBorder};
   border-radius: 10px;
-  font-size: 1rem;
-  padding: 10px;
-  width: 300px;
-  height: 50px;
+  font-size: 10pt;
+  padding: 12px;
   box-sizing: border-box;
   outline: none;
+  color: #4d4d4d;
 
   &::placeholder {
-    color: ${(props) => props.theme.colors.gray};
+    color: ${(props) => props.theme.colors.inputPlaceholder};
   }
 
   &:focus {
     border: 1px solid;
     border-color: black;
   }
-
-  ${(props) =>
-    props.large &&
-    `
-      width: 450px;
-      height: 70px;
-      padding: 15px;
-    `}
-
-  ${(props) =>
-    props.medium &&
-    `
-    width: 300px;
-    height: 50px;
-  `}
-
-  ${(props) =>
-    props.small &&
-    `
-    width: 250px;
-    height: 40px;
-    padding: 8px;
-  `}
-
-  ${(props) =>
-    props.search &&
-    `
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    padding: 10px 12px 10px 40px;
-    `}
 `;
 
-function TextField({ label, value, search }) {
-  return (
-    <div>
-      {label && (
-        <Typography body2 color="black">
-          {label}
-        </Typography>
-      )}
-      <Input value={value} search={search} />
-    </div>
-  );
-}
-
 TextField.propTypes = {
-  label: PropTypes.string,
   value: PropTypes.string,
-  search: PropTypes.bool,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.bool.isRequired,
 };
 
 TextField.defaultProps = {
-  label: undefined,
   value: '',
-  search: false,
+  placeholder: '',
 };
 
 export default withTheme(TextField);
