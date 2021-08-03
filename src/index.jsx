@@ -12,6 +12,8 @@ const GlobalStyles = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    font-family: 'NanumSquare', san-serif;
+    outline: none;
   }
 
   body {
