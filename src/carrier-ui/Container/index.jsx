@@ -10,6 +10,10 @@ const Container = styled.div`
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default Container;
