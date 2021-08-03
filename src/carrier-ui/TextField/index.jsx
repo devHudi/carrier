@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-const Input = styled.input`
+const TextField = styled.input`
   width: 100%;
   border: 1px solid ${(props) => props.theme.colors.inputBorder};
   border-radius: 10px;
@@ -21,10 +20,6 @@ const Input = styled.input`
     border-color: black;
   }
 `;
-
-function TextField({ value, placeholder, onChange }) {
-  return <Input value={value} placeholder={placeholder} onChange={onChange} />;
-}
 
 TextField.propTypes = {
   value: PropTypes.string,
