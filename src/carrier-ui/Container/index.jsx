@@ -9,6 +9,7 @@ const Container = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
+  overflow: scroll;
 `;
 
 export default Container;
