@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, ${(props) => props.opacity});
   z-index: 999;
 
   & > div {
@@ -17,8 +17,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const Dimmer = ({ children }) => (
-  <Wrapper>
+const Dimmer = ({ opacity, children }) => (
+  <Wrapper opacity={opacity}>
     <Flex justify="center" align="center" direction="column">
       {children}
     </Flex>
@@ -26,10 +26,12 @@ const Dimmer = ({ children }) => (
 );
 
 Dimmer.propTypes = {
+  opacity: PropTypes.number,
   children: PropTypes.node,
 };
 
 Dimmer.defaultProps = {
+  opacity: 0.85,
   children: <></>,
 };
 
