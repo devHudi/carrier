@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { firestore } from 'misc/firebase';
 import { Container, Navigation, ProgressBar } from 'carrier-ui';
 
 import Title from './components/Title';
 import Form from './components/Form';
+import LoginGuide from './components/LoginGuide';
 
 const Hire = () => {
   const [step, setStep] = useState(1);
+  const [login, setLogin] = useState(false);
+  const [submitId, setSubmitId] = useState();
 
   const history = useHistory();
 
   const onNextClick = () => {
-    if (step < 3) setStep(step + 1);
-    else history.push('/hire/result');
+    setStep(step + 1);
   };
 
   const onProgressBarClick = (_step) => {
@@ -27,8 +30,30 @@ const Hire = () => {
     }
   };
 
+  // dummy data
+  const currentUser = {
+    uid: undefined,
+  };
+
+  const onSubmit = async (data) => {
+    const docRef = await firestore.collection('submits').add({
+      ...data,
+      employer_uid: null,
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
+
+    setSubmitId(docRef.id);
+
+    if (currentUser) {
+      setLogin(true);
+    }
+  };
+
   return (
     <>
+      {login && <LoginGuide submitId={submitId} />}
+
       <Navigation
         leftIcon="back"
         rightIcon="home"
@@ -41,7 +66,7 @@ const Hire = () => {
       <Title step={step} onNextClick={onNextClick} />
 
       <Container top={263}>
-        <Form step={step} />
+        <Form step={step} onSubmit={onSubmit} />
       </Container>
     </>
   );

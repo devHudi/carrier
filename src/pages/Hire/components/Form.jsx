@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
@@ -58,7 +58,53 @@ const GuideWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const Form = ({ step }) => {
+const getFormData = (
+  date,
+  headcount,
+  budget,
+  vehicles,
+  themes,
+  language,
+  additionals,
+  guides,
+) => {
+  let _language = null;
+  if (language === '영어') _language = 'english';
+  else if (language === '일본어') _language = 'japanese';
+  else if (language === '중국어') _language = 'chinese';
+  else if (language === '기타') _language = 'etc';
+
+  return {
+    start_date: date.startDate,
+    end_date: date.endDate,
+    kid_headcount: headcount.kid,
+    adult_headcount: headcount.adult,
+    budget: 10000000 * (budget / 100),
+    vehicles: _.chain(vehicles)
+      .filter({ selected: true })
+      .reduce((acc, cur) => [...acc, cur.id], [])
+      .value(),
+    like_themes: _.chain(themes)
+      .filter({ type: 'like' })
+      .reduce((acc, cur) => [...acc, cur.id], [])
+      .value(),
+    dislike_themes: _.chain(themes)
+      .filter({ type: 'dislike' })
+      .reduce((acc, cur) => [...acc, cur.id], [])
+      .value(),
+    language: _language,
+    additionals: _.chain(additionals)
+      .filter({ selected: true })
+      .reduce((acc, cur) => [...acc, cur.id], [])
+      .value(),
+    guides: _.chain(guides)
+      .filter({ selected: true })
+      .reduce((acc, cur) => [...acc, cur.id], [])
+      .value(),
+  };
+};
+
+const Form = ({ step, onSubmit }) => {
   /* States */
 
   // 여행 일정
@@ -66,7 +112,6 @@ const Form = ({ step }) => {
     startDate: null,
     endDate: null,
   });
-  console.log(date);
 
   // 인원 수
   const [headcount, setHeadcount] = useState({
@@ -90,7 +135,6 @@ const Form = ({ step }) => {
 
   // 외국어 지원
   const [language, setLanguage] = useState('필요 없음');
-  console.log(language);
 
   // 추가 사항
   const [additionals, setAdditionals] = useState(
@@ -101,6 +145,25 @@ const Form = ({ step }) => {
   const [guides, setGuides] = useState(
     _.map(guideData, (guide) => ({ ...guide, selected: false })),
   );
+
+  /* UseEffects */
+
+  useEffect(() => {
+    if (step > 3) {
+      onSubmit(
+        getFormData(
+          date,
+          headcount,
+          budget,
+          vehicles,
+          themes,
+          language,
+          additionals,
+          guides,
+        ),
+      );
+    }
+  }, [step]);
 
   /* Events */
 
@@ -257,7 +320,7 @@ const Form = ({ step }) => {
         </OptionWrapper>
       </FormWrapper>
 
-      <FormWrapper visible={step === 3}>
+      <FormWrapper visible={step >= 3}>
         <Typography headline>외국어 지원</Typography>
         <Margin size={8} />
         <Dropdown
@@ -304,6 +367,7 @@ const Form = ({ step }) => {
 
 Form.propTypes = {
   step: PropTypes.number.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default Form;

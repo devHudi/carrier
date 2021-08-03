@@ -63,7 +63,7 @@ const Title = ({ step, onNextClick }) => (
       <NextButton onClick={onNextClick}>다음으로</NextButton>
     </TitleWrapper>
 
-    <TitleWrapper visible={step === 3}>
+    <TitleWrapper visible={step >= 3}>
       <div>
         <SubtitleText>STEP 3</SubtitleText>
         <TitleText>
