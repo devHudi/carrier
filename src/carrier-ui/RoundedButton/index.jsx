@@ -7,6 +7,7 @@ const RoundedButton = styled.button`
   background-color: transparent;
   border-radius: 25px;
   color: ${(props) => props.theme.colors.white};
+  cursor: pointer;
 
   ${(props) => {
     if (props.blue) {
