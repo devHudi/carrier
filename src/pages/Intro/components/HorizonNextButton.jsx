@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { BsArrowRight } from 'react-icons/bs';
+import { ReactComponent as Arrow } from 'assets/images/arrow-right.svg';
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,11 +16,11 @@ const Wrapper = styled.div`
   cursor: pointer;
   margin-top: 30px;
   padding-right: 22px;
+
   & > svg {
-    width: 400px;
-    height: 30px;
-    margin: 0 -14px 0 230px;
-    color: ${(props) => props.theme.colors.black};
+    width: 13px;
+    height: 23px;
+    margin-left: 230px;
     background-color: ${(props) => props.theme.colors.white};
   }
 `;
@@ -34,7 +34,7 @@ const Container = styled.div`
 const HorizonNextButton = ({ onClick }) => (
   <Container>
     <Wrapper onClick={onClick}>
-      <BsArrowRight />
+      <Arrow float="right" />
     </Wrapper>
   </Container>
 );
