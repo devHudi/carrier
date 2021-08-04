@@ -37,7 +37,6 @@ const Router = () => (
         <Intro />
       </Route>
       <Route exact path="/search">
-        <BodyStyle />
         <Search />
       </Route>
       <Route exact path="/hire">
