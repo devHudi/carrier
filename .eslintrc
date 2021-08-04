@@ -19,6 +19,7 @@
     "curly": "off",
     "nonblock-statement-body-position": "off",
     "jsx-a11y/alt-text": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

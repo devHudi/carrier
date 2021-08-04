@@ -2,11 +2,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {
   Main,
   Hire,
+  HireResult,
+  HireResultMore,
   SignUpSuccess,
   FirebaseExample,
   Chat,
   ChatList,
 } from 'pages';
+
 // 라우트명은 kebab-case 로 작성합니다
 
 const Router = () => (
@@ -22,10 +25,10 @@ const Router = () => (
         <Hire />
       </Route>
       <Route exact path="/hire/result">
-        가이드 추천 결과
+        <HireResult />
       </Route>
       <Route exact path="/hire/result/more">
-        가이드 더보기
+        <HireResultMore />
       </Route>
       <Route exact path="/sign-in">
         로그인 페이지
