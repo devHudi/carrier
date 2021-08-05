@@ -5,7 +5,7 @@ const RoundedButton = styled.button`
   width: ${(props) => (props.width ? `${props.width}px` : '100%')};
   font-size: 12pt;
   background-color: transparent;
-  border-radius: 25px;
+  border-radius: ${(props) => (props.radius ? `${props.radius}px` : '25px')};
   color: ${(props) => props.theme.colors.white};
   cursor: pointer;
 
