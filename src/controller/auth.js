@@ -18,8 +18,16 @@ export const signUp = async (email, name, password) => {
 };
 
 // 로그인
-export const signIn = async (email, password) => {
+export const signIn = async (email, password, submitId = null) => {
   const { user } = await auth.signInWithEmailAndPassword(email, password);
+
+  // 선택지 작성 후 로그인 했을 경우
+  if (submitId) {
+    await firestore.collection('submits').doc(submitId).update({
+      employer_uid: user.uid,
+    });
+  }
+
   return (await firestore.collection('users').doc(user.uid).get()).data();
 };
 
