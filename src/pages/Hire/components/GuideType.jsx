@@ -12,6 +12,11 @@ const IllustrationWrapper = styled.div`
   pointer-events: none;
 `;
 
+const Illustration = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
 const Title = styled.div`
   margin-top: 5px;
   font-size: 9pt;
@@ -52,11 +57,10 @@ const Wrapper = styled.button`
   }
 `;
 
-const GuideType = ({ name, activated, icon, title, subtitle, onClick }) => (
+const GuideType = ({ name, activated, title, subtitle, icon, onClick }) => (
   <Wrapper name={name} activated={activated} onClick={onClick}>
     <IllustrationWrapper>
-      <img src="http://placehold.it/60x60" />
-      {icon}
+      <Illustration src={icon} />
     </IllustrationWrapper>
     <Title>{title}</Title>
     <Subtitle>{subtitle}</Subtitle>
@@ -66,18 +70,18 @@ const GuideType = ({ name, activated, icon, title, subtitle, onClick }) => (
 GuideType.propTypes = {
   name: PropTypes.string,
   activated: PropTypes.bool,
-  icon: PropTypes.node,
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  icon: PropTypes.node,
   onClick: PropTypes.func.isRequired,
 };
 
 GuideType.defaultProps = {
   name: 'wqefqfwe',
   activated: false,
-  icon: <></>,
   title: '',
   subtitle: '',
+  icon: <></>,
 };
 
 export default GuideType;

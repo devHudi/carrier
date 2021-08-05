@@ -338,7 +338,9 @@ const Form = ({ step, onSubmit }) => {
             <AdditionalSelection
               name={additional.id}
               label={additional.label}
-              icon={additional.icon}
+              icon={
+                additional.selected ? additional.activatedIcon : additional.icon
+              }
               activated={additional.selected}
               onClick={onAdditionalClick}
             />
@@ -356,6 +358,7 @@ const Form = ({ step, onSubmit }) => {
               title={guide.title}
               subtitle={guide.subtitle}
               activated={guide.selected}
+              icon={guide.icon}
               onClick={onGuideClick}
             />
           ))}
