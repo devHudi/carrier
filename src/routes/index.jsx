@@ -1,5 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Main, Hire, SignUpSuccess } from 'pages';
+import Chat from 'pages/Chat';
+import ChatList from 'pages/ChatList';
 
 // 라우트명은 kebab-case 로 작성합니다
 
@@ -31,10 +33,10 @@ const Router = () => (
         <SignUpSuccess />
       </Route>
       <Route exact path="/chat/:uid">
-        채팅방
+        <Chat />
       </Route>
       <Route exact path="/chat">
-        채팅 리스트
+        <ChatList />
       </Route>
       <Route exact path="/profile">
         내 프로필
