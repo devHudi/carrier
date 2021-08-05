@@ -30,12 +30,7 @@ const SignUpSuccess = () => {
     font-size: 12px;
     font-color: #9b9b9b;
   `;
-  const ButtonText = styled.div`
-    color: blue;
-    font-size: 17px;
-    margin-top: 4px;
-    margin-buttom: 4px;
-  `;
+
   return (
     <>
       <MainContainer />
@@ -54,8 +49,8 @@ const SignUpSuccess = () => {
         <Margin size={8} />
         <GrayTypography>나에게 맞는 가이드를 찾아 가볼까요?</GrayTypography>
         <Margin size={51} />
-        <RoundedButton blue width="270" radius="100">
-          <ButtonText>나만의 가이드 찾으러 가기</ButtonText>
+        <RoundedButton blue width="270" radius="100" color="blue" fontSize="17">
+          나만의 가이드 찾으러 가기
         </RoundedButton>
       </Wrrapper>
       <Margin size={180} />

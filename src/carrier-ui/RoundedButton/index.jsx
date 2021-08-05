@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 const RoundedButton = styled.button`
   padding: 15px;
   width: ${(props) => (props.width ? `${props.width}px` : '100%')};
-  font-size: 12pt;
+  font-size: ${(props) => (props.fontSize ? `${props.fontSize}px` : '12px')};
   background-color: transparent;
   border-radius: ${(props) => (props.radius ? `${props.radius}px` : '25px')};
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) =>
+    props.color ? props.theme.colors[props.color] : 'white'};
   cursor: pointer;
 
   ${(props) => {
