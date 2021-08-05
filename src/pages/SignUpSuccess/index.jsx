@@ -8,7 +8,17 @@ const MainContainer = createGlobalStyle`
     background-color: #ffffff;
   }
 `;
-
+const Section = styled.div`
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
 const SignUpSuccess = () => {
   const Wrrapper = styled.div`
     display: flex;
@@ -28,13 +38,13 @@ const SignUpSuccess = () => {
   `;
   const GrayTypography = styled.div`
     font-size: 12px;
-    font-color: #9b9b9b;
+    color: #9b9b9b;
   `;
 
   return (
-    <>
+    <Section>
       <MainContainer />
-      <Margin size={180} />
+
       <ImgWrrapper>
         <img src={signinUpSuccess} width="207" height="291" alt="testA" />
       </ImgWrrapper>
@@ -53,8 +63,7 @@ const SignUpSuccess = () => {
           나만의 가이드 찾으러 가기
         </RoundedButton>
       </Wrrapper>
-      <Margin size={180} />
-    </>
+    </Section>
   );
 };
 
