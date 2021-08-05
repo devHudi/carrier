@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Main, Hire, SignUpSuccess } from 'pages';
+import { Main, Hire, SignUpSuccess, FirebaseExample } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
 
@@ -44,6 +44,9 @@ const Router = () => (
       </Route>
       <Route exact path="/profile/edit">
         내 프로필 수정
+      </Route>
+      <Route exact path="/firebase-examples">
+        <FirebaseExample />
       </Route>
     </Switch>
   </BrowserRouter>
