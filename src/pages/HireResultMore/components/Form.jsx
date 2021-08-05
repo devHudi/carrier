@@ -1,6 +1,4 @@
-import Typography from 'carrier-ui/Typography';
 import styled, { keyframes } from 'styled-components';
-import { Margin } from 'carrier-ui';
 import SimilarGuide from './SimilarGuide';
 
 const formFadeIn = keyframes`
@@ -20,27 +18,9 @@ const FormWrapper = styled.div`
   animation-fill-mode: forwards;
 `;
 
-const SubTitle = styled.div`
-  width: 500px;
-  height: 30px;
-  text-align: left;
-  font: normal normal bold 15px/15px NanumSquare;
-  letter-spacing: 0px;
-  color: #c1c1c1;
-  opacity: 1;
-`;
-
 const Form = () => (
   <>
     <FormWrapper>
-      <div>
-        <Typography headline>나의 선택과 유사한 가이드</Typography>
-        <Margin size={8} />
-
-        <SubTitle>likelion님을 위해 엄선된 가이드를 만나보세요!</SubTitle>
-        <Margin size={10} />
-      </div>
-
       <SimilarGuide />
     </FormWrapper>
   </>

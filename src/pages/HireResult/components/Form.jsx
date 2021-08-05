@@ -1,6 +1,6 @@
 import Typography from 'carrier-ui/Typography';
 import styled, { keyframes } from 'styled-components';
-import { Margin, Button, Flex } from 'carrier-ui';
+import { Margin, RoundedButton, Flex } from 'carrier-ui';
 import { Link } from 'react-router-dom';
 import RecommendedGuide from './RecommendedGuide';
 
@@ -31,13 +31,6 @@ const SubTitle = styled.div`
   opacity: 1;
 `;
 
-const StyledButton = styled(Button)`
-  color: white;
-  box-shadow: 3px 3px 8px #00000029;
-  border-radius: 45px;
-  opacity: 1;
-`;
-
 const Form = () => (
   <>
     <FormWrapper>
@@ -50,11 +43,13 @@ const Form = () => (
       </div>
 
       <RecommendedGuide />
-      <Margin size={25} />
+      <Margin size={60} />
 
       <Flex justify="center">
         <Link to="/hire/result/more">
-          <StyledButton>더 많은 가이드 보기</StyledButton>
+          <RoundedButton blue filled>
+            더 많은 가이드 보기
+          </RoundedButton>
         </Link>
       </Flex>
     </FormWrapper>

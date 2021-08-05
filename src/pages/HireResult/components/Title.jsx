@@ -25,6 +25,7 @@ const TitleText = styled.div`
   line-height: 1.2;
   font-size: 22pt;
   color: ${(props) => props.theme.colors.white};
+  text-align: center;
 `;
 
 const Title = () => (

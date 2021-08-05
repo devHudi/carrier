@@ -22,7 +22,7 @@ const HireResult = () => {
 
       <Title />
 
-      <FlexContainer top={263}>
+      <FlexContainer top={235}>
         <Form />
       </FlexContainer>
     </>
