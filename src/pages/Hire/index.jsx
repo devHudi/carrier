@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import toast from 'react-simple-toasts';
+
 import { firestore } from 'misc/firebase';
 import { Container, Navigation, ProgressBar, PageSpinner } from 'carrier-ui';
 
@@ -36,7 +38,32 @@ const Hire = () => {
     uid: undefined,
   };
 
+  useEffect(() => {
+    toast(); // Toast 라이브러리 버그 해결
+  }, []);
+
+  const validData = (data) => {
+    if (data.like_themes.length <= 0)
+      return '선호 테마를 최소 하나 선택해주세요.';
+    if (data.dislike_themes.length <= 0)
+      return '불호 테마를 최소 하나 선택해주세요.';
+    if (data.guides.length <= 0) return '가이드 유형을 최소 하나 선택해주세요.';
+    if (data.adult_headcount <= 0 && data.kid_headcount <= 0)
+      return '인원 수 입력을 해주세요';
+    return null;
+  };
+
   const onSubmit = async (data) => {
+    console.log(data);
+    const valid = validData(data);
+    if (valid) {
+      console.log(valid);
+      toast(valid);
+      setStep(3);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
 
     const docRef = await firestore.collection('submits').add({
