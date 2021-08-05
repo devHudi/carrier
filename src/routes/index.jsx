@@ -1,8 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Main, Hire, SignUpSuccess } from 'pages';
-import Chat from 'pages/Chat';
-import ChatList from 'pages/ChatList';
-
+import { Main, Hire, SignUpSuccess, Chat, ChatList } from 'pages';
 // 라우트명은 kebab-case 로 작성합니다
 
 const Router = () => (
