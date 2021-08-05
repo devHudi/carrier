@@ -10,6 +10,10 @@ const Wrapper = styled.button`
   flex-direction: column;
 `;
 
+const Illustration = styled.img`
+  height: 35px;
+`;
+
 const IconWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -41,7 +45,9 @@ const Label = styled.div`
 
 const AdditionalSelection = ({ name, activated, icon, label, onClick }) => (
   <Wrapper name={name} onClick={onClick}>
-    <IconWrapper activated={activated}>{icon}</IconWrapper>
+    <IconWrapper activated={activated}>
+      <Illustration src={icon} />
+    </IconWrapper>
     <Label> {label} </Label>
   </Wrapper>
 );
