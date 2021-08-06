@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ReactComponent as Arrow } from '../assets/arrow-right.svg';
 
-const Wrapper = styled.div`
+const Wrapper = styled.div`s
   display: flex;
   justify-content: center;
   align-items: center;
