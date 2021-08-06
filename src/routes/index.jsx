@@ -79,6 +79,9 @@ const Router = () => (
       <Route exact path="/profile/:uid">
         <GuideProfile />
       </Route>
+      <Route exact path="/guide/profile">
+        <GuideProfile />
+      </Route>
       <Route exact path="/profile/edit">
         내 프로필 수정
       </Route>
