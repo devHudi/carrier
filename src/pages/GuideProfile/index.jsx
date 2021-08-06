@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { useHistory } from 'react-router-dom';
-
-import Profile from './components/Profile';
+import ProfileForm from './components/ProfileForm';
 import Form from './components/Form';
 import Navigation from './components/Navigation';
 
@@ -13,13 +12,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Container = styled.div`
-  position: absolute;
+  position: relative;
   top: ${(props) => (props.top ? `${props.top}px` : 'initial')};
   bottom: 0;
-  padding: 35px;
+  padding: 25px;
   padding-top: 0;
   width: 100%;
-  overflow: scroll;
 `;
 
 const GuideProfile = () => {
@@ -28,11 +26,16 @@ const GuideProfile = () => {
   return (
     <>
       <GlobalStyle />
-      <Navigation leftIcon="back" onLeftIconClick={() => history.goBack()} />
-      <Container top={80}>
-        <Profile />
+      <Navigation
+        leftIcon="back"
+        rightIcon="home"
+        onLeftIconClick={() => history.goBack()}
+        onRightIconClick={() => history.push('/')}
+      />
+      <Container top={0}>
+        <ProfileForm />
       </Container>
-      <Container top={400}>
+      <Container top={60}>
         <Form />
       </Container>
     </>

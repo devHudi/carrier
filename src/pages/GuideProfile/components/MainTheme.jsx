@@ -21,7 +21,7 @@ const Container = styled.div`
   background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 20px;
   border-radius: 26px;
   opacity: 1;
   filter: blur(px);
@@ -71,6 +71,7 @@ const MainTheme = () => (
             # 역사가_살아있는 <GiAsianLantern />
           </ThemeContainer>
         </Flex>
+        <Margin size={10} />
       </Container>
     </Wrapper>
   </div>

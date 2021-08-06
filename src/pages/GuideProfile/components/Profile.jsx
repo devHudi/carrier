@@ -36,7 +36,7 @@ const ImageCircle = styled.div`
 
 const Container = styled.div`
   background: #ffffff 0% 0% no-repeat padding-box;
-  position: absolute;
+  position: relative;
   top: 75px;
   z-index: 2;
   display: flex;
@@ -46,7 +46,7 @@ const Container = styled.div`
   border-radius: 26px;
   opacity: 1;
   filter: blur(0px);
-  width: 85%;
+  width: 100%;
   text-align: center;
 `;
 
@@ -63,32 +63,43 @@ const StatisticsWrapper = styled.div`
 `;
 
 const Profile = () => (
-  <Wrapper>
-    <BackgroundCircle />
-    <ImageCircle />
-    <Container>
-      <Typography headline>이지은</Typography>
-      <City subhead>부산, 김해</City>
-      <StatisticsWrapper>
-        <Flex direction="column" align="center">
-          <GoPerson color="blue" />
-          <Typography headline>119명</Typography>
-          <City subhead>가이드</City>
-        </Flex>
-        <Flex direction="column" align="center">
-          <RiHeartFill color="#FF77B2" />
-          <Typography headline>516명</Typography>
-          <City subhead>좋아요</City>
-        </Flex>
-        <Flex direction="column" align="center">
-          <RiStarFill color="#FFDE0A" />
-          <Typography headline>4.8점</Typography>
-          <City subhead>평점</City>
-        </Flex>
-      </StatisticsWrapper>
-    </Container>
-    <Margin size={15} />
-  </Wrapper>
+  <div>
+    <Wrapper>
+      <BackgroundCircle />
+      <ImageCircle />
+      <Container>
+        <Typography headline>이지은</Typography>
+        <City subhead bold700>
+          부산, 김해
+        </City>
+        <Margin size={20} />
+        <StatisticsWrapper>
+          <Flex direction="column" align="center">
+            <GoPerson color="blue" />
+            <Typography headline bold400>
+              119명
+            </Typography>
+            <City subhead>가이드</City>
+          </Flex>
+          <Flex direction="column" align="center">
+            <RiHeartFill color="#FF77B2" />
+            <Typography headline bold400>
+              516명
+            </Typography>
+            <City subhead>좋아요</City>
+          </Flex>
+          <Flex direction="column" align="center">
+            <RiStarFill color="#FFDE0A" />
+            <Typography headline bold400>
+              4.8점
+            </Typography>
+            <City subhead>평점</City>
+          </Flex>
+        </StatisticsWrapper>
+        <Margin size={20} />
+      </Container>
+    </Wrapper>
+  </div>
 );
 
 export default Profile;

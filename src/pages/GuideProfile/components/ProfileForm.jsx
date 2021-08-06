@@ -1,9 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { Margin } from 'carrier-ui';
-import Introduction from './Introduction';
-import MainTheme from './MainTheme';
-import Price from './Price';
-import PictureAndVideo from './PictureAndVideo';
+import Profile from './Profile';
 
 const formFadeIn = keyframes`
   100% {
@@ -24,18 +20,12 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const Form = () => (
+const ProfileForm = () => (
   <>
     <FormWrapper>
-      <MainTheme />
-      <Margin size={20} />
-      <Introduction />
-      <Margin size={20} />
-      <Price />
-      <Margin size={20} />
-      <PictureAndVideo />
+      <Profile />
     </FormWrapper>
   </>
 );
 
-export default Form;
+export default ProfileForm;
