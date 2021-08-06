@@ -7,7 +7,7 @@ export default function Button({ content }) {
 
 const StyledButton = styled.button`
   background-color: ${(props) => props.theme.colors.primary};
-  width: 300px;
+  width: 280px;
   height: 3rem;
   border: none;
   color: white;
