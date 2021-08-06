@@ -1,10 +1,16 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 export const Img = styled.img`
   opacity: 1;
   width: 53px;
   height: 53px;
   margin-right: 1em;
+  border-radius: 70%;
 `;
 export const MessageBox = styled.div`
   opacity: 1;
@@ -53,54 +59,17 @@ export const RecentBox = styled.div`
 `;
 
 export const Wrapper = styled.div`
+  text-decoration-line: none;
   display: flex;
   width: calc(100% + 35 * 2);
   margin: 0px -35px 0px -35px;
   height: 81px;
   padding: 14px 49px 24px 49px;
+  text-decoration-line: none;
   background-color: ${(props) => props.theme.colors.white};
   justify-content: space-between;
   align-items: center;
-  &:hover {
-    animation: boxFade-in 1s ease 0s normal forwards;
-    @keyframes boxFade-in {
-      from {
-        background: transparent
-          linear-gradient(110deg, #ffffff 0%, #ffffff 0%) 0% 0% no-repeat;
-        opacity: 1;
-      }
-      to {
-        background: transparent
-          linear-gradient(110deg, #688df0 0%, #3bd1e4 100%) 0% 0% no-repeat;
-        opacity: 0.55;
-      }
-    }
-    & ${MessageBox} {
-      & span {
-        animation: textChange 0.3s ease 0s 1 normal forwards;
-        @keyframes textChange {
-          from{
-            color: ${(props) => props.theme.colors.black};
-          }
-          to {
-            color: ${(props) => props.theme.colors.white};
-          }
-        }
-      }
-    }
-    & ${RecentBox} {
-      &:last-child {
-        animation: backChange 1s ease 0s 1 normal forwards;
-        @keyframes backChange {
-          from{
-            background-color: ${(props) => props.theme.colors.blue};
-            color: ${(props) => props.theme.colors.white};
-        }
-          to {
-            background-color: ${(props) => props.theme.colors.white};
-            color: ${(props) => props.theme.colors.blue};
-          }
-      }
-    }
+  & span {
+    text-decoration: none;
   }
 `;
