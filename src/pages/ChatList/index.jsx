@@ -1,12 +1,11 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PageSpinner from 'carrier-ui/PageSpinner';
 import { auth, firestore } from '../../misc/firebase';
 import Container from '../../carrier-ui/Container';
-import ChatNavigation from './ Component/ChatListNav/style';
-import Search from './ Component/SearchBar/search';
-import ChatRoom from './ Component/ChatRoom';
+import ChatNavigation from './Component/ChatListNav/style';
+import Search from './Component/SearchBar/search';
+import ChatRoom from './Component/ChatRoom';
 
 const ChatList = () => {
   const [chatRoomList, setChatRoomList] = useState([]);
