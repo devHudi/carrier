@@ -21,7 +21,7 @@ export const signUp = async (email, name, password) => {
   const userDoc = {
     uid: user.uid,
     created_at: new Date(),
-    updated_ap: new Date(),
+    updated_at: new Date(),
     email,
     name,
     profile_image: null,
@@ -47,7 +47,7 @@ export const signUpAsGuide = async (
   const userDoc = {
     uid: user.uid,
     created_at: new Date(),
-    updated_ap: new Date(),
+    updated_at: new Date(),
     email,
     name,
     profile_image: null,
