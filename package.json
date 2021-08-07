@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "date-fns": "^2.23.0",
     "firebase": "^8.8.1",
+    "korean-name-generator": "^1.0.4",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
