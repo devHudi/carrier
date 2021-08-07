@@ -70,48 +70,65 @@ const RightMsgBubble = styled(MsgBubble)`
   border-top-right-radius: 0;
   box-shadow: 3px 3px 7px rgb(0 0 0 / 0.1);
 `;
-export const OpponentContent = ({ children, profileImg }) => {
-  const vlaue = '';
-  return (
-    <LeftMsg>
-      <MsgImg src={profileImg} />
-      <LeftMsgBubble>
-        {children}
-        {vlaue}
-      </LeftMsgBubble>
-    </LeftMsg>
-  );
-};
-export const MyContent = ({ children, profileImg }) => {
-  const vlaue = '';
-  return (
-    <RightMsg>
-      <RightMsgImg src={profileImg} />
-      <RightMsgBubble>
-        {children}
-        {vlaue}
-      </RightMsgBubble>
-    </RightMsg>
-  );
-};
+const LeftContinueBubble = styled(LeftMsgBubble)`
+  border-radius: 15px;
+  margin-left: 50px;
+`;
+const RightContinueBubble = styled(LeftMsgBubble)`
+  border-radius: 15px;
+  margin-right: 50px;
+`;
+export const OpponentContent = ({ children, profileImg, flag }) => (
+  <LeftMsg>
+    {flag ? (
+      <>
+        <MsgImg src={profileImg} />
+        <LeftMsgBubble>{children}</LeftMsgBubble>
+      </>
+    ) : (
+      <>
+        <LeftContinueBubble>{children}</LeftContinueBubble>
+      </>
+    )}
+    ;
+  </LeftMsg>
+);
+export const MyContent = ({ children, profileImg, flag }) => (
+  <RightMsg>
+    {flag ? (
+      <>
+        <RightMsgImg src={profileImg} />
+        <RightMsgBubble>{children}</RightMsgBubble>
+      </>
+    ) : (
+      <>
+        <RightContinueBubble>{children}</RightContinueBubble>
+      </>
+    )}
+  </RightMsg>
+);
 
 OpponentContent.propTypes = {
   children: PropTypes.element,
   profileImg: PropTypes.string,
+  flag: PropTypes.bool,
 };
 
 OpponentContent.defaultProps = {
   children: <></>,
   profileImg:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhJ2w0tusqwSVts97rg_faGOO169vG9gUF0Q&usqp=CAU',
+  flag: true,
 };
 MyContent.propTypes = {
   children: PropTypes.element,
   profileImg: PropTypes.string,
+  flag: PropTypes.bool,
 };
 
 MyContent.defaultProps = {
   children: <></>,
   profileImg:
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhJ2w0tusqwSVts97rg_faGOO169vG9gUF0Q&usqp=CAU',
+  flag: true,
 };
