@@ -1,4 +1,4 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import PageSpinner from 'carrier-ui/PageSpinner';
 import ChatNavBar from './components/ChatNav/style';
@@ -12,16 +12,37 @@ import {
 import ChatBox from './components/ChatBox';
 
 const Chat = () => {
-  const location = useLocation();
-  const { userObj } = location?.state;
+  const [userObj, setUserObj] = useState([]);
   const [conversation, setconversation] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
+  const { uid } = useParams();
+
+  useEffect(() => {
+    console.log(uid);
+    firestore
+      .collection('chats')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setUserObj({
+          id: uid,
+          created_at: doc.data().created_at,
+          employee_name: doc.data().employee_name,
+          employee_profile_img: doc.data().employee_profile_img,
+          employee_uid: doc.data().employee_uid,
+          employer_name: doc.data().employer_name,
+          employer_profile_img: doc.data().employer_profile_img,
+          employer_uid: doc.data().employer_uid,
+        });
+        console.log(userObj);
+      });
+  }, [uid]);
 
   useEffect(async () => {
     firestore
       .collection('chats')
-      .doc(userObj.id)
+      .doc(uid)
       .collection('conversation')
       .orderBy('sended_at')
       .onSnapshot((snapshot) => {
