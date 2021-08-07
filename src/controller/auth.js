@@ -24,7 +24,8 @@ export const signUp = async (email, name, password) => {
     updated_at: new Date(),
     email,
     name,
-    profile_image: null,
+    profile_image:
+      'https://firebasestorage.googleapis.com/v0/b/likelion-carrier.appspot.com/o/profileImages%2Fdefault.png?alt=media',
     type: 'employer',
   };
 
@@ -50,7 +51,8 @@ export const signUpAsGuide = async (
     updated_at: new Date(),
     email,
     name,
-    profile_image: null,
+    profile_image:
+      'https://firebasestorage.googleapis.com/v0/b/likelion-carrier.appspot.com/o/profileImages%2Fdefault.png?alt=media',
     type: 'employee',
     themes,
     place: { sido, places },
