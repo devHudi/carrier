@@ -10,6 +10,7 @@ const Container = styled.div`
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   overflow: scroll;
+  transition: top 0.5s;
 
   &::-webkit-scrollbar {
     display: none;
