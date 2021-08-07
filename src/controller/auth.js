@@ -1,13 +1,14 @@
 import _ from 'lodash';
 import namer from 'korean-name-generator';
 import { firestore, auth } from 'misc/firebase';
+import placeData from 'assets/data/placeData';
 
-const pick = (arr) => {
+const pick = (arr, length) => {
   const _arr = arr;
-  const count = _.random(0, _arr.length - 1);
+  const count = length || _.random(1, _arr.length - 1);
   const picks = [];
   for (let i = 0; i < count; i += 1) {
-    const p = _arr.pop(_.random(0, _arr.length - 1));
+    const p = _arr.splice(_.random(0, _arr.length - 1), 1)[0];
     picks.push(p);
   }
   return picks;
@@ -36,9 +37,10 @@ export const signUpAsGuide = async (
   name,
   password,
   themes,
+  sido,
   places,
   languages,
-  guideType,
+  guideTypes,
 ) => {
   const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
@@ -51,9 +53,9 @@ export const signUpAsGuide = async (
     profile_image: null,
     type: 'employee',
     themes,
-    places,
+    place: { sido, places },
     languages,
-    guideType,
+    guide_types: guideTypes,
   };
 
   return firestore.collection('users').doc(user.uid).set(userDoc);
@@ -76,7 +78,7 @@ export const createGuides = async (count) => {
     'cultural_heritage',
     'history',
   ];
-  const places = ['seoul', 'busan', 'incheon', 'daegu'];
+  const sidos = _.map(placeData, (place) => place.sido);
   const languages = ['english', 'japanese', 'chinese', 'etc'];
   const guideTypes = ['planner', 'companion', 'online'];
 
@@ -85,6 +87,11 @@ export const createGuides = async (count) => {
     const email = `${Math.random().toString(36).substr(2, 11)}@guide.com`;
     const name = namer.generate(true);
     const password = '12341234';
+    const sido = pick(sidos, 1)[0];
+    const places = _.chain(placeData)
+      .filter((place) => place.sido === sido)
+      .map((place) => place.name)
+      .value();
 
     promises.push(
       signUpAsGuide(
@@ -92,6 +99,7 @@ export const createGuides = async (count) => {
         name,
         password,
         pick(themes),
+        sido,
         pick(places),
         pick(languages),
         pick(guideTypes),
