@@ -6,9 +6,7 @@ const ChatRoom = ({ userObj, classification }) => {
   const count = 2;
   const history = useHistory();
   const click = () => {
-    history.push({
-      pathname: `/chat/${userObj?.id}`,
-    });
+    history.push(`/chat/${userObj.id}`);
   };
   return (
     <>
