@@ -4,7 +4,13 @@ import { Navigation, Container, Margin } from 'carrier-ui';
 import * as fa from 'react-icons/fa';
 import { GiWaveCrest, GiPartyPopper } from 'react-icons/gi';
 import SearchBar from './components/SearchBar';
-import CityCarousel from './components/CityCarousel';
+import {
+  // eslint-disable-next-line import/named
+  CityCarouselA,
+  CityCarouselB,
+  CityCarouselC,
+  CityCarouselD,
+} from './components/CityCarousel';
 // , { createGlobalStyle }
 
 const Logo = styled.div`
@@ -32,26 +38,29 @@ const Search = () => (
   <>
     <Navigation />
     <Logo>CARRIER</Logo>
-    <Container>
+    <Container top={90} padding={28}>
       <SearchBar />
       <Margin size={32} />
       <Category>
         지금 가장 인기있는 곳&nbsp;
         <fa.FaHotjar />
       </Category>
-      <CityCarousel />
+      <CityCarouselA />
       <Category>
         여름에는 역시 바다!&nbsp;
         <GiWaveCrest />
       </Category>
+      <CityCarouselB />
       <Category>
         매일 화려한 이 축제&nbsp;
         <GiPartyPopper />
       </Category>
+      <CityCarouselC />
       <Category>
         인생샷 스팟들이 가득!&nbsp;
         <fa.FaCameraRetro />
       </Category>
+      <CityCarouselD />
     </Container>
   </>
 );

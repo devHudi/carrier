@@ -4,7 +4,7 @@ import { Margin } from 'carrier-ui';
 import HorizonNextButton from './components/HorizonNextButton';
 import Outline from './components/Outline';
 import Container from './components/Container';
-import img from './image/그룹 373@2x.png';
+import img from './image/intro.png';
 
 const Logo = styled.div`
   display: flex;
