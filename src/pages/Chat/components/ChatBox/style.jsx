@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { ReactComponent as PaperPlane } from '../../assets/paper.svg';
+import paper from './assets/paperplane.png';
 
 const Wrapper = styled.form`
   height: 48px;
@@ -42,17 +42,22 @@ const SubmitButton = styled.button`
   z-index: 1;
   right: 15px;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: none !important;
   cursor: pointer;
-  backgorund: none;
+  background-color: transparent;
+  margin-right: 0.7rem;
+  & > img {
+    width: 25px;
+    height: 25px;
+  }
   &:hover {
     opacity: 0.8;
   }
 `;
 
-const MessageTypeBox = ({ onChange, onSubmit, value }) => {
+const MessageTypeBox = ({ onChange, onSubmit, value, onKeydownChat }) => {
   const placeholder = '메세지를 입력하세요.';
   return (
     <>
@@ -61,11 +66,12 @@ const MessageTypeBox = ({ onChange, onSubmit, value }) => {
           value={value}
           placeholder={placeholder}
           onChange={onChange}
+          onKeyPress={onKeydownChat}
           cols="33"
           rows="1"
         />
         <SubmitButton type="submit" value="전송">
-          <img src={PaperPlane} />
+          <img src={paper} />
         </SubmitButton>
       </Wrapper>
     </>
@@ -75,6 +81,7 @@ MessageTypeBox.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onKeydownChat: PropTypes.func.isRequired,
 };
 
 export default MessageTypeBox;
