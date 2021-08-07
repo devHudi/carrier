@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const titleFadeIn = keyframes`
-100% {
-  opacity: 1
-}
+  100% {
+    opacity: 1
+  }
 `;
 
 const TitleWrapper = styled.div`
@@ -11,7 +12,7 @@ const TitleWrapper = styled.div`
   align-items: flex-end;
   justify-content: center;
   position: absolute;
-  top: 143px;
+  top: ${(props) => props.top}px;
   padding: 0 35px;
   width: 100%;
   opacity: 0;
@@ -19,6 +20,7 @@ const TitleWrapper = styled.div`
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  transition: top 0.5s;
 `;
 
 const TitleText = styled.div`
@@ -28,16 +30,18 @@ const TitleText = styled.div`
   text-align: center;
 `;
 
-const Title = () => (
-  <>
-    <TitleWrapper>
-      <TitleText>
-        이번 여행을 책임질
-        <br />
-        BEST 가이드는?
-      </TitleText>
-    </TitleWrapper>
-  </>
+const Title = ({ top }) => (
+  <TitleWrapper top={top}>
+    <TitleText>
+      이번 여행을 책임질
+      <br />
+      BEST 가이드는?
+    </TitleText>
+  </TitleWrapper>
 );
+
+Title.propTypes = {
+  top: PropTypes.number.isRequired,
+};
 
 export default Title;
