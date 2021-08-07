@@ -13,7 +13,6 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
   };
 
   const onSubmit = async (e) => {
-    console.log('submit');
     e.preventDefault();
     await firestore
       .collection('chats')

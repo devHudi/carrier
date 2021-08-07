@@ -54,10 +54,8 @@ const Hire = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
     const valid = validData(data);
     if (valid) {
-      console.log(valid);
       toast(valid);
       setStep(3);
       setLoading(false);
