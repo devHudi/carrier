@@ -18,7 +18,6 @@ import Sok from '../assets/Sokcho.jpg';
 import Mac from '../assets/Macao.jpg';
 import Syd from '../assets/Sydney.jpg';
 import Pa from '../assets/Paris.jpg';
-import Bu from '../assets/Buyeo.jpg';
 
 const settings = {
   infinite: false,
@@ -113,7 +112,6 @@ const CityCarouselD = () => (
       <Slider {...settings}>
         <City name="제주도" img={Jeju} />
         <City name="파리" img={Pa} />
-        <City name="부여" img={Bu} />
         <City name="강릉시" img={Gang} />
         <City name="인천광역시" img={In} />
         <City name="속초시" img={Sok} />
@@ -122,5 +120,4 @@ const CityCarouselD = () => (
     </div>
   </>
 );
-
 export { CityCarouselA, CityCarouselB, CityCarouselC, CityCarouselD };
