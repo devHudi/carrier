@@ -1,6 +1,6 @@
 import { useLocation, useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import PageSpinner from 'carrier-ui/PageSpinner';
+import { Spinner } from 'carrier-ui';
 import ChatNavBar from './components/ChatNav/style';
 import { firestore, auth } from '../../misc/firebase';
 import {
@@ -51,7 +51,7 @@ const Chat = () => {
       </ChatNavBar>
       <Wrapper>
         <MsgerChat>
-          {isLoading && <PageSpinner />}
+          {isLoading && <Spinner />}
           {conversation.map((chat) =>
             chat?.sender_uid === user?.uid ? (
               <MyContent

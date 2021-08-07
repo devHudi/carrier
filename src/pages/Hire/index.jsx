@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import toast from 'react-simple-toasts';
 
 import { firestore } from 'misc/firebase';
-import { Container, Navigation, ProgressBar, PageSpinner } from 'carrier-ui';
+import { Container, Navigation, ProgressBar, Spinner } from 'carrier-ui';
 
 import Title from './components/Title';
 import Form from './components/Form';
@@ -84,7 +84,7 @@ const Hire = () => {
 
   return (
     <>
-      {loading && <PageSpinner />}
+      {loading && <Spinner />}
       {login && <LoginGuide submitId={submitId} />}
 
       <Navigation

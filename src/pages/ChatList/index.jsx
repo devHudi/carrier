@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import PageSpinner from 'carrier-ui/PageSpinner';
+import { Spinner } from 'carrier-ui';
 import { auth, firestore } from '../../misc/firebase';
 import Container from '../../carrier-ui/Container';
 import ChatNavigation from './ Component/ChatListNav/style';
@@ -97,7 +96,7 @@ const ChatList = () => {
           value={searchWord}
           onSubmit={onSubmit}
         />
-        {isLoading && <PageSpinner />}
+        {isLoading && <Spinner />}
         {chatRoomList.map((chat) =>
           classification ? (
             <ChatRoom classification={classification} userObj={chat} />
