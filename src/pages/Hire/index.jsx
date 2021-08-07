@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-simple-toasts';
 
-import { firestore } from 'misc/firebase';
 import { Container, Navigation, ProgressBar, Spinner } from 'carrier-ui';
+import { useQuery } from 'hooks';
 
+import { addSubmit } from 'controller/submits';
 import Title from './components/Title';
 import Form from './components/Form';
 import LoginGuide from './components/LoginGuide';
@@ -16,6 +17,16 @@ const Hire = () => {
   const [submitId, setSubmitId] = useState();
 
   const history = useHistory();
+  const query = useQuery();
+  const sido = query.get('sido');
+  const place = query.get('place');
+
+  useEffect(() => {
+    if (!sido || !place) {
+      alert('잘못된 접근입니다.');
+      history.goBack();
+    }
+  }, [sido, place]);
 
   const onNextClick = () => {
     setStep(step + 1);
@@ -64,12 +75,7 @@ const Hire = () => {
 
     setLoading(true);
 
-    const docRef = await firestore.collection('submits').add({
-      ...data,
-      employer_uid: null,
-      created_at: new Date(),
-      updated_at: new Date(),
-    });
+    const docRef = await addSubmit(sido, place, data);
 
     setSubmitId(docRef.id);
 
