@@ -1,5 +1,5 @@
 import { useLocation, useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PageSpinner from 'carrier-ui/PageSpinner';
 import ChatNavBar from './components/ChatNav/style';
 import { firestore, auth } from '../../misc/firebase';
@@ -37,6 +37,7 @@ const Chat = () => {
   const onLeftClick = () => {
     history.goBack();
   };
+  const chatRef = useRef();
   return (
     <>
       <ChatNavBar
@@ -57,8 +58,8 @@ const Chat = () => {
                 key={chat.sended_at}
                 profileImg={
                   user?.uid === userObj?.employee_uid
-                    ? userObj?.employer_profile_img
-                    : userObj?.employee_profile_img
+                    ? userObj?.employee_profile_img
+                    : userObj?.employer_profile_img
                 }
               >
                 {chat.content}
@@ -76,8 +77,9 @@ const Chat = () => {
               </OpponentContent>
             ),
           )}
+          <div ref={chatRef} />
         </MsgerChat>
-        <ChatBox chatsDoc={userObj} user={user} />
+        <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
       </Wrapper>
     </>
   );
