@@ -54,19 +54,11 @@ const Intro = () => (
     <Container>
       <Text>어디로 떠나시나요?</Text>
       <Link to="/search">
-        <HorizonNextButton
-          onClick={() => {
-            // history.push('/search');
-          }}
-        />
+        <HorizonNextButton />
       </Link>
-      <ForGuide
-        onClick={() => {
-          // history.push('/');
-        }}
-      >
-        로그인/회원가입
-      </ForGuide>
+      <Link to="/sign-in">
+        <ForGuide>로그인/회원가입</ForGuide>
+      </Link>
     </Container>
   </>
 );

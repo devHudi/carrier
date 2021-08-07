@@ -21,11 +21,6 @@ const Picture = styled.div`
   border-radius: 10px;
 `;
 
-// background: url(${img});
-
-// backgroundImage: "url(" + ${img} + ")"
-// backgroundImage: 'url(${img})'
-
 const CityName = styled.div`
   width: 100%;
   display: flex;
