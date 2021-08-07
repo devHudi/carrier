@@ -11,7 +11,6 @@ import {
   CityCarouselC,
   CityCarouselD,
 } from './components/CityCarousel';
-// , { createGlobalStyle }
 
 const Logo = styled.div`
   display: flex;
@@ -29,10 +28,6 @@ const Category = styled.div`
   font-weight: 600;
   margin-top: 30px;
 `;
-
-// const CityWrapper = styled.div`
-//   display: flex;
-// `;
 
 const Search = () => (
   <>

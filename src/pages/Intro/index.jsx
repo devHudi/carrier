@@ -43,14 +43,22 @@ const Content = styled.a`
   align-items: center;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Intro = () => (
   <>
-    <Logo>CARRIER</Logo>
-    <Margin size={110} />
-    <Content>
-      <img width="375px" src={img} />
-      <Outline />
-    </Content>
+    <Wrapper>
+      <Content>
+        <Logo>CARRIER</Logo>
+        <Margin size={110} />
+        <img width="375px" src={img} />
+        <Outline />
+      </Content>
+    </Wrapper>
     <Container>
       <Text>어디로 떠나시나요?</Text>
       <Link to="/search">
