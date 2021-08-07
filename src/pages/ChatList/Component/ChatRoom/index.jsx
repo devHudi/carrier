@@ -14,8 +14,8 @@ const ChatRoom = ({ userObj, classification }) => {
     <>
       {classification ? (
         <Wrapper onClick={click}>
-          <Img src={userObj?.employer_profile_img} alt="" />
           <MessageBox>
+          <Img src={userObj?.employer_profile_img} alt="" />
             <span>{userObj?.employer_name}</span>
             <span>안녕하세요 소비자 입니다~~~</span>
           </MessageBox>
