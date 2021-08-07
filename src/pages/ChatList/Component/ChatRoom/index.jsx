@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { Img, MessageBox, RecentBox, Wrapper, StyledLink } from './style';
 
