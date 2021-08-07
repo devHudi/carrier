@@ -90,7 +90,6 @@ export const OpponentContent = ({ children, profileImg, flag }) => (
         <LeftContinueBubble>{children}</LeftContinueBubble>
       </>
     )}
-    ;
   </LeftMsg>
 );
 export const MyContent = ({ children, profileImg, flag }) => (
