@@ -5,9 +5,10 @@ import { Img, MessageBox, RecentBox, Wrapper } from './style';
 const ChatRoom = ({ userObj, classification }) => {
   const count = 2;
   const history = useHistory();
+  const { id } = userObj;
   const click = () => {
     history.push({
-      pathname: `/chat/${userObj?.id}`,
+      pathname: `/chat/${id}`,
     });
   };
   return (
