@@ -16,8 +16,9 @@
     "react/button-has-type": "off",
     "react-hooks/exhaustive-deps": "off",
     "no-underscore-dangle": "off",
-    "jsx-a11y/alt-text": "off",
     "curly": "off",
-    "nonblock-statement-body-position": "off"
+    "nonblock-statement-body-position": "off",
+    "jsx-a11y/alt-text": "off",
+    "function-paren-newline": "off"
   }
 }
