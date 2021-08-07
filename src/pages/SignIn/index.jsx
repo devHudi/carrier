@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Margin } from 'carrier-ui';
 import Input from './components/Input';
 import Button from './components/Button';
+import person from '../SignUp/assets/Icon material-person.svg';
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -19,7 +20,7 @@ const MainContainer = styled.p`
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  padding: 0 20%;
+  padding: 0 10%;
 `;
 
 const Logo = styled.p`
@@ -60,8 +61,11 @@ const SignIn = () => (
       <Logo>CARRIER</Logo>
       <Margin size={56} />
       <InputContainer>
-        <Input type="text" placeholder="아이디 또는 이메일 주소" />
-        <Margin size={16} />
+        <Input
+          type="text"
+          placeholder="아이디 또는 이메일 주소"
+          icon={person}
+        />
         <Input type="password" placeholder="비밀번호" />
       </InputContainer>
       <Margin size={40} />

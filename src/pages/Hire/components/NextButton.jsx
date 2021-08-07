@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ReactComponent as Arrow } from '../assets/arrow-right.svg';
 
-const Wrapper = styled.div`s
+const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,6 @@ const Wrapper = styled.div`s
   box-shadow: 5px 5px 28px rgba(0, 0, 0, 0.2),
     -5px -5px 28px rgba(255, 255, 255, 0.2);
   cursor: pointer;
-
   & > svg {
     width: 13px;
     height: 26px;
