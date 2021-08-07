@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { Img, MessageBox, RecentBox, Wrapper } from './style';
