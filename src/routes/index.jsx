@@ -12,6 +12,7 @@ import {
   Intro,
   SignIn,
   SignUp,
+  NotFound,
 } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
@@ -63,6 +64,9 @@ const Router = () => (
       </Route>
       <Route exact path="/firebase-examples">
         <FirebaseExample />
+      </Route>
+      <Route path="/*">
+        <NotFound />
       </Route>
     </Switch>
   </BrowserRouter>
