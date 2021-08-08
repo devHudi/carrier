@@ -14,11 +14,13 @@ const RoundedButton = styled.button`
     if (props.blue) {
       return css`
         border: 2px solid ${props.theme.colors.blue};
+        color: ${props.theme.colors.blue};
       `;
     }
     if (props.red) {
       return css`
         border: 2px solid ${props.theme.colors.red};
+        color: ${props.theme.colors.blue};
       `;
     }
     return css`
@@ -31,11 +33,13 @@ const RoundedButton = styled.button`
       if (props.blue) {
         return css`
           background-color: ${props.theme.colors.blue};
+          color: ${props.theme.colors.white};
         `;
       }
       if (props.red) {
         return css`
           background-color: ${props.theme.colors.red};
+          color: ${props.theme.colors.white};
         `;
       }
       return css`
