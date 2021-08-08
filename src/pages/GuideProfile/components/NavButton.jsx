@@ -25,6 +25,7 @@ const StyledButton = styled(RoundedButton)`
   padding: 18px;
   border-radius: 10px;
   font-size: 20px;
+  width: ${(props) => props.width}%;
 `;
 
 const NavButton = ({ user, guide }) => {
