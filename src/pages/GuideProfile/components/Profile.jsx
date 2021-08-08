@@ -16,10 +16,11 @@ const BackgroundCircle = styled.div`
   width: 150px;
   height: 150px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   background-color: ${(props) => props.theme.colors.white};
   border-radius: 112px;
   opacity: 1;
+  box-shadow: 0px -20px 20px -20px #ababab;
 `;
 
 const ImageCircle = styled.div`
@@ -38,7 +39,7 @@ const Container = styled.div`
   background: #ffffff 0% 0% no-repeat padding-box;
   position: relative;
   top: 75px;
-  z-index: 2;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -48,6 +49,7 @@ const Container = styled.div`
   filter: blur(0px);
   width: 100%;
   text-align: center;
+  box-shadow: 0px 0px 20px -5px #ababab;
 `;
 
 const City = styled(Typography)`

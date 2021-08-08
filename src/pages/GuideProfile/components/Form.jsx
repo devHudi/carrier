@@ -4,6 +4,9 @@ import Introduction from './Introduction';
 import MainTheme from './MainTheme';
 import Price from './Price';
 import PictureAndVideo from './PictureAndVideo';
+import Review from './Review';
+import FAQ from './FAQ';
+import NavButton from './NavButton';
 
 const formFadeIn = keyframes`
   100% {
@@ -27,6 +30,7 @@ const FormWrapper = styled.div`
 const Form = () => (
   <>
     <FormWrapper>
+      <Margin size={20} />
       <MainTheme />
       <Margin size={20} />
       <Introduction />
@@ -34,6 +38,12 @@ const Form = () => (
       <Price />
       <Margin size={20} />
       <PictureAndVideo />
+      <Margin size={20} />
+      <Review />
+      <Margin size={20} />
+      <FAQ />
+      <Margin size={120} />
+      <NavButton />
     </FormWrapper>
   </>
 );

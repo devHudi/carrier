@@ -24,6 +24,7 @@ const Container = styled.div`
   opacity: 1;
   filter: blur(px);
   width: 100%;
+  box-shadow: 0px 0px 20px -5px #ababab;
 `;
 
 const Blur = styled(Typography)`

@@ -25,6 +25,7 @@ const Container = styled.div`
   opacity: 1;
   filter: blur(px);
   width: 100%;
+  box-shadow: 0px 0px 20px -5px #ababab;
 `;
 
 const SliderContainer = styled.div`
@@ -41,6 +42,17 @@ const StyledSlider = styled(Slider)`
   .slick-slide div {
     cursor: pointer;
     margin: auto;
+  }
+  .slick-prev {
+    color: #a1a1a1;
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-next {
+    color: #a1a1a1;
+    width: 30px;
+    height: 30px;
   }
 `;
 
