@@ -19,9 +19,17 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
+  display: flex;
+  align-items: center;
   padding-top: 17px;
   padding-bottom: 15px;
   font-size: 20px;
+  & img {
+    width: 6rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    opacity: 0.65;
+  }
 `;
 export const Img = styled.img`
   width: ${(props) => `${props.width}px`};

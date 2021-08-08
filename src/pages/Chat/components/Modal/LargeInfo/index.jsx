@@ -18,13 +18,18 @@ import money from './assets/money.png';
 import people from './assets/people.png';
 import star from './assets/star.png';
 import circle from './assets/circle.png';
+import line from './assets/line.png';
 
 const UserInfoModal = () => {
   const [clickModal, setClickModal] = useState(false);
   const ontoggle = () => setClickModal((prev) => !prev);
   return (
     <Wrapper background="https://blog.kakaocdn.net/dn/6CEcF/btqxVzYzsYJ/hW9z8hX5DgILkKPk8AYr70/img.png">
-      <Title>부산</Title>
+      <Title>
+        <img src={line} />
+        부산
+        <img src={line} />
+      </Title>
       <BasicInfo onClickModal={clickModal}>
         <div>
           <Img src={calender} width="18" height="19" />
