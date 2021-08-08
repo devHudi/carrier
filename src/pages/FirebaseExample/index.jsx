@@ -11,6 +11,7 @@ import {
 } from 'controller/auth';
 import { changeUserName, changeUserProfileImage } from 'controller/user';
 import { addReview } from 'controller/review';
+import { likeGuide } from 'controller/like';
 
 const Form = styled.div`
   padding: 10px;
@@ -63,6 +64,11 @@ const FirebaseExample = () => {
     employeeUid: '',
     score: 0,
     comment: '',
+  });
+
+  const [likeForm, setLikeForm] = useState({
+    employerUid: '',
+    employeeUid: '',
   });
 
   return (
@@ -361,6 +367,32 @@ const FirebaseExample = () => {
         <Title>가이드 생성하기</Title>
         <button onClick={async () => await createGuides(1)}>
           가이드 1명 생성하기
+        </button>
+      </Form>
+
+      <Form>
+        <Title>가이드 좋아요</Title>
+
+        <input
+          type="text"
+          onChange={(e) =>
+            setLikeForm({ ...likeForm, employerUid: e.target.value })
+          }
+          placeholder="유저 UID"
+        />
+        <input
+          type="text"
+          onChange={(e) =>
+            setLikeForm({ ...likeForm, employeeUid: e.target.value })
+          }
+          placeholder="유저 UID"
+        />
+        <button
+          onClick={async () =>
+            await likeGuide(likeForm.employerUid, likeForm.employeeUid)
+          }
+        >
+          좋아요 or 좋아요해제
         </button>
       </Form>
     </>
