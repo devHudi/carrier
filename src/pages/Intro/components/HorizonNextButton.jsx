@@ -16,7 +16,6 @@ const Wrapper = styled.div`
   cursor: pointer;
   margin-top: 30px;
   padding-right: 22px;
-
   & > svg {
     width: 400px;
     height: 30px;
