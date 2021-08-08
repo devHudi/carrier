@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import paper from './assets/paperplane.png';
+import plus from './assets/plus.png';
 
 const Wrapper = styled.form`
   height: 48px;
@@ -47,12 +48,18 @@ const SubmitButton = styled.button`
     opacity: 0.8;
   }
 `;
+const Plus = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+`;
 
 const MessageTypeBox = ({ onChange, onSubmit, value, onKeydownChat }) => {
   const placeholder = '메세지를 입력하세요.';
   return (
     <>
       <Wrapper onSubmit={onSubmit}>
+        <Plus src={plus} />
         <MessageInput
           value={value}
           placeholder={placeholder}
