@@ -5,29 +5,40 @@ import MessageTypeBox from './style';
 
 const ChatBox = ({ chatsDoc, user, chatRef }) => {
   const [message, setMessage] = useState('');
+  const [isMessage, setIsMessage] = useState(false);
+  const [onClickPlus, setOnClickPlus] = useState(false);
+
   const onChangeMessage = (e) => {
     const {
       target: { value },
     } = e;
     setMessage(value);
+    if (value !== '') {
+      setIsMessage(true);
+    } else {
+      setIsMessage(false);
+    }
   };
-
+  const onToggle = () => setOnClickPlus((prev) => !prev);
   const onSubmit = async (e) => {
     e.preventDefault();
-    await firestore
-      .collection('chats')
-      .doc(chatsDoc?.id)
-      .collection('conversation')
-      .add({
-        content: message,
-        sended_at: new Date(Date.now()),
-        sender_uid: user?.uid,
+    if (isMessage) {
+      await firestore
+        .collection('chats')
+        .doc(chatsDoc?.id)
+        .collection('conversation')
+        .add({
+          content: message,
+          sended_at: new Date(Date.now()),
+          sender_uid: user?.uid,
+        });
+      setMessage('');
+      setIsMessage(false);
+      chatRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
       });
-    setMessage('');
-    chatRef.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
+    }
   };
   const onKeydownChat = useCallback(
     (e) => {
@@ -48,6 +59,9 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
       onSubmit={onSubmit}
       onKeydownChat={onKeydownChat}
       chatRef={chatRef}
+      isMessage={isMessage}
+      onToggle={onToggle}
+      onClickPlus={onClickPlus}
     />
   );
 };
