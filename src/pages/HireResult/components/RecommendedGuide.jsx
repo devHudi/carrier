@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import _ from 'lodash';
 import Slider from 'react-slick';
@@ -9,7 +10,6 @@ import { Typography, Margin, Flex } from 'carrier-ui';
 import placeData from 'assets/data/placeData';
 import themeData from 'assets/data/themeData';
 
-import Picture1 from '../data/b_02.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -25,7 +25,7 @@ const StyledSlider = styled(Slider)`
 `;
 
 const Wrapper = styled.div`
-  background: transparent url(${Picture1}) 0% 0% no-repeat padding-box;
+  background-image: url('${(props) => props.image}');
   background-size: 100% 100%;
   display: flex;
   justify-content: space-between;
@@ -46,6 +46,8 @@ const GuideWrapper = styled.div`
 `;
 
 const RecommendedGuide = ({ guides }) => {
+  const history = useHistory();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -58,7 +60,11 @@ const RecommendedGuide = ({ guides }) => {
     <div>
       <StyledSlider {...settings}>
         {_.map(guides, (guide) => (
-          <Wrapper key={guide.uid}>
+          <Wrapper
+            key={guide.uid}
+            image={guide.profile_image}
+            onClick={() => history.push(`/profile/${guide.uid}`)}
+          >
             <GuideWrapper>
               <Flex justify="space-between" width="100%">
                 <div style={{ margin: '0px' }}>
