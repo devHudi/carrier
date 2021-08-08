@@ -103,9 +103,7 @@ const Chat = () => {
           )}
           <div ref={chatRef} />
         </MsgerChat>
-        <InfoWrapper>
-          <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
-        </InfoWrapper>
+        <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
       </Wrapper>
     </>
   );
