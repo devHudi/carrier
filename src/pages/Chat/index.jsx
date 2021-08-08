@@ -1,6 +1,6 @@
-import { useLocation, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import { Spinner } from 'carrier-ui';
+import Spinner from 'carrier-ui/Spinner';
 import ChatNavBar from './components/ChatNav/style';
 import { firestore, auth } from '../../misc/firebase';
 import {
@@ -8,20 +8,42 @@ import {
   Wrapper,
   OpponentContent,
   MsgerChat,
+  InfoWrapper,
 } from './components/ChatBubble/styles';
 import ChatBox from './components/ChatBox';
+import UserInfoModal from './components/Modal/LargeInfo';
 
 const Chat = () => {
-  const location = useLocation();
-  const { userObj } = location?.state;
+  const [userObj, setUserObj] = useState([]);
   const [conversation, setconversation] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
+  const { uid } = useParams();
+
+  useEffect(() => {
+    firestore
+      .collection('chats')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setUserObj({
+          id: uid,
+          created_at: doc.data().created_at,
+          employee_name: doc.data().employee_name,
+          employee_profile_img: doc.data().employee_profile_img,
+          employee_uid: doc.data().employee_uid,
+          employer_name: doc.data().employer_name,
+          employer_profile_img: doc.data().employer_profile_img,
+          employer_uid: doc.data().employer_uid,
+        });
+        console.log(userObj);
+      });
+  }, [uid]);
 
   useEffect(async () => {
     firestore
       .collection('chats')
-      .doc(userObj.id)
+      .doc(uid)
       .collection('conversation')
       .orderBy('sended_at')
       .onSnapshot((snapshot) => {
@@ -50,6 +72,9 @@ const Chat = () => {
           : userObj?.employee_name}
       </ChatNavBar>
       <Wrapper>
+        <InfoWrapper>
+          <UserInfoModal />
+        </InfoWrapper>
         <MsgerChat>
           {isLoading && <Spinner />}
           {conversation.map((chat) =>
@@ -79,7 +104,9 @@ const Chat = () => {
           )}
           <div ref={chatRef} />
         </MsgerChat>
-        <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
+        <InfoWrapper>
+          <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
+        </InfoWrapper>
       </Wrapper>
     </>
   );
