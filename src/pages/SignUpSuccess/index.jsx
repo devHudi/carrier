@@ -1,6 +1,5 @@
-import Margin from 'carrier-ui/Margin';
 import styled, { createGlobalStyle } from 'styled-components';
-import RoundedButton from 'carrier-ui/RoundedButton';
+import { RoundedButton, Margin } from 'carrier-ui';
 import signinUpSuccess from './assets/signUpSuccess.png';
 
 const MainContainer = createGlobalStyle`

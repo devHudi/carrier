@@ -1,6 +1,6 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import Spinner from 'carrier-ui/Spinner';
+import { Spinner } from 'carrier-ui';
 import ChatNavBar from './components/ChatNav/style';
 import { firestore, auth } from '../../misc/firebase';
 import {

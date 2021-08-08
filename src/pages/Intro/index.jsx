@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { Link } from 'react-router-dom';
-import Margin from 'carrier-ui/Margin';
+import { Margin } from 'carrier-ui';
 import HorizonNextButton from './components/HorizonNextButton';
 import Outline from './components/Outline';
 import Container from './components/Container';

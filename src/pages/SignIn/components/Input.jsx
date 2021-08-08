@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
-export default function Input({ type, placeholder, icon }) {
-  return <StyledInput type={type} placeholder={placeholder} icon={icon} />;
+export default function Input({ type, placeholder, icon, onChange }) {
+  return (
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      icon={icon}
+      onChange={onChange}
+    />
+  );
 }
 
 const StyledInput = styled.input`

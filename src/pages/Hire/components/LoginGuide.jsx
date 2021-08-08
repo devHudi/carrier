@@ -27,7 +27,7 @@ const LoginGuide = ({ submitId }) => {
         </RoundedButton>
         <Margin size={25} />
         <RoundedButton
-          onClick={() => history.push(`/sign-in?submit=${submitId}`)}
+          onClick={() => history.push(`/sign-in?submitId=${submitId}`)}
         >
           이미 CARRIER의 회원이에요!
         </RoundedButton>

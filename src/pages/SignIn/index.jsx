@@ -1,11 +1,15 @@
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
-import { Link } from 'react-router-dom';
-import { Margin } from 'carrier-ui';
+import toast from 'react-simple-toasts';
+import { Margin, RoundedButton, Spinner } from 'carrier-ui';
+import { useQuery } from 'hooks';
+import { signIn } from 'controller/auth';
+
 import Input from './components/Input';
-import Button from './components/Button';
 
 const GlobalStyle = createGlobalStyle`
-  *{
+  body {
     background-color: ${(props) => props.theme.colors.white};
   }
 `;
@@ -53,27 +57,77 @@ const SignUp = styled.p`
   text-decoration: underline;
 `;
 
-const SignIn = () => (
-  <>
-    <GlobalStyle />
-    <MainContainer>
-      <Logo>CARRIER</Logo>
-      <Margin size={56} />
-      <InputContainer>
-        <Input type="text" placeholder="아이디 또는 이메일 주소" />
-        <Input type="password" placeholder="비밀번호" />
-      </InputContainer>
-      <Margin size={40} />
-      <Button content="로그인" />
-      <Margin size={20} />
-      <TextWrapper>
-        <New>CARRIER가 처음이신가요?</New>
-        <Link to="/sign-up">
-          <SignUp>회원가입하기</SignUp>
-        </Link>
-      </TextWrapper>
-    </MainContainer>
-  </>
-);
+const SignIn = () => {
+  const history = useHistory();
+  const query = useQuery();
+  const submitId = query.get('submitId');
+
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const onSignInClick = async () => {
+    const { email, password } = form;
+
+    setLoading(true);
+
+    try {
+      await signIn(email, password);
+
+      toast('로그인 성공하였습니다!');
+
+      if (submitId) history.push(`/hire/${submitId}/result`);
+      else history.push('/');
+    } catch (e) {
+      const { code } = e;
+      if (code === 'auth/invalid-email' || code === 'auth/wrong-password')
+        toast('이메일 혹은 비밀번호를 다시 확인해주세요.');
+      else if (code === 'auth/user-not-found')
+        toast('존재하지 않는 유저입니다.');
+      else toast(`알 수 없는 에러가 발생했습니다. (${code})`);
+    }
+
+    setLoading(false);
+  };
+
+  const onSignUpClick = () => {
+    if (submitId) history.push(`/sign-up?submitId=${submitId}`);
+    else history.push('/sign-up');
+  };
+
+  return (
+    <>
+      {loading && <Spinner />}
+      <GlobalStyle />
+      <MainContainer>
+        <Logo>CARRIER</Logo>
+        <Margin size={56} />
+        <InputContainer>
+          <Input
+            type="text"
+            placeholder="아이디 또는 이메일 주소"
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+          />
+          <Input
+            type="password"
+            placeholder="비밀번호"
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+          />
+        </InputContainer>
+        <Margin size={40} />
+        <RoundedButton filled blue onClick={onSignInClick}>
+          로그인
+        </RoundedButton>
+        <Margin size={20} />
+        <TextWrapper>
+          <New>CARRIER가 처음이신가요?</New>
+          <SignUp onClick={onSignUpClick}>회원가입하기</SignUp>
+        </TextWrapper>
+      </MainContainer>
+    </>
+  );
+};
 
 export default SignIn;

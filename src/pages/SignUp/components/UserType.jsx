@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Margin from 'carrier-ui/Margin';
+import { Margin } from 'carrier-ui';
 import guide from '../assets/Guide.png';
 import traveler from '../assets/Traveler.svg';
 
