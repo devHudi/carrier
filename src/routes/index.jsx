@@ -11,6 +11,7 @@ import {
   Search,
   Intro,
   SignIn,
+  SignUp,
 } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
@@ -40,7 +41,7 @@ const Router = () => (
         <SignIn />
       </Route>
       <Route exact path="/sign-up">
-        회원가입 페이지
+        <SignUp />
       </Route>
       <Route exact path="/sign-up/success">
         <SignUpSuccess />
