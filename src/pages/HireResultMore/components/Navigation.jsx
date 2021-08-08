@@ -1,8 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { IoIosArrowBack, IoIosArrowDown } from 'react-icons/io';
-import { Typography, Margin } from 'carrier-ui';
+import { IoIosArrowBack } from 'react-icons/io';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -11,12 +10,6 @@ const Wrapper = styled.div`
   padding: 37px 24px;
   display: flex;
   flex-direction: column;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
 `;
 
 const Icon = styled.div`
@@ -34,23 +27,12 @@ const createIcon = (history, type, onClick) => {
   return null;
 };
 
-const Navigation = ({ leftIcon, onLeftIconClick, title }) => {
+const Navigation = ({ leftIcon, onLeftIconClick }) => {
   const history = useHistory();
 
   return (
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>
-      {title && (
-        <>
-          <Margin size={30} />
-          <TitleContainer>
-            <Typography title>{title}</Typography>
-            <Typography subhead style={{ fontWeight: 'bold' }}>
-              추천순 <IoIosArrowDown />
-            </Typography>
-          </TitleContainer>
-        </>
-      )}
     </Wrapper>
   );
 };
@@ -58,13 +40,11 @@ const Navigation = ({ leftIcon, onLeftIconClick, title }) => {
 Navigation.propTypes = {
   leftIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back']),
   onLeftIconClick: PropTypes.func,
-  title: PropTypes.string,
 };
 
 Navigation.defaultProps = {
   leftIcon: 'back',
   onLeftIconClick: () => {},
-  title: '',
 };
 
 export default Navigation;

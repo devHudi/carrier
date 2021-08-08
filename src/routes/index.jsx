@@ -24,10 +24,10 @@ const Router = () => (
       <Route exact path="/hire">
         <Hire />
       </Route>
-      <Route exact path="/hire/result">
+      <Route exact path="/hire/:submitId/result">
         <HireResult />
       </Route>
-      <Route exact path="/hire/result/more">
+      <Route exact path="/hire/:submitId/result/more">
         <HireResultMore />
       </Route>
       <Route exact path="/sign-in">
