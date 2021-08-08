@@ -37,10 +37,12 @@ const ChatList = () => {
   }, [userObj]);
   //* ***********************************************************************************//
   // 밑에 useEffect 코드 리펙토링 할때 적은 코드로 사용할 수 있게 하기. + collection name chat->chats로 변경하기
-  useEffect(async () => {
+  useEffect(() => {
     if (user === 'employer') {
+      // const chats = [];
       firestore
         .collection('chats')
+        .orderBy('updated_at')
         .where('employer_uid', '==', userObj?.uid)
         .onSnapshot((snapshot) => {
           setChatRoomList(
@@ -50,16 +52,18 @@ const ChatList = () => {
             })),
           );
         });
+      console.log(chatRoomList);
       setIsLoading(false);
     } else if (user === 'employee') {
       firestore
         .collection('chats')
+        .orderBy('updated_at')
         .where('employee_uid', '==', userObj?.uid)
         .onSnapshot((snapshot) => {
           setChatRoomList(
             snapshot.docs.map((doc) => ({
               id: doc.id,
-              uid: doc.data().employee_uid,
+              ...doc.data(),
             })),
           );
         });
