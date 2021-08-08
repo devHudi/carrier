@@ -5,10 +5,10 @@ import guideProfileData from 'assets/data/guideProfileData';
 
 // guide_profiles Collection 에 더미 데이터를 생성합니다.
 export const createGuideProfile = async (employeeUid) => {
-  const introduction = pick(guideProfileData.introductions, 1)[0];
-  const startTime = pick(guideProfileData.available_times.starts, 1)[0];
-  const endTime = pick(guideProfileData.available_times.ends, 1)[0];
-  const faq = pick(guideProfileData.faqs, 2);
+  const introduction = pick([...guideProfileData.introductions], 1)[0];
+  const startTime = pick([...guideProfileData.available_times.starts], 1)[0];
+  const endTime = pick([...guideProfileData.available_times.ends], 1)[0];
+  const faq = pick([...guideProfileData.faqs], 2);
 
   const user = (
     await firestore.collection('users').doc(employeeUid).get()
@@ -32,6 +32,8 @@ export const createGuideProfile = async (employeeUid) => {
     faq,
     dummy: true,
   };
+
+  console.log(profileDocs, employeeUid);
 
   return (await firestore.collection('guide_profiles').doc(employeeUid)).set(
     profileDocs,
