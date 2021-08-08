@@ -9,7 +9,6 @@ import { Typography, Margin, Flex } from 'carrier-ui';
 import placeData from 'assets/data/placeData';
 import themeData from 'assets/data/themeData';
 
-import Picture1 from '../data/b_02.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -25,7 +24,7 @@ const StyledSlider = styled(Slider)`
 `;
 
 const Wrapper = styled.div`
-  background: transparent url(${Picture1}) 0% 0% no-repeat padding-box;
+  background-image: url('${(props) => props.image}');
   background-size: 100% 100%;
   display: flex;
   justify-content: space-between;
@@ -58,7 +57,7 @@ const RecommendedGuide = ({ guides }) => {
     <div>
       <StyledSlider {...settings}>
         {_.map(guides, (guide) => (
-          <Wrapper key={guide.uid}>
+          <Wrapper key={guide.uid} image={guide.profile_image}>
             <GuideWrapper>
               <Flex justify="space-between" width="100%">
                 <div style={{ margin: '0px' }}>
