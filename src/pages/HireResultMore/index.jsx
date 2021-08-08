@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
 import { Typography, Margin } from 'carrier-ui';
 
@@ -8,13 +8,6 @@ import { getRecommendedGuides } from 'controller/hire';
 
 import Form from './components/Form';
 import Navigation from './components/Navigation';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #EEEFFF 0% 0% no-repeat padding-box;
-    opacity: 1;
-  }
-`;
 
 const Container = styled.div`
   padding: 0 24px;
@@ -45,7 +38,6 @@ const HireResultMore = () => {
 
   return (
     <>
-      <GlobalStyle />
       <Navigation leftIcon="back" onLeftIconClick={() => history.goBack()} />
 
       <Margin size={90} />

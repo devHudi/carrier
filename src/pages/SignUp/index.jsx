@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import toast from 'react-simple-toasts';
 import { Margin, RoundedButton, Spinner } from 'carrier-ui';
 import { useQuery } from 'hooks';
@@ -10,12 +10,6 @@ import Input from '../SignIn/components/Input';
 import Welcome from './components/Welcome';
 import UserType from './components/UserType';
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${(props) => props.theme.colors.white};
-  }
-`;
-// font-family: "san-serif";
 // 비밀번호 입력 시 별표(*)로 표시되는지 확인 필요 (지원하지 않는 글꼴의 경우 패스워드 표시가 숨겨짐)
 
 const Wrapper = styled.div`
@@ -89,7 +83,7 @@ function SignUp() {
   return (
     <>
       {loading && <Spinner />}
-      <GlobalStyle />
+
       <Wrapper>
         <MainContainer>
           <Welcome />

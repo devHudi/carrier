@@ -20,10 +20,6 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'NanumSquare', san-serif;
     outline: none;
   }
-
-  body {
-    background-color: ${(props) => props.theme.colors.primary};
-  }
 `;
 
 ReactDOM.render(

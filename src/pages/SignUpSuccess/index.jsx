@@ -1,12 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { RoundedButton, Margin } from 'carrier-ui';
 import signinUpSuccess from './assets/signUpSuccess.png';
 
-const MainContainer = createGlobalStyle`
-  *{
-    background-color: #ffffff;
-  }
-`;
 const Section = styled.div`
   display: flex;
   position: fixed;
@@ -42,8 +37,6 @@ const SignUpSuccess = () => {
 
   return (
     <Section>
-      <MainContainer />
-
       <ImgWrrapper>
         <img src={signinUpSuccess} width="207" height="291" alt="testA" />
       </ImgWrrapper>

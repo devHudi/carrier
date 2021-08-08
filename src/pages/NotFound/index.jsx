@@ -1,14 +1,8 @@
 import { useHistory } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { WidthLimit, Flex, RoundedButton, Margin } from 'carrier-ui';
 
 import illustration from './assets/illustration.svg';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background-color: ${(props) => props.theme.colors.white}
-  }
-`;
 
 const Wrapper = styled(WidthLimit)`
   position: absolute;
@@ -44,34 +38,31 @@ const NotFound = () => {
   const history = useHistory();
 
   return (
-    <>
-      <GlobalStyle />
-      <Wrapper>
-        <StyledFlex justify="center" align="center" direction="column">
-          <Illustration src={illustration} />
-          <Margin size={35} />
+    <Wrapper>
+      <StyledFlex justify="center" align="center" direction="column">
+        <Illustration src={illustration} />
+        <Margin size={35} />
 
-          <Title>페이지를 찾을 수 없어요.</Title>
-          <Margin size={10} />
+        <Title>페이지를 찾을 수 없어요.</Title>
+        <Margin size={10} />
 
-          <Subtitle>
-            요청하신 결과를 찾을 수 없어요.
-            <br />
-            입력하신 URL이 올바른지 확인해주세요.
-          </Subtitle>
-          <Margin size={50} />
+        <Subtitle>
+          요청하신 결과를 찾을 수 없어요.
+          <br />
+          입력하신 URL이 올바른지 확인해주세요.
+        </Subtitle>
+        <Margin size={50} />
 
-          <RoundedButton
-            blue
-            onClick={() => {
-              history.push('/');
-            }}
-          >
-            메인으로 돌아가기
-          </RoundedButton>
-        </StyledFlex>
-      </Wrapper>
-    </>
+        <RoundedButton
+          blue
+          onClick={() => {
+            history.push('/');
+          }}
+        >
+          메인으로 돌아가기
+        </RoundedButton>
+      </StyledFlex>
+    </Wrapper>
   );
 };
 
