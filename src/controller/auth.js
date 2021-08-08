@@ -3,6 +3,7 @@ import namer from 'korean-name-generator';
 import { firestore, auth } from 'misc/firebase';
 import pick from 'misc/pick';
 import placeData from 'assets/data/placeData';
+import profileImageData from 'assets/data/profileImageData';
 
 import { createGuideProfile } from 'controller/guideProfile';
 
@@ -43,8 +44,7 @@ export const signUpAsGuide = async (
     updated_at: new Date(),
     email,
     name,
-    profile_image:
-      'https://firebasestorage.googleapis.com/v0/b/likelion-carrier.appspot.com/o/profileImages%2Fdefault.png?alt=media',
+    profile_image: profileImageData[_.random(0, profileImageData.length - 1)],
     type: 'employee',
     themes,
     place: { sido, places },
