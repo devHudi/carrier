@@ -1,6 +1,6 @@
-import course from '../assets/course.svg';
-import companion from '../assets/companion.svg';
-import online from '../assets/online.svg';
+import course from '../svgs/course.svg';
+import companion from '../svgs/companion.svg';
+import online from '../svgs/online.svg';
 
 export default [
   {

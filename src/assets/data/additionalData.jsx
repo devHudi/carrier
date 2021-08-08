@@ -1,11 +1,11 @@
-import pet from '../assets/pet.svg';
-import disabled from '../assets/disabled.svg';
-import pregnant from '../assets/pregnant.svg';
-import disease from '../assets/disease.svg';
-import petActivated from '../assets/pet-activated.svg';
-import disabledActivated from '../assets/disabled-activated.svg';
-import pregnantActivated from '../assets/pregnant-activated.svg';
-import diseaseActivated from '../assets/disease-activated.svg';
+import pet from '../svgs/pet.svg';
+import disabled from '../svgs/disabled.svg';
+import pregnant from '../svgs/pregnant.svg';
+import disease from '../svgs/disease.svg';
+import petActivated from '../svgs/pet-activated.svg';
+import disabledActivated from '../svgs/disabled-activated.svg';
+import pregnantActivated from '../svgs/pregnant-activated.svg';
+import diseaseActivated from '../svgs/disease-activated.svg';
 
 export default [
   {
