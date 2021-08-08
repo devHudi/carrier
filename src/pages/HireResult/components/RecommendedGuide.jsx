@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import _ from 'lodash';
 import Slider from 'react-slick';
@@ -45,6 +46,8 @@ const GuideWrapper = styled.div`
 `;
 
 const RecommendedGuide = ({ guides }) => {
+  const history = useHistory();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -57,7 +60,11 @@ const RecommendedGuide = ({ guides }) => {
     <div>
       <StyledSlider {...settings}>
         {_.map(guides, (guide) => (
-          <Wrapper key={guide.uid} image={guide.profile_image}>
+          <Wrapper
+            key={guide.uid}
+            image={guide.profile_image}
+            onClick={() => history.push(`/profile/${guide.uid}`)}
+          >
             <GuideWrapper>
               <Flex justify="space-between" width="100%">
                 <div style={{ margin: '0px' }}>
