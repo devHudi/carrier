@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import paper from './assets/paperplane.png';
-import plus from './assets/plus.png';
+import { IoPaperPlaneSharp } from 'react-icons/io5';
+import { AiOutlinePlus } from 'react-icons/ai';
 import line from './assets/line.png';
 
 const Div = styled.div`
@@ -11,6 +11,7 @@ const Div = styled.div`
   align-items: center;
   height: 99px;
   background-color: ${(props) => props.theme.colors.white};
+  box-shadow: 6px 6px 7px rgb(0 0 0 / 0.3);
 `;
 const TextWrapper = styled.div`
   width: 100%;
@@ -43,7 +44,7 @@ const MessageInput = styled.textarea`
   text-align: left;
   border-style: none;
   margin-right: 0px;
-  width: 90%;
+  width: 100%;
   resize: none;
   font-size: 16px;
   background: none;
@@ -58,25 +59,48 @@ const SubmitButton = styled.button`
   align-items: center;
   cursor: pointer;
   background-color: transparent;
-  & > img {
-    width: 19px;
-    height: 19px;
-  }
+  transform: rotate(45deg);
   &:hover {
     opacity: 0.8;
   }
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-name: ${(props) => {
+    const test = props.isMessage;
+    if (test === true) {
+      return 'slidein';
+    }
+    return 'slideout';
+  }};
+
+  @keyframes slidein {
+    from {
+      color: #cccccc;
+    }
+
+    to {
+      color: ${(props) => props.theme.colors.blue};
+    }
+  }
+
+  @keyframes slideout {
+    from {
+      color: ${(props) => props.theme.colors.blue};
+    }
+
+    to {
+      color: #cccccc;
+    }
+  }
 `;
-const Plus = styled.img`
-  width: 19px;
-  height: 19px;
-  cursor: pointer;
-`;
+
 const ConfirmDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 44px;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 const Confirm = styled.div`
   width: 50%;
@@ -94,8 +118,58 @@ const Confirm = styled.div`
 const Line = styled.img`
   height: 20px;
 `;
+const IconDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
-const MessageTypeBox = ({ onChange, onSubmit, value, onKeydownChat }) => {
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-name: ${(props) => {
+    const test = props.onClickPlus;
+    if (test === true) {
+      return 'slideIn';
+    }
+    return 'slideOut';
+  }};
+  @keyframes slideIn {
+    from {
+      transform: rotate(0deg);
+      color: #cccccc;
+    }
+
+    to {
+      transform: rotate(45deg);
+      color: ${(props) => props.theme.colors.blue};
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: rotate(45deg);
+      color: ${(props) => props.theme.colors.blue};
+    }
+
+    to {
+      transform: rotate(0deg);
+      color: #cccccc;
+    }
+  }
+`;
+// const PlusModal = styled.div`
+//   display: hidden;
+//   height: 0px;
+// `;
+const MessageTypeBox = ({
+  onChange,
+  onSubmit,
+  value,
+  onKeydownChat,
+  isMessage,
+  onToggle,
+  onClickPlus,
+}) => {
   const placeholder = '메세지를 입력하세요.';
   return (
     <>
@@ -107,7 +181,9 @@ const MessageTypeBox = ({ onChange, onSubmit, value, onKeydownChat }) => {
         </ConfirmDiv>
         <TextWrapper>
           <Form onSubmit={onSubmit}>
-            <Plus src={plus} />
+            <IconDiv onClickPlus={onClickPlus} onClick={onToggle}>
+              <AiOutlinePlus size={27} />
+            </IconDiv>
             <Wrapper>
               <MessageInput
                 value={value}
@@ -118,8 +194,8 @@ const MessageTypeBox = ({ onChange, onSubmit, value, onKeydownChat }) => {
                 rows="1"
               />
             </Wrapper>
-            <SubmitButton type="submit" value="전송">
-              <img src={paper} />
+            <SubmitButton type="submit" value="전송" isMessage={isMessage}>
+              <IoPaperPlaneSharp size={21} />
             </SubmitButton>
           </Form>
         </TextWrapper>
@@ -132,6 +208,9 @@ MessageTypeBox.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onKeydownChat: PropTypes.func.isRequired,
+  isMessage: PropTypes.bool.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  onClickPlus: PropTypes.bool.isRequired,
 };
 
 export default MessageTypeBox;
