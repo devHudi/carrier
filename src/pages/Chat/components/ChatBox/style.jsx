@@ -25,17 +25,8 @@ const MessageInput = styled.textarea`
   width: 80%;
   resize: none;
   font-size: 16px;
-  spellcheck="false"
   background: none;
   border: none;
-  outline: none!important;
-  resize: none; 
-  word-break:break-all;
-  wrap="VIRTUAL"
-  &::placeholder{
-    opacity: 0.7;
-  }
-
 `;
 const SubmitButton = styled.button`
   position: absolute;

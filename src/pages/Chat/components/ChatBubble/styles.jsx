@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 225px;
+  flex-direction: column;
   padding-bottom: 75px;
   height: 100vh;
   background: #eeefff 0% 0% no-repeat padding-box;
+`;
+export const InfoWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export const MsgerChat = styled.div`
   flex: 1;
@@ -90,7 +96,6 @@ export const OpponentContent = ({ children, profileImg, flag }) => (
         <LeftContinueBubble>{children}</LeftContinueBubble>
       </>
     )}
-    ;
   </LeftMsg>
 );
 export const MyContent = ({ children, profileImg, flag }) => (
