@@ -36,6 +36,7 @@ const Image = styled.img`
 const StyledButton = styled(RoundedButton)`
   border-radius: 10px;
   font-size: 20px;
+  width: ${(props) => props.width}%;
 `;
 
 const NavButton = () => {
@@ -52,7 +53,7 @@ const NavButton = () => {
           <StyledButton
             blue
             filled
-            width={300}
+            width={70}
             onClick={() => {
               history.push('/chat');
             }}
@@ -61,7 +62,7 @@ const NavButton = () => {
           </StyledButton>
           <StyledButton
             blue
-            width={80}
+            width={25}
             height={55}
             onClick={() => {
               setLikeForm('', '');
