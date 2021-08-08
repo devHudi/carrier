@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import { useState, useRef } from 'react';
+import { firestore } from 'misc/firebase';
 import styled from 'styled-components';
 import {
   signUp,
@@ -13,6 +14,7 @@ import {
 import { changeUserName, changeUserProfileImage } from 'controller/user';
 import { addReview } from 'controller/review';
 import { likeGuide } from 'controller/like';
+import { getGuideProfile } from 'controller/guideProfile';
 
 const Form = styled.div`
   padding: 10px;
@@ -71,6 +73,26 @@ const FirebaseExample = () => {
     employerUid: '',
     employeeUid: '',
   });
+
+  const removeDummyGuide = async () => {
+    const userDoc = await firestore
+      .collection('users')
+      .where('dummy', '==', true)
+      .get();
+    userDoc.forEach((doc) => {
+      doc.ref.delete();
+      console.log(`유저 삭제: ${doc.id}`);
+    });
+
+    const profileDoc = await firestore
+      .collection('guide_profiles')
+      .where('dummy', '==', true)
+      .get();
+    profileDoc.forEach((doc) => {
+      doc.ref.delete();
+      console.log(`가이드 프로필 삭제: ${doc.id}`);
+    });
+  };
 
   return (
     <>
@@ -400,6 +422,24 @@ const FirebaseExample = () => {
       <Form>
         <Title>로그아웃</Title>
         <button onClick={async () => await signOut()}>로그아웃</button>
+      </Form>
+
+      <Form>
+        <Title>가이드 프로파일 가져오기</Title>
+        <button
+          onClick={async () =>
+            console.log(await getGuideProfile('0CwpXtxoMpNPo4393aDw'))
+          }
+        >
+          가이드 프로파일
+        </button>
+      </Form>
+
+      <Form>
+        <Title>더미가이드 모두 제거</Title>
+        <button onClick={async () => await removeDummyGuide()}>
+          더미가이드 제거
+        </button>
       </Form>
     </>
   );
