@@ -1,17 +1,10 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Margin } from 'carrier-ui';
 import HorizonNextButton from './components/HorizonNextButton';
 import Outline from './components/Outline';
 import Container from './components/Container';
 import img from './image/그룹 373@2x.png';
-
-const MainContainer = createGlobalStyle`
-  *{
-    background-color: #E6E6E6;
-  }
-`;
-// font-family: 'NanumSquare', san-serif;
 
 const Logo = styled.div`
   display: flex;
@@ -52,7 +45,6 @@ const Content = styled.a`
 
 const Intro = () => (
   <>
-    <MainContainer />
     <Logo>CARRIER</Logo>
     <Margin size={110} />
     <Content>
