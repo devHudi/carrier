@@ -22,7 +22,11 @@ const LoginGuide = ({ submitId }) => {
           회원이 아니에요!
         </Typography>
         <Margin size={130} />
-        <RoundedButton filled blue onClick={() => history.push('/sign-up')}>
+        <RoundedButton
+          filled
+          blue
+          onClick={() => history.push(`/sign-up?submitId=${submitId}`)}
+        >
           회원가입하고 나만의 가이드 받아보기
         </RoundedButton>
         <Margin size={25} />
