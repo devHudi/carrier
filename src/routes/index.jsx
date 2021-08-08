@@ -65,9 +65,11 @@ const Router = () => (
         <SignUpSuccess />
       </Route>
       <Route exact path="/chat/:uid">
+        <BodyStyle />
         <Chat />
       </Route>
       <Route exact path="/chat">
+        <BodyStyle />
         <ChatList />
       </Route>
       <Route exact path="/profile">
