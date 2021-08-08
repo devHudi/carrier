@@ -5,11 +5,9 @@ import { Typography, Margin, Flex } from 'carrier-ui';
 
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill } from 'react-icons/ri';
-import Picture from '../data/img1.png';
 
 import placeData from 'assets/data/placeData';
 import themeData from 'assets/data/themeData';
-
 import Picture from '../data/img1.png';
 
 const Wrapper = styled.div`

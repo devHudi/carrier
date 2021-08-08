@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { RoundedButton } from 'carrier-ui';
+import { likeGuide } from 'controller/like';
 import HeartIcon from '../data/Icon ionic-ios-heart.svg';
 
 const Wrapper = styled.div`
@@ -38,6 +40,10 @@ const StyledButton = styled(RoundedButton)`
 
 const NavButton = () => {
   const history = useHistory();
+  const [likeForm, setLikeForm] = useState({
+    employerUid: '',
+    employeeUid: '',
+  });
 
   return (
     <div>
@@ -53,7 +59,15 @@ const NavButton = () => {
           >
             가이드에게 상담 받기
           </StyledButton>
-          <StyledButton blue width={80} height={55}>
+          <StyledButton
+            blue
+            width={80}
+            height={55}
+            onClick={() => {
+              setLikeForm('', '');
+              likeGuide(likeForm);
+            }}
+          >
             <Image src={HeartIcon} />
           </StyledButton>
         </Container>
