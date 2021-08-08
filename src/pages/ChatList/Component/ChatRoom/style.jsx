@@ -35,29 +35,26 @@ export const MessageBox = styled.div`
 export const RecentBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  &:first-child {
-    color: ${(props) => props.theme.colors.black};
-    letter-spacing: 0px;
-    font-weight: bold;
-    font-size: 9px;
-    line-height: 40px;
-  }
-  &:last-child {
-    width: 20%;
-    max-width: 50px;
-    height: 23px;
-    background: ${(props) => props.theme.colors.blue} 0% 0% no-repeat
-      padding-box;
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${(props) => props.theme.colors.white};
-  }
+  justify-content: center;
+  align-items: center;
+  width: 100px;
 `;
-
+export const DateDiv = styled.div`
+  font-weight: lighter;
+  font-size: 10px;
+`;
+export const CountDiv = styled.div`
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.colors.blue};
+  border-radius: 16px;
+  width: 38px;
+  height: 23px;
+  font-size: 15px;
+  color: ${(props) => props.theme.colors.white};
+`;
 export const Wrapper = styled.div`
   text-decoration-line: none;
   display: flex;
