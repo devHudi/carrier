@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, ${(props) => props.opacity});
+  backdrop-filter: blur(5px);
   z-index: 999;
 
   & > div {
