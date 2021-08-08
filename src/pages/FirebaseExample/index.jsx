@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {
   signUp,
   signUpAsGuide,
+  signOut,
   createGuides,
   signIn,
   getCurrentUser,
@@ -394,6 +395,11 @@ const FirebaseExample = () => {
         >
           좋아요 or 좋아요해제
         </button>
+      </Form>
+
+      <Form>
+        <Title>로그아웃</Title>
+        <button onClick={async () => await signOut()}>로그아웃</button>
       </Form>
     </>
   );

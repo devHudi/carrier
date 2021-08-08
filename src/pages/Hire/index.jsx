@@ -1,11 +1,12 @@
+/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-simple-toasts';
 
 import { Container, Navigation, ProgressBar, Spinner } from 'carrier-ui';
 import { useQuery } from 'hooks';
-
 import { addSubmit } from 'controller/submits';
+import { getCurrentUser } from 'controller/auth';
 import Title from './components/Title';
 import Form from './components/Form';
 import LoginGuide from './components/LoginGuide';
@@ -44,11 +45,6 @@ const Hire = () => {
     }
   };
 
-  // dummy data
-  const currentUser = {
-    uid: undefined,
-  };
-
   useEffect(() => {
     toast(); // Toast 라이브러리 버그 해결
   }, []);
@@ -81,8 +77,11 @@ const Hire = () => {
 
     setLoading(false);
 
-    if (currentUser) {
+    const currentUser = await getCurrentUser();
+    if (!currentUser) {
       setLogin(true);
+    } else {
+      history.push(`/hire/${docRef.id}/result`);
     }
   };
 

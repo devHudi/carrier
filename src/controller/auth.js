@@ -147,3 +147,6 @@ export const getCurrentUser = async () => {
   if (!user?.uid) return null;
   return (await firestore.collection('users').doc(user.uid).get()).data();
 };
+
+// 로그아웃
+export const signOut = () => auth.signOut();
