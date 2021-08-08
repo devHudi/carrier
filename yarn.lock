@@ -7420,6 +7420,11 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
+korean-name-generator@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/korean-name-generator/-/korean-name-generator-1.0.4.tgz#3617486284424557efaec26f2a6a671fa5a2d2d9"
+  integrity sha512-iIxlar4KRYg+wVsfDs6HIrAD8Z4UkCPtIzINckNXzE4paABXYDZQx4GeTA4YxU6zHxD9d+WLS7NdykqzKj/8Xw==
+
 language-subtag-registry@~0.3.2:
   version "0.3.21"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.21.tgz#04ac218bea46f04cb039084602c6da9e788dd45a"

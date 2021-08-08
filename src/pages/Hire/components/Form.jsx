@@ -11,14 +11,14 @@ import {
   Dropdown,
 } from 'carrier-ui';
 
+import vehicleData from 'assets/data/vehicleData';
+import themeData from 'assets/data/themeData';
+import additionalData from 'assets/data/additionalData';
+import guideData from 'assets/data/guideData';
+
 import Headcounter from './Headcounter';
 import AdditionalSelection from './AdditionalSelection';
 import GuideType from './GuideType';
-
-import vehicleData from '../data/vehicleData';
-import themeData from '../data/themeData';
-import additionalData from '../data/additionalData';
-import guideData from '../data/guideData';
 
 const formFadeIn = keyframes`
   100% {

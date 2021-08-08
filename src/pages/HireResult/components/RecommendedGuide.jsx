@@ -1,11 +1,17 @@
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
-import { Typography, Margin, Flex } from 'carrier-ui';
+import _ from 'lodash';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill } from 'react-icons/ri';
+import { Typography, Margin, Flex } from 'carrier-ui';
+
+import placeData from 'assets/data/placeData';
+import themeData from 'assets/data/themeData';
+
 import Picture1 from '../data/b_02.png';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const StyledSlider = styled(Slider)`
   .slick-list {
@@ -39,7 +45,7 @@ const GuideWrapper = styled.div`
   padding-bottom: 10px;
 `;
 
-const RecommendedGuide = () => {
+const RecommendedGuide = ({ guides }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -51,93 +57,45 @@ const RecommendedGuide = () => {
   return (
     <div>
       <StyledSlider {...settings}>
-        <Wrapper>
-          <GuideWrapper>
-            <Flex justify="space-between" width="100%">
-              <div style={{ margin: '0px' }}>
-                <Typography headline color="white" style={{ margin: '0px' }}>
-                  박상준
-                </Typography>
-                <Typography subhead color="white" style={{ margin: '0px' }}>
-                  인천, 시흥
-                </Typography>
-              </div>
-              <div>
-                <Typography body color="white">
-                  <GoPerson color="blue" /> 100+ 가이드
-                </Typography>
-                <Typography body color="white">
-                  <RiHeartFill color="#FF77B2" /> 100 like
-                </Typography>
-              </div>
-            </Flex>
-            <Margin size={10} />
-            <Typography body color="white">
-              #역사가 살아있는 #자연에서 휴양
-              <br />
-              #문화재 탐방 #데이트 코스
-            </Typography>
-          </GuideWrapper>
-        </Wrapper>
-        <Wrapper>
-          <GuideWrapper>
-            <Flex justify="space-between" width="100%">
-              <div style={{ margin: '0px' }}>
-                <Typography headline color="white" style={{ margin: '0px' }}>
-                  이준현
-                </Typography>
-                <Typography subhead color="white" style={{ margin: '0px' }}>
-                  부산, 울산
-                </Typography>
-              </div>
-              <div>
-                <Typography body color="white">
-                  <GoPerson color="blue" /> 100+ 가이드
-                </Typography>
-                <Typography body color="white">
-                  <RiHeartFill color="#FF77B2" /> 100 like
-                </Typography>
-              </div>
-            </Flex>
-            <Margin size={10} />
-            <Typography body color="white">
-              #역사가 살아있는 #자연에서 휴양
-              <br />
-              #문화재 탐방 #데이트 코스
-            </Typography>
-          </GuideWrapper>
-        </Wrapper>
-        <Wrapper>
-          <GuideWrapper>
-            <Flex justify="space-between" width="100%">
-              <div style={{ margin: '0px' }}>
-                <Typography headline color="white" style={{ margin: '0px' }}>
-                  소연수
-                </Typography>
-                <Typography subhead color="white" style={{ margin: '0px' }}>
-                  성남, 서울
-                </Typography>
-              </div>
-              <div>
-                <Typography body color="white">
-                  <GoPerson color="blue" /> 100+ 가이드
-                </Typography>
-                <Typography body color="white">
-                  <RiHeartFill color="#FF77B2" /> 100 like
-                </Typography>
-              </div>
-            </Flex>
-            <Margin size={10} />
-            <Typography body color="white">
-              #역사가 살아있는 #자연에서 휴양
-              <br />
-              #문화재 탐방 #데이트 코스
-            </Typography>
-          </GuideWrapper>
-        </Wrapper>
+        {_.map(guides, (guide) => (
+          <Wrapper key={guide.uid}>
+            <GuideWrapper>
+              <Flex justify="space-between" width="100%">
+                <div style={{ margin: '0px' }}>
+                  <Typography headline color="white" style={{ margin: '0px' }}>
+                    {guide.name}
+                  </Typography>
+                  <Typography subhead color="white" style={{ margin: '0px' }}>
+                    {_.find(placeData, { sido: guide.place.sido }).sidoKr}
+                  </Typography>
+                </div>
+                <div>
+                  <Typography body color="white">
+                    <GoPerson color="blue" /> {guide.hired_count} 가이드
+                  </Typography>
+                  <Typography body color="white">
+                    <RiHeartFill color="#FF77B2" /> {guide.liked_count} like
+                  </Typography>
+                </div>
+              </Flex>
+              <Margin size={10} />
+              <Typography body color="white">
+                {_.map(
+                  guide.themes,
+                  (theme) =>
+                    `# ${_.snakeCase(_.find(themeData, { id: theme }).label)}`,
+                )}
+              </Typography>
+            </GuideWrapper>
+          </Wrapper>
+        ))}
       </StyledSlider>
     </div>
   );
+};
+
+RecommendedGuide.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default RecommendedGuide;

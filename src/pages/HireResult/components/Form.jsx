@@ -1,6 +1,6 @@
-import Typography from 'carrier-ui/Typography';
+import { PropTypes } from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { Margin, RoundedButton, Flex } from 'carrier-ui';
+import { Margin, RoundedButton, Flex, Typography } from 'carrier-ui';
 import { Link } from 'react-router-dom';
 import RecommendedGuide from './RecommendedGuide';
 
@@ -31,29 +31,32 @@ const SubTitle = styled.div`
   opacity: 1;
 `;
 
-const Form = () => (
-  <>
-    <FormWrapper>
-      <div>
-        <Typography headline>나만의 BEST 가이드</Typography>
-        <Margin size={8} />
+const Form = ({ guides, submitId }) => (
+  <FormWrapper>
+    <div>
+      <Typography headline>나만의 BEST 가이드</Typography>
+      <Margin size={8} />
 
-        <SubTitle>likelion님을 위해 엄선된 가이드를 만나보세요!</SubTitle>
-        <Margin size={10} />
-      </div>
+      <SubTitle>likelion님을 위해 엄선된 가이드를 만나보세요!</SubTitle>
+      <Margin size={10} />
+    </div>
 
-      <RecommendedGuide />
-      <Margin size={60} />
+    <RecommendedGuide guides={guides} />
+    <Margin size={60} />
 
-      <Flex justify="center">
-        <Link to="/hire/result/more">
-          <RoundedButton blue filled>
-            더 많은 가이드 보기
-          </RoundedButton>
-        </Link>
-      </Flex>
-    </FormWrapper>
-  </>
+    <Flex justify="center">
+      <Link to={`/hire/${submitId}/result/more`}>
+        <RoundedButton blue filled>
+          더 많은 가이드 보기
+        </RoundedButton>
+      </Link>
+    </Flex>
+  </FormWrapper>
 );
+
+Form.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
+  submitId: PropTypes.string.isRequired,
+};
 
 export default Form;

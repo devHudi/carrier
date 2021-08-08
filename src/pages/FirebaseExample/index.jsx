@@ -2,7 +2,13 @@
 
 import { useState, useRef } from 'react';
 import styled from 'styled-components';
-import { signUp, signIn, getCurrentUser } from 'controller/auth';
+import {
+  signUp,
+  signUpAsGuide,
+  createGuides,
+  signIn,
+  getCurrentUser,
+} from 'controller/auth';
 import { changeUserName, changeUserProfileImage } from 'controller/user';
 import { addReview } from 'controller/review';
 
@@ -21,6 +27,16 @@ const FirebaseExample = () => {
     email: '',
     name: '',
     password: '',
+  });
+
+  const [guideSignUpForm, setGuideSignUpForm] = useState({
+    email: '',
+    name: '',
+    password: '',
+    themes: '',
+    places: '',
+    languages: '',
+    guideType: '',
   });
 
   const [signInForm, setSignInForm] = useState({
@@ -89,6 +105,96 @@ const FirebaseExample = () => {
       </Form>
 
       <Form>
+        <Title>가이드로 회원가입</Title>
+        <input
+          type="email"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, email: e.target.value })
+          }
+          placeholder="이메일"
+        />
+        <input
+          type="text"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, name: e.target.value })
+          }
+          placeholder="이름"
+        />
+        <input
+          type="password"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, password: e.target.value })
+          }
+          placeholder="패스워드"
+        />
+        <input
+          type="themes"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, name: e.target.value })
+          }
+          placeholder="테마"
+        />
+        <input
+          type="places"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, name: e.target.value })
+          }
+          placeholder="지역"
+        />
+        <input
+          type="languages"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, name: e.target.value })
+          }
+          placeholder="언어"
+        />
+        <input
+          type="guideType"
+          onChange={(e) =>
+            setGuideSignUpForm({ ...guideSignUpForm, name: e.target.value })
+          }
+          placeholder="가이드 형태"
+        />
+        <button
+          type="submit"
+          onClick={async () => {
+            const {
+              email,
+              name,
+              password,
+              themes,
+              places,
+              languages,
+              guideType,
+            } = guideSignUpForm;
+
+            const _themes = themes.split(',');
+            const _places = places.split(',');
+            const _languages = languages.split(',');
+            const _guideType = guideType.split(',');
+
+            await signUpAsGuide(
+              email,
+              name,
+              password,
+              _themes,
+              _places,
+              _languages,
+              _guideType,
+            );
+          }}
+        >
+          가입
+        </button>
+        <br />
+        가이드 타입 : planner, companion, online
+        <br />
+        테마: date_course, flower, photo_zone, nature, ocean, hand_made,
+        leisure_sports, souvenir, shopping, foodie, theme_park,
+        cultural_heritage, history
+      </Form>
+
+      <Form>
         <Title>로그인</Title>
         <input
           type="email"
@@ -106,10 +212,9 @@ const FirebaseExample = () => {
         />
         <button
           type="submit"
-          onClick={async () => {
-            console.log(signInForm.password);
-            console.log(await signIn(signInForm.email, signInForm.password));
-          }}
+          onClick={async () =>
+            await signIn(signInForm.email, signInForm.password)
+          }
         >
           로그인
         </button>
@@ -160,11 +265,7 @@ const FirebaseExample = () => {
 
       <Form>
         <Title>로그인된 유저 가져오기</Title>
-        <button
-          onClick={async () => {
-            console.log(await getCurrentUser());
-          }}
-        >
+        <button onClick={async () => await getCurrentUser()}>
           로그인된 유저 가져오기
         </button>
       </Form>
@@ -253,6 +354,13 @@ const FirebaseExample = () => {
           }
         >
           변경
+        </button>
+      </Form>
+
+      <Form>
+        <Title>가이드 생성하기</Title>
+        <button onClick={async () => await createGuides(1)}>
+          가이드 1명 생성하기
         </button>
       </Form>
     </>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import SimilarGuide from './SimilarGuide';
 
@@ -18,12 +19,14 @@ const FormWrapper = styled.div`
   animation-fill-mode: forwards;
 `;
 
-const Form = () => (
-  <>
-    <FormWrapper>
-      <SimilarGuide />
-    </FormWrapper>
-  </>
+const Form = ({ guides }) => (
+  <FormWrapper>
+    <SimilarGuide guides={guides} />
+  </FormWrapper>
 );
+
+Form.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Form;
