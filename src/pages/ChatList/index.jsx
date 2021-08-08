@@ -21,7 +21,7 @@ const ChatList = () => {
 
   useEffect(() => {
     if (userObj) {
-      firestore
+      await firestore
         .collection('users')
         .where('uid', '==', userObj?.uid)
         .get()
@@ -52,7 +52,6 @@ const ChatList = () => {
             })),
           );
         });
-      console.log(chatRoomList);
       setIsLoading(false);
     } else if (user === 'employee') {
       firestore
