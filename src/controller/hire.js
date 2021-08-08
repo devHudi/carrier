@@ -52,7 +52,7 @@ export const getRecommendedGuides = async (submitId) => {
       ).length;
 
       const score = placeScore + likeThemeScore - dislikeThemeScore;
-      return { guide, score };
+      return { ...guide, score };
     })
     .sortBy('score')
     .value()
