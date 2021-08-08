@@ -18,15 +18,6 @@ export const MsgerChat = styled.div`
   flex: 1;
   overflow-y: auto;
   padding: 10px;
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
-    background: #ddd;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #bdbdbd;
-  }
 `;
 const Msg = styled.div`
   display: flex;
