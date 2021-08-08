@@ -19,7 +19,6 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
   const { uid } = useParams();
-
   useEffect(() => {
     firestore
       .collection('chats')
