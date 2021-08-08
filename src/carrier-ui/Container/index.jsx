@@ -5,7 +5,7 @@ const Container = styled.div`
   top: ${(props) => (props.top ? `${props.top}px` : 'initial')};
   bottom: 0;
   width: 100%;
-  padding: 35px;
+  padding: ${(props) => (props.padding ? `${props.padding}px` : '35px')};
   background-color: ${(props) => props.theme.colors.white};
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;

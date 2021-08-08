@@ -8,6 +8,10 @@ import {
   FirebaseExample,
   Chat,
   ChatList,
+  Search,
+  Intro,
+  SignIn,
+  SignUp,
 } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
@@ -18,8 +22,11 @@ const Router = () => (
       <Route exact path="/">
         <Main />
       </Route>
+      <Route exact path="/intro">
+        <Intro />
+      </Route>
       <Route exact path="/search">
-        여행지 검색 페이지
+        <Search />
       </Route>
       <Route exact path="/hire">
         <Hire />
@@ -31,10 +38,10 @@ const Router = () => (
         <HireResultMore />
       </Route>
       <Route exact path="/sign-in">
-        로그인 페이지
+        <SignIn />
       </Route>
       <Route exact path="/sign-up">
-        회원가입 페이지
+        <SignUp />
       </Route>
       <Route exact path="/sign-up/success">
         <SignUpSuccess />

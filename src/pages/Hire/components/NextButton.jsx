@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   box-shadow: 5px 5px 28px rgba(0, 0, 0, 0.2),
     -5px -5px 28px rgba(255, 255, 255, 0.2);
   cursor: pointer;
-
   & > svg {
     width: 13px;
     height: 26px;
