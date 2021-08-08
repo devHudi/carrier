@@ -42,11 +42,11 @@ export const signUpAsGuide = async (
   places,
   languages,
   guideTypes,
+  hiredCount = 0,
+  likedCount = 0,
+  noAuth = false,
 ) => {
-  const { user } = await auth.createUserWithEmailAndPassword(email, password);
-
   const userDoc = {
-    uid: user.uid,
     created_at: new Date(),
     updated_at: new Date(),
     email,
@@ -58,9 +58,21 @@ export const signUpAsGuide = async (
     place: { sido, places },
     languages,
     guide_types: guideTypes,
+    hired_count: hiredCount,
+    liked_count: likedCount,
   };
 
-  return firestore.collection('users').doc(user.uid).set(userDoc);
+  if (noAuth) {
+    const userRef = firestore.collection('users').doc();
+    userRef.set(userDoc);
+    return userRef.update({ uid: userRef.id });
+  }
+
+  const { user } = await auth.createUserWithEmailAndPassword(email, password);
+  return firestore
+    .collection('users')
+    .doc(user.uid)
+    .set({ ...userDoc, uid: user.uid });
 };
 
 // 샘플 가이드 생성하기
@@ -105,6 +117,9 @@ export const createGuides = async (count) => {
         pick(places),
         pick(languages),
         pick(guideTypes),
+        _.random(0, 100),
+        _.random(0, 100),
+        true,
       ),
     );
   }
