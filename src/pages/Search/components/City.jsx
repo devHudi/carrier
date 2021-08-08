@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import Busan from '../assets/Busan.jpg';
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
   margin: 12px 20px 0 0;
   width: 92px;
   display: flex;
@@ -9,6 +10,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border: 0;
+  outline: 0;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Picture = styled.div`
@@ -33,13 +37,23 @@ const CityName = styled.div`
 `;
 
 // eslint-disable-next-line react/prop-types
-const City = ({ name, img }) => (
-  <>
-    <Wrapper>
-      <Picture background={img} />
-      <CityName>{name}</CityName>
-    </Wrapper>
-  </>
-);
+const City = ({ sido, place, name, img }) => {
+  const history = useHistory();
+  return (
+    <>
+      <Wrapper
+        onClick={
+          () =>
+            // eslint-disable-next-line prettier/prettier
+            history.push(`/hire?sido=${sido}&place=${place}`)
+          // eslint-disable-next-line react/jsx-curly-newline
+        }
+      >
+        <Picture background={img} />
+        <CityName>{name}</CityName>
+      </Wrapper>
+    </>
+  );
+};
 
 export default City;

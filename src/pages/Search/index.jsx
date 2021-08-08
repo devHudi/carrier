@@ -1,16 +1,34 @@
 import styled from 'styled-components';
 import React from 'react';
+import placeData from 'assets/data/placeData';
 import { Navigation, Container, Margin } from 'carrier-ui';
 import * as fa from 'react-icons/fa';
 import { GiWaveCrest, GiPartyPopper } from 'react-icons/gi';
 import SearchBar from './components/SearchBar';
 import {
-  // eslint-disable-next-line import/named
   CityCarouselA,
   CityCarouselB,
   CityCarouselC,
   CityCarouselD,
+  CityCarouselE,
+  CityCarouselF,
+  CityCarouselG,
+  CityCarouselH,
+  CityCarouselI,
+  CityCarouselJ,
+  CityCarouselK,
+  CityCarouselL,
+  CityCarouselM,
+  CityCarouselN,
+  CityCarouselO,
+  CityCarouselP,
+  CityCarouselQ,
 } from './components/CityCarousel';
+
+// eslint-disable-next-line array-callback-return
+placeData.map((info) => {
+  console.log(info.sido);
+});
 
 const Logo = styled.div`
   display: flex;
@@ -56,6 +74,32 @@ const Search = () => (
         <fa.FaCameraRetro />
       </Category>
       <CityCarouselD />
+      <Category>세계 7대 자연경관 제주🔅</Category>
+      <CityCarouselE />
+      <Category>대구&nbsp;</Category>
+      <CityCarouselF />
+      <Category>인천&nbsp;</Category>
+      <CityCarouselG />
+      <Category>광주광역시&nbsp;</Category>
+      <CityCarouselH />
+      <Category>대전&nbsp;</Category>
+      <CityCarouselI />
+      <Category>울산&nbsp;</Category>
+      <CityCarouselJ />
+      <Category>세종&nbsp;</Category>
+      <CityCarouselK />
+      <Category>충청북도&nbsp;</Category>
+      <CityCarouselL />
+      <Category>충청남도&nbsp;</Category>
+      <CityCarouselM />
+      <Category>전라북도&nbsp;</Category>
+      <CityCarouselN />
+      <Category>전라남도&nbsp;</Category>
+      <CityCarouselO />
+      <Category>경상북도&nbsp;</Category>
+      <CityCarouselP />
+      <Category>경상남도&nbsp;</Category>
+      <CityCarouselQ />
     </Container>
   </>
 );
