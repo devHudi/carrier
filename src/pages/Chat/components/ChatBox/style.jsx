@@ -2,16 +2,53 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { AiOutlinePlus } from 'react-icons/ai';
+import toast from 'react-simple-toasts';
 import line from './assets/line.png';
+import camera from './assets/camera.png';
+import file from './assets/file.png';
+import video from './assets/video.png';
 
 const Div = styled.div`
+  z-index: 255;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 99px;
   background-color: ${(props) => props.theme.colors.white};
   box-shadow: 6px 6px 7px rgb(0 0 0 / 0.3);
+  animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-name: ${(props) => {
+    const test = props.onClickPlus;
+    if (test === true) {
+      return 'slideup';
+    }
+    return 'slidedown';
+  }};
+
+  @keyframes slideup {
+    from {
+      height: 99px;
+      padding-bottom: 0px;
+    }
+
+    to {
+      height: 255px;
+      padding-bottom: 200px;
+    }
+  }
+
+  @keyframes slidedown {
+    from {
+      height: 255px;
+      padding-bottom: 200px;
+    }
+
+    to {
+      height: 99px;
+      padding-bottom: 0px;
+    }
+  }
 `;
 const TextWrapper = styled.div`
   width: 100%;
@@ -21,6 +58,7 @@ const TextWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 const Form = styled.form`
   display: flex;
@@ -104,7 +142,7 @@ const ConfirmDiv = styled.div`
 `;
 const Confirm = styled.div`
   width: 50%;
-  height: 100%;
+  height: 44px;
   display: flex;
   cursor: pointer;
   justify-content: center;
@@ -157,10 +195,34 @@ const IconDiv = styled.div`
     }
   }
 `;
-// const PlusModal = styled.div`
-//   display: hidden;
-//   height: 0px;
-// `;
+const FileInputOptions = styled.div`
+  padding-top: 20px;
+  width: 80%;
+  display: ${(props) => {
+    const test = props.onClickPlus;
+    if (test === true) {
+      return 'flex';
+    }
+    return 'none';
+  }};
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const FileOption = styled.div`
+  display: inherit;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: lighter;
+  flex-direction: column;
+  & img {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 8px;
+  }
+`;
 const MessageTypeBox = ({
   onChange,
   onSubmit,
@@ -173,11 +235,15 @@ const MessageTypeBox = ({
   const placeholder = '메세지를 입력하세요.';
   return (
     <>
-      <Div>
+      <Div onClickPlus={onClickPlus}>
         <ConfirmDiv>
-          <Confirm>약속 확정하기</Confirm>
+          <Confirm onClick={() => toast('점검중인 서비스 입니다.', 1200)}>
+            약속 확정하기
+          </Confirm>
           <Line src={line} />
-          <Confirm>후기 작성하기</Confirm>
+          <Confirm onClick={() => toast('점검중인 서비스 입니다.', 1200)}>
+            후기 작성하기
+          </Confirm>
         </ConfirmDiv>
         <TextWrapper>
           <Form onSubmit={onSubmit}>
@@ -199,6 +265,20 @@ const MessageTypeBox = ({
             </SubmitButton>
           </Form>
         </TextWrapper>
+        <FileInputOptions onClickPlus={onClickPlus}>
+          <FileOption onClickPlus={onClickPlus}>
+            <img src={camera} />
+            사진
+          </FileOption>
+          <FileOption onClickPlus={onClickPlus}>
+            <img src={video} />
+            동영상
+          </FileOption>
+          <FileOption onClickPlus={onClickPlus}>
+            <img src={file} />
+            첨부파일
+          </FileOption>
+        </FileInputOptions>
       </Div>
     </>
   );
