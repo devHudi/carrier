@@ -22,7 +22,6 @@ const Container = styled.div`
   filter: blur(px);
   width: 100%;
   box-shadow: 0px 0px 20px -5px #ababab;
-  overflow: scroll;
 `;
 
 const ThemeContainer = styled.div`
@@ -36,7 +35,6 @@ const ThemeContainer = styled.div`
   background-color: transparent;
   font-size: 13px;
   transition: background-color 0.3s, border 0.3s, color 0.3s;
-  white-space: nowrap;
 `;
 
 const WrappedFlex = styled(Flex)`
