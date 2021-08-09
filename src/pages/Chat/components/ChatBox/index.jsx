@@ -7,7 +7,7 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
   const [message, setMessage] = useState('');
   const [isMessage, setIsMessage] = useState(false);
   const [onClickPlus, setOnClickPlus] = useState(false);
-
+  console.log('ChatBox');
   const onChangeMessage = (e) => {
     const {
       target: { value },
