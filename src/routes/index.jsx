@@ -14,6 +14,7 @@ import {
   SignUp,
   NotFound,
   GuideProfile,
+  TravelerProfile,
 } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
@@ -71,8 +72,8 @@ const Router = () => (
         <BodyStyle />
         <ChatList />
       </Route>
-      <Route exact path="/profile">
-        내 프로필
+      <Route exact path="/Travelerprofile">
+        <TravelerProfile />
       </Route>
       <Route exact path="/profile/:uid">
         <GuideProfile />
