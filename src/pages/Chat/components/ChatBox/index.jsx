@@ -72,8 +72,8 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
 };
 
 ChatBox.propTypes = {
-  user: PropTypes.arrayOf(PropTypes.object).isRequired,
-  chatsDoc: PropTypes.arrayOf(PropTypes.object).isRequired,
+  user: PropTypes.array.isRequired,
+  chatsDoc: PropTypes.array.isRequired,
   chatRef: PropTypes.func.isRequired,
 };
 
