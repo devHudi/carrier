@@ -19,8 +19,8 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
   const { uid } = useParams();
-  useEffect(() => {
-    firestore
+  useEffect(async () => {
+    await firestore
       .collection('chats')
       .doc(uid)
       .get()
@@ -36,6 +36,7 @@ const Chat = () => {
           employer_uid: doc.data().employer_uid,
         });
       });
+    console.log('user');
   }, [uid]);
 
   useEffect(async () => {
@@ -45,6 +46,7 @@ const Chat = () => {
       .collection('conversation')
       .orderBy('sended_at')
       .onSnapshot((snapshot) => {
+        console.log('get chats');
         setconversation(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
@@ -57,6 +59,7 @@ const Chat = () => {
   const onLeftClick = () => {
     history.goBack();
   };
+  console.log('Chat');
   const chatRef = useRef();
   return (
     <>
