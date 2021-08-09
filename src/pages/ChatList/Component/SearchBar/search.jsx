@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-bottom: 28px;
 `;
+
 const Icon = styled.div`
   display: flex;
   align-items: center;
