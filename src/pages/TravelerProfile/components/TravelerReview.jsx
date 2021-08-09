@@ -25,14 +25,16 @@ const Container = styled.div`
 `;
 
 const ImageCircle = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 225px;
+  height: 225px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent url(${image}) 0% 0% no-repeat padding-box;
   opacity: 1;
+  border-radius: 130px;
 `;
+
 const InnerWrapper = styled.div`
   display: flex;
   justify-content: center;

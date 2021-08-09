@@ -67,6 +67,7 @@ const Profile = () => {
   `;
   const user = firebase.auth().currentUser;
   console.log(user);
+
   return (
     <div>
       <Wrapper>

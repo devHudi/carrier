@@ -22,13 +22,14 @@ const Container = styled.div`
   box-shadow: 0px 0px 20px -5px #ababab;
 `;
 const ImageCircle = styled.div`
-  width: 300px;
-  height: 300px;
+  width: 220px;
+  height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: transparent url(${image}) 0% 0% no-repeat padding-box;
   opacity: 1;
+  border-radius: 130px;
 `;
 
 const InnerWrapper = styled.div`
