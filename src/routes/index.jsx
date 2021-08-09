@@ -22,8 +22,7 @@ import {
 const BodyStyle = createGlobalStyle`
   body {
     background-color: ${(props) => {
-      if (props.white) return props.theme.colors.white;
-      if (props.light) return '#EEEFFF';
+      if (props.color) return props.color;
       return props.theme.colors.primary;
     }}
   }
@@ -33,7 +32,7 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        <BodyStyle white />
+        <BodyStyle color="#E6E6E6" />
         <Intro />
       </Route>
       <Route exact path="/search">
@@ -49,19 +48,19 @@ const Router = () => (
         <HireResult />
       </Route>
       <Route exact path="/hire/:submitId/result/more">
-        <BodyStyle light />
+        <BodyStyle color="#EEEFFF" />
         <HireResultMore />
       </Route>
       <Route exact path="/sign-in">
-        <BodyStyle white />
+        <BodyStyle color="#FFFFFF" />
         <SignIn />
       </Route>
       <Route exact path="/sign-up">
-        <BodyStyle white />
+        <BodyStyle color="#FFFFFF" />
         <SignUp />
       </Route>
       <Route exact path="/sign-up/success">
-        <BodyStyle white />
+        <BodyStyle color="#FFFFFF" />
         <SignUpSuccess />
       </Route>
       <Route exact path="/chat/:uid">
@@ -82,11 +81,11 @@ const Router = () => (
         내 프로필 수정
       </Route>
       <Route exact path="/firebase-examples">
-        <BodyStyle white />
+        <BodyStyle color="#FFFFFF" />
         <FirebaseExample />
       </Route>
       <Route path="/*">
-        <BodyStyle white />
+        <BodyStyle color="#FFFFFF" />
         <NotFound />
       </Route>
     </Switch>
