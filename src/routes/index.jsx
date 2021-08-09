@@ -12,7 +12,6 @@ import {
   Intro,
   SignIn,
   SignUp,
-<<<<<<< refs/remotes/origin/master
   NotFound,
   GuideProfile,
   TravelerProfile,
