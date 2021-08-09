@@ -25,12 +25,15 @@ const ItemWrapper = styled.div`
   position: absolute;
   top: 50px;
   width: 100%;
+  background-color: ${(props) => props.theme.colors.white};
+  border-radius: 10px;
+  box-shadow: 3px 0 20px rgba(0, 0, 0, 0.2);
 `;
 
 const Item = styled.div`
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: white;
+  padding: 12px;
+  font-size: 12px;
+  color: ${(props) => props.theme.colors.inputText};
 `;
 
 const Dropdown = ({ items, onChange }) => {

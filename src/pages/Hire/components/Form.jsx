@@ -69,10 +69,10 @@ const getFormData = (
   guides,
 ) => {
   let _language = null;
-  if (language === '영어') _language = 'english';
-  else if (language === '일본어') _language = 'japanese';
-  else if (language === '중국어') _language = 'chinese';
-  else if (language === '기타') _language = 'etc';
+  if (language === 'English') _language = 'english';
+  else if (language === 'Japanese') _language = 'japanese';
+  else if (language === 'Chinese') _language = 'chinese';
+  else if (language === 'Other languages') _language = 'etc';
 
   return {
     start_date: date.startDate,
