@@ -4,7 +4,7 @@ import { Margin } from 'carrier-ui';
 import HorizonNextButton from './components/HorizonNextButton';
 import Outline from './components/Outline';
 import Container from './components/Container';
-import img from './image/그룹 373@2x.png';
+import img from './image/intro.png';
 
 const Logo = styled.div`
   display: flex;
@@ -43,30 +43,30 @@ const Content = styled.a`
   align-items: center;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Intro = () => (
   <>
-    <Logo>CARRIER</Logo>
-    <Margin size={110} />
-    <Content>
-      <img width="375px" src={img} />
-      <Outline />
-    </Content>
+    <Wrapper>
+      <Content>
+        <Logo>CARRIER</Logo>
+        <Margin size={110} />
+        <img width="375px" src={img} />
+        <Outline />
+      </Content>
+    </Wrapper>
     <Container>
       <Text>어디로 떠나시나요?</Text>
       <Link to="/search">
-        <HorizonNextButton
-          onClick={() => {
-            // history.push('/search');
-          }}
-        />
+        <HorizonNextButton />
       </Link>
-      <ForGuide
-        onClick={() => {
-          // history.push('/');
-        }}
-      >
-        로그인/회원가입
-      </ForGuide>
+      <Link to="/sign-in">
+        <ForGuide>로그인/회원가입</ForGuide>
+      </Link>
     </Container>
   </>
 );

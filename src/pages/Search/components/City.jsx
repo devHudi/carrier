@@ -1,25 +1,29 @@
 import styled from 'styled-components';
-import img from '../image/Busan.jpg';
+import { useHistory } from 'react-router-dom';
+import Busan from '../assets/Busan.jpg';
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
   margin: 12px 20px 0 0;
   width: 92px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const Picture = styled.div`
   width: 92px;
   height: 92px;
-  background: url(${img});
+  background: url(${(props) =>
+    props.background ? `${props.background}` : `${Busan}`});
   background-size: cover;
   box-shadow: 3px 3px 8px #00000029;
   border-radius: 10px;
 `;
-// backgroundImage: "url(" + ${img} + ")"
-// backgroundImage: 'url(${img})'
 
 const CityName = styled.div`
   width: 100%;
@@ -32,13 +36,24 @@ const CityName = styled.div`
   font-weight: 800;
 `;
 
-const City = () => (
-  <>
-    <Wrapper>
-      <Picture />
-      <CityName>부산</CityName>
-    </Wrapper>
-  </>
-);
+// eslint-disable-next-line react/prop-types
+const City = ({ sido, place, name, img }) => {
+  const history = useHistory();
+  return (
+    <>
+      <Wrapper
+        onClick={
+          () =>
+            // eslint-disable-next-line prettier/prettier
+            history.push(`/hire?sido=${sido}&place=${place}`)
+          // eslint-disable-next-line react/jsx-curly-newline
+        }
+      >
+        <Picture background={img} />
+        <CityName>{name}</CityName>
+      </Wrapper>
+    </>
+  );
+};
 
 export default City;
