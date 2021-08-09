@@ -34,6 +34,9 @@ const Chat = () => {
           employer_name: doc.data().employer_name,
           employer_profile_img: doc.data().employer_profile_img,
           employer_uid: doc.data().employer_uid,
+          review_creation_status: doc.data().review_creation_status,
+          transaction_completed: doc.data().transaction_completed,
+          isNewMessage: doc.data().isNewMessage,
         });
       });
     console.log('user');
