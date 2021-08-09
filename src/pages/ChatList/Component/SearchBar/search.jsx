@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { AiOutlineMinus, AiOutlineSearch } from 'react-icons/all';
+import React, { useState } from 'react';
 
 const Wrapper = styled.div`
   top: ${(props) => (props.top ? `${props.top}px` : 'initial')};
@@ -41,14 +42,24 @@ const Input = styled.input`
     color: ${(props) => props.theme.colors.blue};
   }
 `;
-const Search = ({ top, value, onChangeWord, onSubmit }) => {
-  const placeholder = '검색';
+const Search = ({ top }) => {
+  const [searchWord, setSearchWord] = useState('');
+  const onChange = (e) => {
+    const {
+      target: { value },
+    } = e;
+    setSearchWord(value);
+  };
+  const onSubmit = () => {
+    setSearchWord('');
+  };
+  console.log('검색');
   return (
     <Wrapper top={top} onSubmit={onSubmit}>
       <Icon>
         <AiOutlineMinus />
       </Icon>
-      <Input value={value} onChange={onChangeWord} placeholder={placeholder} />
+      <Input value={searchWord} onChange={onChange} placeholder="검색" />
       <Icon>
         <AiOutlineSearch onClick={onSubmit} />
       </Icon>
@@ -57,9 +68,6 @@ const Search = ({ top, value, onChangeWord, onSubmit }) => {
 };
 Search.propTypes = {
   top: PropTypes.number,
-  value: PropTypes.string.isRequired,
-  onChangeWord: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
 };
 Search.defaultProps = {
   top: 0,

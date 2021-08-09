@@ -55,7 +55,7 @@ const ChatNavigation = ({
   children,
 }) => {
   const history = useHistory();
-
+  console.log('chatNav');
   return (
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>
