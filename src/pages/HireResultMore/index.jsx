@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Margin, Navigation } from 'carrier-ui';
+import { Margin, Navigation, Spinner } from 'carrier-ui';
 
 import { getRecommendedGuides } from 'controller/hire';
 
@@ -29,10 +29,13 @@ const HireResultMore = () => {
   const history = useHistory();
   const params = useParams();
   const [guides, setGuides] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const doWork = async () => {
+      setLoading(true);
       setGuides(await getRecommendedGuides(params.submitId));
+      setLoading(false);
     };
 
     doWork();
@@ -40,6 +43,8 @@ const HireResultMore = () => {
 
   return (
     <>
+      {loading && <Spinner />}
+
       <Navigation
         leftIcon="back"
         rightIcon={null}
