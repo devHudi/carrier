@@ -1,4 +1,6 @@
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 import { Typography, Margin } from 'carrier-ui';
 import {
   RiTimeLine,
@@ -6,6 +8,8 @@ import {
   RiFlagLine,
   RiBankCard2Line,
 } from 'react-icons/ri';
+
+import languageData from 'assets/data/languageData';
 
 const Wrapper = styled.div`
   display: flex;
@@ -42,35 +46,32 @@ const IconContainer = styled.div`
   height: 24px;
 `;
 
-const Introduction = () => (
+const Introduction = ({ guide }) => (
   <div>
     <Wrapper>
       <Container>
         <Typography headline>가이드 소개</Typography>
         <Margin size={10} />
-        <Typography body>
-          부산의 데이트 코스 전문가, 이지은입니다!
-          <br />
-          데이트 코스 짜느라 머리 많이 아프셨죠?
-          <br />
-          이제 식사부터 관광지까지 전부 맡겨주세요!
-          <br />
-          여행자분의 취향에 꼭 맞는 코스를 짜드립니다.
-          <br />
-          편하게 연락주세요!
-        </Typography>
+        <Typography body>{guide.introduction}</Typography>
         <Margin size={30} />
         <Blur body>
           <IconContainer>
             <RiTimeLine />
           </IconContainer>
-          오전 10시 ~ 오후 6시 연락 가능
+          {guide.available_time.start}시 ~ {guide.available_time.end}시 연락
+          가능
         </Blur>
         <Blur body>
           <IconContainer>
             <RiGlobalLine />
           </IconContainer>
-          한국어, 영어, 중국어, 일본어 가능
+          {_.map(
+            guide.languages,
+            (language) =>
+              `# ${_.snakeCase(
+                _.find(languageData, { id: language }).languageKr,
+              )}`,
+          )}
         </Blur>
         <Blur body>
           <IconContainer>
@@ -88,5 +89,9 @@ const Introduction = () => (
     </Wrapper>
   </div>
 );
+
+Introduction.propTypes = {
+  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Introduction;

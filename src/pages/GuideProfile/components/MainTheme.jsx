@@ -1,13 +1,8 @@
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 import { Typography, Flex, Margin } from 'carrier-ui';
-import { FiHeart } from 'react-icons/fi';
-import {
-  GiSpotedFlower,
-  GiPineTree,
-  GiAncientColumns,
-  GiAsianLantern,
-} from 'react-icons/gi';
-import { FaUmbrellaBeach } from 'react-icons/fa';
+import themeData from 'assets/data/themeData';
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,7 +22,6 @@ const Container = styled.div`
   filter: blur(px);
   width: 100%;
   box-shadow: 0px 0px 20px -5px #ababab;
-  overflow: scroll;
 `;
 
 const ThemeContainer = styled.div`
@@ -41,43 +35,34 @@ const ThemeContainer = styled.div`
   background-color: transparent;
   font-size: 13px;
   transition: background-color 0.3s, border 0.3s, color 0.3s;
-  white-space: nowrap;
 `;
 
-const MainTheme = () => (
+const WrappedFlex = styled(Flex)`
+  flex-wrap: wrap;
+`;
+
+const MainTheme = ({ guide }) => (
   <div>
     <Wrapper>
       <Container>
         <Typography headline>주력 테마</Typography>
         <Margin size={10} />
-        <Flex>
-          <ThemeContainer>
-            # 데이트_코스 <FiHeart />
-          </ThemeContainer>
-          <ThemeContainer>
-            # 꽃이_만개한 <GiSpotedFlower />
-          </ThemeContainer>
-        </Flex>
-        <Flex>
-          <ThemeContainer>
-            # 자연에서_휴양하기 <GiPineTree />
-          </ThemeContainer>
-          <ThemeContainer>
-            # 바다가_들린다 <FaUmbrellaBeach />
-          </ThemeContainer>
-        </Flex>
-        <Flex>
-          <ThemeContainer>
-            # 문화재_탐방 <GiAncientColumns />
-          </ThemeContainer>
-          <ThemeContainer>
-            # 역사가_살아있는 <GiAsianLantern />
-          </ThemeContainer>
-        </Flex>
+        <WrappedFlex>
+          {_.map(guide.themes, (theme) => (
+            <ThemeContainer>
+              # {_.snakeCase(_.find(themeData, { id: theme }).label)}
+              {_.find(themeData, { id: theme }).icon}
+            </ThemeContainer>
+          ))}
+        </WrappedFlex>
         <Margin size={10} />
       </Container>
     </Wrapper>
   </div>
 );
+
+MainTheme.propTypes = {
+  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default MainTheme;

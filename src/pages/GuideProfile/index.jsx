@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { getGuideProfile } from 'controller/guideProfile';
 import ProfileForm from './components/ProfileForm';
 import Form from './components/Form';
 import Navigation from './components/Navigation';
@@ -22,6 +24,17 @@ const Container = styled.div`
 
 const GuideProfile = () => {
   const history = useHistory();
+  const id = useParams();
+  const [guide, setGuide] = useState('');
+
+  console.log(id.uid);
+  useEffect(() => {
+    const doWork = async () => {
+      setGuide(await getGuideProfile(id.uid));
+    };
+
+    doWork();
+  }, []);
 
   return (
     <>
@@ -33,10 +46,10 @@ const GuideProfile = () => {
         onRightIconClick={() => history.push('/')}
       />
       <Container top={0}>
-        <ProfileForm />
+        <ProfileForm guide={guide} />
       </Container>
       <Container top={60}>
-        <Form />
+        <Form guide={guide} />
       </Container>
     </>
   );

@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { Margin } from 'carrier-ui';
 import Introduction from './Introduction';
@@ -27,25 +28,29 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const Form = () => (
+const Form = ({ guide }) => (
   <>
     <FormWrapper>
       <Margin size={20} />
-      <MainTheme />
+      <MainTheme guide={guide} />
       <Margin size={20} />
-      <Introduction />
+      <Introduction guide={guide} />
       <Margin size={20} />
-      <Price />
+      <Price guide={guide} />
       <Margin size={20} />
       <PictureAndVideo />
       <Margin size={20} />
       <Review />
       <Margin size={20} />
-      <FAQ />
+      <FAQ guide={guide} />
       <Margin size={120} />
       <NavButton />
     </FormWrapper>
   </>
 );
+
+Form.propTypes = {
+  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Form;

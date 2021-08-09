@@ -1,5 +1,8 @@
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 import { Typography, Flex, Margin } from 'carrier-ui';
+import placeData from 'assets/data/placeData';
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill, RiStarFill } from 'react-icons/ri';
 import Picture from '../data/img1.png';
@@ -29,7 +32,8 @@ const ImageCircle = styled.div`
   position: absolute;
   z-index: 3;
   top: 15px;
-  background: transparent url(${Picture}) 0% 0% no-repeat padding-box;
+  background: transparent url(${(props) => (props.src ? props.src : Picture)})
+    0% 0% no-repeat padding-box;
   background-size: cover;
   border-radius: 112px;
   opacity: 1;
@@ -64,29 +68,29 @@ const StatisticsWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const Profile = () => (
+const Profile = ({ guide }) => (
   <div>
     <Wrapper>
       <BackgroundCircle />
-      <ImageCircle />
+      <ImageCircle src={guide.profile_image} />
       <Container>
-        <Typography headline>이지은</Typography>
+        <Typography headline>{guide.name}</Typography>
         <City subhead bold700>
-          부산, 김해
+          {_.find(placeData, { sido: guide.place.sido }).sidoKr}
         </City>
         <Margin size={20} />
         <StatisticsWrapper>
           <Flex direction="column" align="center">
             <GoPerson color="blue" />
             <Typography headline bold400>
-              119명
+              {guide.hired_count}명
             </Typography>
             <City subhead>가이드</City>
           </Flex>
           <Flex direction="column" align="center">
             <RiHeartFill color="#FF77B2" />
             <Typography headline bold400>
-              516명
+              {guide.liked_count}명
             </Typography>
             <City subhead>좋아요</City>
           </Flex>
@@ -103,5 +107,9 @@ const Profile = () => (
     </Wrapper>
   </div>
 );
+
+Profile.propTypes = {
+  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Profile;
