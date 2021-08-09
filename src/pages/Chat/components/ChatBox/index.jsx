@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { firestore } from 'misc/firebase';
 import PropTypes from 'prop-types';
 import MessageTypeBox from './style';
@@ -7,7 +7,11 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
   const [message, setMessage] = useState('');
   const [isMessage, setIsMessage] = useState(false);
   const [onClickPlus, setOnClickPlus] = useState(false);
-  console.log('ChatBox');
+  const [requestButtonStatus, setRequestButtonStatus] = useState(false);
+
+  useEffect(() => {
+    setRequestButtonStatus(chatsDoc.transaction_completed);
+  }, [chatsDoc.transaction_completed]);
   const onChangeMessage = (e) => {
     const {
       target: { value },
@@ -62,6 +66,7 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
       isMessage={isMessage}
       onToggle={onToggle}
       onClickPlus={onClickPlus}
+      requestButtonStatus={requestButtonStatus}
     />
   );
 };
