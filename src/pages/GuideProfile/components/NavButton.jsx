@@ -40,7 +40,7 @@ const NavButton = ({ user, guide }) => {
 
   useEffect(() => {
     setLike(_.includes(userDoc?.like_employees || [], guide?.uid));
-  }, [userDoc]);
+  }, [userDoc, guide]);
 
   return (
     <ButtonWrapper>

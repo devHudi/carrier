@@ -3,9 +3,9 @@ import firebase, { firestore } from 'misc/firebase';
 
 // 좋아요 리스트에 없으면 추가를, 있으면 제거를 합니다.
 export const likeGuide = async (employerUid, employeeUid) => {
-  const { like_employees: likeEmployees } = (
-    await firestore.collection('users').doc(employerUid).get()
-  ).data();
+  const likeEmployees =
+    (await firestore.collection('users').doc(employerUid).get()).data()
+      ?.like_employees || [];
 
   if (_.includes(likeEmployees, employeeUid)) {
     await firestore
