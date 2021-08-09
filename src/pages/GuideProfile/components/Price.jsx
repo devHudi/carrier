@@ -1,15 +1,35 @@
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 import styled from 'styled-components';
 import { Typography, Margin, Flex } from 'carrier-ui';
-import CoursePicture from '../data/courseGuide.svg';
-import OnlinePicture from '../data/onlineGuide.svg';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-`;
+import course from 'assets/svgs/course.svg';
+import companion from 'assets/svgs/companion.svg';
+import online from 'assets/svgs/online.svg';
+
+const guideTypeData = [
+  {
+    id: 'planner',
+    svg: course,
+    title: '여행 코스 계획',
+    subtitle: '맞춤형 여행 계획 찾아보기',
+    unit: '건',
+  },
+  {
+    id: 'online',
+    svg: online,
+    title: '온라인 가이드',
+    subtitle: '실시간으로 가이드받기',
+    unit: '1H',
+  },
+  {
+    id: 'companion',
+    svg: companion,
+    title: '동행 가이드',
+    subtitle: '함께 다니며 가이드받기',
+    unit: '1H',
+  },
+];
 
 const Container = styled.div`
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -17,24 +37,21 @@ const Container = styled.div`
   flex-direction: column;
   padding: 20px;
   border-radius: 26px;
-  opacity: 1;
-  filter: blur(px);
-  width: 100%;
   box-shadow: 0px 0px 20px -5px #ababab;
 `;
 
+const CardWrapper = styled(Flex)`
+  gap: 10px;
+`;
+
 const PriceWrapper = styled.div`
-  background: #ffffff 0% 0% no-repeat padding-box;
   display: flex;
   justify-content: space-between;
   padding: 5px;
-  opacity: 1;
-  filter: blur(px);
   border: 1px solid #b4b4b4;
   border-radius: 22px;
-  opacity: 1;
-  width: 48%;
-  height: 200px;
+  flex-grow: 1;
+  height: 150px;
 `;
 
 const PriceContainer = styled.div`
@@ -47,15 +64,19 @@ const PriceContainer = styled.div`
   width: 100%;
 `;
 
-const ImgContainer = styled.div`
-  width: 100px;
-  height: 100px;
-  background: transparent url(${(props) => props.src}) 0% 0% no-repeat
-    padding-box;
-  background-size: cover;
-  border-radius: 112px;
-  opacity: 1;
-  margin-bottom: 10px;
+const IllustrationWrapper = styled(Flex)`
+  margin-bottom: 8px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #e1e1e1;
+  background-image: ${(props) => props.image};
+  background-size: 80%;
+  background-position: center;
+`;
+
+const Illustration = styled.img`
+  width: 75%;
 `;
 
 const Blur = styled(Typography)`
@@ -73,58 +94,46 @@ const SemiBlur = styled(Typography)`
   font-size: 1vw;
 `;
 
-const Price = () => (
-  <div>
-    <Wrapper>
-      <Container>
-        <Typography headline>가격</Typography>
-        <Margin size={10} />
-        <Flex justify="space-between" align="center">
-          <PriceWrapper>
-            <PriceContainer>
-              <ImgContainer src={CoursePicture} />
+const Price = ({ guide }) => (
+  <Container>
+    <Typography headline>가격</Typography>
+    <Margin size={10} />
+    <CardWrapper justify="space-between" align="center">
+      {_.map(Object.keys(guide?.prices || {}), (guideType) => (
+        <PriceWrapper>
+          <PriceContainer>
+            <IllustrationWrapper justify="center" align="center">
+              <Illustration
+                src={_.find(guideTypeData, { id: guideType }).svg}
+              />
+            </IllustrationWrapper>
+            <Typography subhead style={{ fontSize: '2vw' }}>
+              {_.find(guideTypeData, { id: guideType }).title}
+            </Typography>
+            <Blur body>
+              {_.find(guideTypeData, { id: guideType }).subtitle}
+            </Blur>
+            <Flex justify="center" align="flex-end">
               <Typography subhead style={{ fontSize: '2vw' }}>
-                여행 코스 계획
+                ₩ {guide?.prices[guideType].toLocaleString()}
               </Typography>
-              <Blur body>맞춤형 여행 계획 받아보기</Blur>
-              <Flex justify="center" align="flex-end">
-                <Typography subhead style={{ fontSize: '2vw' }}>
-                  ₩ 50,000
-                </Typography>
-                <Typography body style={{ fontSize: '1vw' }}>
-                  {' '}
-                  /건
-                </Typography>
-              </Flex>
-            </PriceContainer>
-          </PriceWrapper>
-          <PriceWrapper>
-            <PriceContainer>
-              <ImgContainer src={OnlinePicture} />
-
-              <Typography subhead style={{ fontSize: '2vw' }}>
-                온라인 가이드
+              <Typography body style={{ fontSize: '1vw' }}>
+                {' '}
+                / {_.find(guideTypeData, { id: guideType }).unit}
               </Typography>
-              <Blur body>실시간으로 가이드받기</Blur>
-
-              <Flex justify="center" align="flex-end">
-                <Typography subhead style={{ fontSize: '2vw' }}>
-                  ₩ 12,000
-                </Typography>
-                <Typography body style={{ fontSize: '1vw' }}>
-                  {' '}
-                  /시간
-                </Typography>
-              </Flex>
-            </PriceContainer>
-          </PriceWrapper>
-        </Flex>
-        <Margin size={10} />
-        <SemiBlur subhead>자세한 사항은 가이드와 직접 상의하세요</SemiBlur>
-        <Margin size={20} />
-      </Container>
-    </Wrapper>
-  </div>
+            </Flex>
+          </PriceContainer>
+        </PriceWrapper>
+      ))}
+    </CardWrapper>
+    <Margin size={10} />
+    <SemiBlur subhead>자세한 사항은 가이드와 직접 상의하세요</SemiBlur>
+    <Margin size={20} />
+  </Container>
 );
+
+Price.propTypes = {
+  guide: PropTypes.object.isRequired,
+};
 
 export default Price;

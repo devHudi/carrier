@@ -21,16 +21,15 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const ProfileForm = ({ guide }) => (
-  <>
-    <FormWrapper>
-      <Profile guide={guide} />
-    </FormWrapper>
-  </>
+const ProfileForm = ({ guide, reviews }) => (
+  <FormWrapper>
+    <Profile guide={guide} reviews={reviews} />
+  </FormWrapper>
 );
 
 ProfileForm.propTypes = {
-  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+  guide: PropTypes.object.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default ProfileForm;

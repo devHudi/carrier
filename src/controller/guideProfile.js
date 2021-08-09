@@ -33,8 +33,6 @@ export const createGuideProfile = async (employeeUid) => {
     dummy: true,
   };
 
-  console.log(profileDocs, employeeUid);
-
   return (await firestore.collection('guide_profiles').doc(employeeUid)).set(
     profileDocs,
   );

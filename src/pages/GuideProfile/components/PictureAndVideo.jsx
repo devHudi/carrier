@@ -84,72 +84,70 @@ const PictureAndVideo = () => {
   };
 
   return (
-    <div>
-      <Wrapper>
-        <Container>
-          <Typography headline>사진 및 영상</Typography>
-          <Margin size={10} />
-          <SliderContainer>
-            <StyledSlider {...settings}>
-              <ImgContainer>
-                <Image src={Picture1} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture2} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture3} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture1} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture2} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture3} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture1} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture2} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture3} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture1} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture2} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture3} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture1} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture2} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture3} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture1} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture2} />
-              </ImgContainer>
-              <ImgContainer>
-                <Image src={Picture3} />
-              </ImgContainer>
-            </StyledSlider>
-          </SliderContainer>
-        </Container>
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <Container>
+        <Typography headline>사진 및 영상</Typography>
+        <Margin size={10} />
+        <SliderContainer>
+          <StyledSlider {...settings}>
+            <ImgContainer>
+              <Image src={Picture1} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture2} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture3} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture1} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture2} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture3} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture1} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture2} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture3} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture1} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture2} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture3} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture1} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture2} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture3} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture1} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture2} />
+            </ImgContainer>
+            <ImgContainer>
+              <Image src={Picture3} />
+            </ImgContainer>
+          </StyledSlider>
+        </SliderContainer>
+      </Container>
+    </Wrapper>
   );
 };
 

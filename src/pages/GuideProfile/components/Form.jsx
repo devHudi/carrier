@@ -28,29 +28,28 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const Form = ({ guide }) => (
-  <>
-    <FormWrapper>
-      <Margin size={20} />
-      <MainTheme guide={guide} />
-      <Margin size={20} />
-      <Introduction guide={guide} />
-      <Margin size={20} />
-      <Price guide={guide} />
-      <Margin size={20} />
-      <PictureAndVideo />
-      <Margin size={20} />
-      <Review />
-      <Margin size={20} />
-      <FAQ guide={guide} />
-      <Margin size={120} />
-      <NavButton />
-    </FormWrapper>
-  </>
+const Form = ({ user, guide, reviews }) => (
+  <FormWrapper>
+    <MainTheme guide={guide} />
+    <Margin size={13} />
+    <Introduction guide={guide} />
+    <Margin size={13} />
+    <Price guide={guide} />
+    <Margin size={13} />
+    <PictureAndVideo />
+    <Margin size={13} />
+    <Review guide={guide} reviews={reviews} />
+    <Margin size={13} />
+    <FAQ guide={guide} />
+    <Margin size={13} />
+    <NavButton user={user} guide={guide} />
+  </FormWrapper>
 );
 
 Form.propTypes = {
-  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+  user: PropTypes.object.isRequired,
+  guide: PropTypes.object.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Form;

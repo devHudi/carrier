@@ -48,7 +48,7 @@ const MainTheme = ({ guide }) => (
         <Typography headline>주력 테마</Typography>
         <Margin size={10} />
         <WrappedFlex>
-          {_.map(guide.themes, (theme) => (
+          {_.map(guide?.themes, (theme) => (
             <ThemeContainer>
               # {_.snakeCase(_.find(themeData, { id: theme }).label)}
               {_.find(themeData, { id: theme }).icon}
@@ -62,7 +62,7 @@ const MainTheme = ({ guide }) => (
 );
 
 MainTheme.propTypes = {
-  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+  guide: PropTypes.object.isRequired,
 };
 
 export default MainTheme;

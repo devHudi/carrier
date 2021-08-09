@@ -5,7 +5,6 @@ import { Typography, Flex, Margin } from 'carrier-ui';
 import placeData from 'assets/data/placeData';
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill, RiStarFill } from 'react-icons/ri';
-import Picture from '../data/img1.png';
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,9 +31,10 @@ const ImageCircle = styled.div`
   position: absolute;
   z-index: 3;
   top: 15px;
-  background-image: url(${(props) => (props.src ? props.src : Picture)});
+  background-image: url(${(props) => props.src});
   background-position: center;
   background-size: cover;
+  background-color: #cccccc;
   border-radius: 112px;
   opacity: 1;
 `;
@@ -68,46 +68,51 @@ const StatisticsWrapper = styled.div`
   justify-content: space-around;
 `;
 
-const Profile = ({ guide }) => (
+const Profile = ({ guide, reviews }) => (
   <Wrapper>
     <BackgroundCircle />
-    <ImageCircle src={guide.profile_image} />
+    <ImageCircle src={guide?.profile_image} />
     <Container>
-      <Typography headline>{guide.name}</Typography>
+      <Typography headline>{guide?.name}</Typography>
       <City subhead bold700>
-        {_.find(placeData, { sido: guide.place?.sido })?.sidoKr}
+        {_.find(placeData, { sido: guide?.place?.sido })?.sidoKr}
       </City>
       <Margin size={20} />
       <StatisticsWrapper>
         <Flex direction="column" align="center">
           <GoPerson color="blue" />
           <Typography headline bold400>
-            {guide.hired_count}명
+            {guide?.hired_count}명
           </Typography>
           <City subhead>가이드</City>
         </Flex>
         <Flex direction="column" align="center">
           <RiHeartFill color="#FF77B2" />
           <Typography headline bold400>
-            {guide.liked_count}명
+            {guide?.liked_count}명
           </Typography>
           <City subhead>좋아요</City>
         </Flex>
         <Flex direction="column" align="center">
           <RiStarFill color="#FFDE0A" />
           <Typography headline bold400>
-            4.8점
+            {_.chain(reviews || [])
+              .map((review) => review.score)
+              .mean()
+              .floor(2)
+              .value() || '-'}{' '}
+            점
           </Typography>
           <City subhead>평점</City>
         </Flex>
       </StatisticsWrapper>
-      <Margin size={20} />
     </Container>
   </Wrapper>
 );
 
 Profile.propTypes = {
-  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+  guide: PropTypes.object.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Profile;

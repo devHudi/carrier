@@ -9,7 +9,6 @@ import {
   signOut,
   createGuides,
   signIn,
-  getCurrentUser,
 } from 'controller/auth';
 import { changeUserName, changeUserProfileImage } from 'controller/user';
 import { addReview } from 'controller/review';

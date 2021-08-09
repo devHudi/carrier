@@ -19,6 +19,7 @@ export const signUp = async (email, name, password) => {
     name,
     profile_image:
       'https://firebasestorage.googleapis.com/v0/b/likelion-carrier.appspot.com/o/profileImages%2Fdefault.png?alt=media',
+    like_employees: [],
     type: 'employer',
   };
 
@@ -128,25 +129,6 @@ export const signIn = async (email, password, submitId = null) => {
 
   return (await firestore.collection('users').doc(user.uid).get()).data();
 };
-
-// 현재 로그인 되어있는 유저 정보 가져오기
-export const getCurrentUser = () =>
-  new Promise((resolve) =>
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        firestore
-          .collection('users')
-          .doc(user.uid)
-          .get()
-          .then((ref) => {
-            console.log(ref.data());
-            resolve(ref.data());
-          });
-      } else {
-        resolve(null);
-      }
-    }),
-  );
 
 // 로그아웃
 export const signOut = () => auth.signOut();

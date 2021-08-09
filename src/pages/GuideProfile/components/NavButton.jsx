@@ -1,61 +1,54 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
-import { useHistory, useParams } from 'react-router-dom';
-import { RoundedButton } from 'carrier-ui';
+import _ from 'lodash';
+import { useHistory } from 'react-router-dom';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
+import { Flex, RoundedButton } from 'carrier-ui';
+
 import { likeGuide } from 'controller/like';
-import { getCurrentUser } from 'controller/auth';
-import HeartIcon from '../data/Icon ionic-ios-heart.svg';
+import { getUser } from 'controller/user';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-`;
+const ButtonWrapper = styled(Flex)`
+  & > button:nth-child(1) {
+    flex-grow: 1;
+  }
 
-const Container = styled.div`
-  background: #eeefff 0% 0% no-repeat padding-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 20px;
-  border-radius: 26px;
-  opacity: 1;
-  filter: blur(px);
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-`;
-
-const Image = styled.img`
-  width: 24px;
-  height: 23px;
+  & > button:nth-child(2) {
+    margin-left: 10px;
+    flex-basis: 75px;
+  }
 `;
 
 const StyledButton = styled(RoundedButton)`
+  padding: 18px;
   border-radius: 10px;
   font-size: 20px;
-  width: ${(props) => props.width}%;
 `;
 
-const NavButton = () => {
+const NavButton = ({ user, guide }) => {
   const history = useHistory();
-  const [likeForm, setLikeForm] = useState({
-    employerUid: '',
-    employeeUid: '',
-  });
-  const { path } = useParams();
+  const [like, setLike] = useState();
+  const [userDoc, setUserDoc] = useState({});
+
+  useEffect(() => {
+    const doWork = async () => {
+      setUserDoc(await getUser(user?.uid));
+    };
+    doWork();
+  }, [user]);
+
+  useEffect(() => {
+    setLike(_.includes(userDoc?.like_employees || [], guide?.uid));
+  }, [userDoc]);
 
   return (
-    <div>
-      <Wrapper>
-        <Container>
+    <ButtonWrapper>
+      {user ? (
+        <>
           <StyledButton
             blue
             filled
-            width={70}
             onClick={() => {
               history.push('/chat');
             }}
@@ -64,19 +57,32 @@ const NavButton = () => {
           </StyledButton>
           <StyledButton
             blue
-            width={25}
-            height={55}
             onClick={() => {
-              setLikeForm(getCurrentUser(), path);
-              likeGuide(likeForm);
+              likeGuide(user.uid, guide.uid);
+              setLike(!like);
             }}
           >
-            <Image src={HeartIcon} />
+            {like ? <BsHeartFill /> : <BsHeart />}
           </StyledButton>
-        </Container>
-      </Wrapper>
-    </div>
+        </>
+      ) : (
+        <StyledButton
+          blue
+          filled
+          onClick={() => {
+            history.push('/sign-in');
+          }}
+        >
+          상담받으려면 로그인하기
+        </StyledButton>
+      )}
+    </ButtonWrapper>
   );
+};
+
+NavButton.propTypes = {
+  user: PropTypes.object.isRequired,
+  guide: PropTypes.object.isRequired,
 };
 
 export default NavButton;

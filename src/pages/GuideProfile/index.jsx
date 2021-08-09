@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
-import { getGuideProfile } from 'controller/guideProfile';
 import { Navigation, Spinner } from 'carrier-ui';
+
+import { auth } from 'misc/firebase';
+import { getGuideProfile } from 'controller/guideProfile';
+import { getReviews } from 'controller/review';
 
 import ProfileForm from './components/ProfileForm';
 import Form from './components/Form';
@@ -26,40 +29,56 @@ const Container = styled.div`
 const GuideProfile = () => {
   const history = useHistory();
   const id = useParams();
-  const [guide, setGuide] = useState('');
+  const [user, setUser] = useState();
+  const [guide, setGuide] = useState();
+  const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  console.log(id.uid);
+  auth.onAuthStateChanged((u) => {
+    setUser(u);
+  });
+
   useEffect(() => {
     const doWork = async () => {
       setLoading(true);
-      const _guide = await getGuideProfile(id.uid);
-      console.log({ _guide });
-      setGuide(_guide);
+      setGuide(await getGuideProfile(id.uid));
       setLoading(false);
     };
 
     doWork();
   }, []);
 
-  console.log({ guide });
+  useEffect(() => {
+    const doWork = async () => {
+      if (guide) {
+        setLoading(true);
+        setReviews(await getReviews(guide.uid));
+        setLoading(false);
+      }
+    };
+
+    doWork();
+  }, [guide]);
 
   return (
     <>
       {loading && <Spinner />}
+
       <GlobalStyle />
       <Navigation
         leftIcon="back"
         rightIcon="home"
         iconColor="#000000"
+        position="relative"
         onLeftIconClick={() => history.goBack()}
         onRightIconClick={() => history.push('/')}
       />
+
       <Container top={0}>
-        <ProfileForm guide={guide} />
+        <ProfileForm guide={guide} reviews={reviews} />
       </Container>
       <Container top={60}>
-        <Form guide={guide} />
+        <Form user={user} guide={guide} reviews={reviews} />
       </Container>
     </>
   );

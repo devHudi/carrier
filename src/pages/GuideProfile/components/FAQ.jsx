@@ -53,7 +53,7 @@ const FAQ = ({ guide }) => (
 );
 
 FAQ.propTypes = {
-  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+  guide: PropTypes.object.isRequired,
 };
 
 export default FAQ;

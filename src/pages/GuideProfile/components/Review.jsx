@@ -1,11 +1,19 @@
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+import moment from 'moment';
 import styled from 'styled-components';
-import { Typography, Margin, Flex } from 'carrier-ui';
 import { RiStarFill } from 'react-icons/ri';
 import { BsDot } from 'react-icons/bs';
 import Slider from 'react-slick';
+
+import 'moment/locale/ko';
+
+import { Typography, Margin, Flex } from 'carrier-ui';
+
+import ReviewerPicture from '../data/reviewer.png';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ReviewerPicture from '../data/reviewer.png';
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,23 +47,19 @@ const SliderContainer = styled.div`
   width: 100%;
 `;
 
-const StyledSlider = styled(Slider)`
-  .slick-list {
-    width: 500px;
-    margin: 0 auto;
-  }
-  .slick-slide div {
-    cursor: pointer;
-    margin: 0;
-  }
-  .slick-slide div .outline {
-    padding: 10px;
-    margin: 0 15px;
-    margin-left: 0;
+const StyledSlider = styled.div`
+  & > .slick-list {
+    padding: 0 20% 0 0 !important;
   }
 `;
 
-const ReviewWrapper = styled.div`
+const CardWrapper = styled.div`
+  padding-right: 10px;
+`;
+
+const Card = styled.div`
+  padding: 10px;
+  margin: 0 10px;
   background: 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
@@ -63,7 +67,6 @@ const ReviewWrapper = styled.div`
   border-radius: 22px;
   opacity: 1;
   height: 220px;
-  margin: 0 10px;
 `;
 
 const Reviewer = styled.div`
@@ -76,13 +79,20 @@ const Image = styled.img`
   height: 40px;
 `;
 
-const Review = () => {
+const NoReview = styled(Flex)`
+  padding: 20px;
+  color: #ababab;
+`;
+
+const Review = ({ reviews }) => {
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
+    dots: true,
   };
+
   return (
     <div>
       <Wrapper>
@@ -90,78 +100,55 @@ const Review = () => {
           <Typography headline>여행자 후기</Typography>
           <Margin size={10} />
           <Blur body color="#707070" size={1}>
-            <RiStarFill color="#FFDE0A" /> 평점 4.8점 (102개)
+            <RiStarFill color="#FFDE0A" /> 평점{' '}
+            {_.chain(reviews)
+              .map((review) => review.score)
+              .mean()
+              .floor(2)
+              .value() || '-'}{' '}
+            점 ({reviews.length}개)
           </Blur>
           <Margin size={20} />
-          <SliderContainer>
-            <StyledSlider {...settings}>
-              <div>
-                <ReviewWrapper className="outline">
-                  <Reviewer>
-                    <Image src={ReviewerPicture} />
-                    <Margin row size={10} />
-                    <Flex direction="column">
-                      <Typography body>조동현</Typography>
-                      <Blur body color="#A5A5A5">
-                        <RiStarFill /> 4.9 <BsDot /> 1개월 전
-                      </Blur>
-                    </Flex>
-                  </Reviewer>
-                  <Margin size={10} />
-                  <Typography body>
-                    여자친구랑 재밌게 놀다 왔습니다!! 서로 취향에 맞는 여행이라
-                    더욱 즐거웠어요 :) 상담도 친절하게 해주시고 정말
-                    감사했습니다!
-                  </Typography>
-                </ReviewWrapper>
-              </div>
-              <div>
-                <ReviewWrapper className="outline">
-                  <Reviewer>
-                    <Image src={ReviewerPicture} />
-                    <Margin row size={10} />
-                    <Flex direction="column">
-                      <Typography body>신지애</Typography>
-                      <Blur body color="#A5A5A5">
-                        <RiStarFill /> 4.9 <BsDot /> 1개월 전
-                      </Blur>
-                    </Flex>
-                  </Reviewer>
-                  <Margin size={10} />
-                  <Typography body>
-                    여자친구랑 재밌게 놀다 왔습니다!! 서로 취향에 맞는 여행이라
-                    더욱 즐거웠어요 :) 상담도 친절하게 해주시고 정말
-                    감사했습니다!
-                  </Typography>
-                </ReviewWrapper>
-              </div>
-              <div>
-                <ReviewWrapper className="outline">
-                  <Reviewer>
-                    <Image src={ReviewerPicture} />
-                    <Margin row size={10} />
-                    <Flex direction="column">
-                      <Typography body>이성인</Typography>
-                      <Blur body color="#A5A5A5">
-                        <RiStarFill /> 4.9 <BsDot /> 1개월 전
-                      </Blur>
-                    </Flex>
-                  </Reviewer>
-                  <Margin size={10} />
-                  <Typography body>
-                    여자친구랑 재밌게 놀다 왔습니다!! 서로 취향에 맞는 여행이라
-                    더욱 즐거웠어요 :) 상담도 친절하게 해주시고 정말
-                    감사했습니다!
-                  </Typography>
-                </ReviewWrapper>
-              </div>
+          <SliderContainer {...settings}>
+            <StyledSlider>
+              <Slider>
+                {_.map(reviews, (review) => (
+                  <CardWrapper>
+                    <Card className="outline">
+                      <Reviewer>
+                        <Image src={ReviewerPicture} />
+                        <Margin row size={10} />
+                        <Flex direction="column">
+                          <Typography body>{review.employer_name}</Typography>
+                          <Blur body color="#A5A5A5">
+                            <RiStarFill /> {review.score} <BsDot />{' '}
+                            {moment(
+                              review.created_at.seconds * 1000 +
+                                review.created_at.nanoseconds / 1000000,
+                            ).fromNow()}
+                          </Blur>
+                        </Flex>
+                      </Reviewer>
+                      <Margin size={10} />
+                      <Typography body>{review.comment}</Typography>
+                    </Card>
+                  </CardWrapper>
+                ))}
+              </Slider>
             </StyledSlider>
           </SliderContainer>
-          <Margin size={30} />
+          {reviews.length <= 0 && (
+            <NoReview justify="center">후기가 없습니다.</NoReview>
+          )}
         </Container>
       </Wrapper>
     </div>
   );
+};
+
+Review.propTypes = {
+  // guide: PropTypes.object.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Review;

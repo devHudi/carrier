@@ -48,53 +48,51 @@ const IconContainer = styled.div`
 `;
 
 const Introduction = ({ guide }) => (
-  <div>
-    <Wrapper>
-      <Container>
-        <Typography headline>가이드 소개</Typography>
-        <Margin size={10} />
-        <Typography body>{guide.introduction}</Typography>
-        <Margin size={30} />
-        <Blur body>
-          <IconContainer>
-            <RiTimeLine />
-          </IconContainer>
-          {guide.available_time?.start}시 ~ {guide.available_time?.end}시 연락
-          가능
-        </Blur>
-        <Blur body>
-          <IconContainer>
-            <RiGlobalLine />
-          </IconContainer>
-          {_.map(
-            guide?.languages,
-            (language) =>
-              `#${_.find(languageData, { id: language }).languageKr} `,
-          )}
-        </Blur>
-        <Blur body>
-          <IconContainer>
-            <RiFlagLine />
-          </IconContainer>
-          {_.map(
-            guide?.guide_types,
-            (type) => _.find(guideData, { id: type }).title,
-          ).join(' / ')}{' '}
-          제공
-        </Blur>
-        <Blur body>
-          <IconContainer>
-            <RiBankCard2Line />
-          </IconContainer>
-          카드, 계좌이체 가능
-        </Blur>
-      </Container>
-    </Wrapper>
-  </div>
+  <Wrapper>
+    <Container>
+      <Typography headline>가이드 소개</Typography>
+      <Margin size={10} />
+      <Typography body>{guide?.introduction}</Typography>
+      <Margin size={30} />
+      <Blur body>
+        <IconContainer>
+          <RiTimeLine />
+        </IconContainer>
+        {guide?.available_time.start}시 ~ {guide?.available_time.end}시 연락
+        가능
+      </Blur>
+      <Blur body>
+        <IconContainer>
+          <RiGlobalLine />
+        </IconContainer>
+        {_.map(
+          guide?.languages,
+          (language) =>
+            `#${_.find(languageData, { id: language }).languageKr} `,
+        )}
+      </Blur>
+      <Blur body>
+        <IconContainer>
+          <RiFlagLine />
+        </IconContainer>
+        {_.map(
+          guide?.guide_types,
+          (type) => _.find(guideData, { id: type }).title,
+        ).join(' / ')}{' '}
+        제공
+      </Blur>
+      <Blur body>
+        <IconContainer>
+          <RiBankCard2Line />
+        </IconContainer>
+        카드, 계좌이체 가능
+      </Blur>
+    </Container>
+  </Wrapper>
 );
 
 Introduction.propTypes = {
-  guide: PropTypes.arrayOf(PropTypes.object).isRequired,
+  guide: PropTypes.object.isRequired,
 };
 
 export default Introduction;
