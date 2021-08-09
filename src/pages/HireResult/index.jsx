@@ -12,6 +12,7 @@ import Title from './components/Title';
 
 const FlexContainer = styled(Container)`
   display: flex;
+  overflow-x: hidden;
 `;
 
 const HireResult = () => {

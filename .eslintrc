@@ -21,6 +21,7 @@
     "jsx-a11y/alt-text": "off",
     "function-paren-newline": "off",
     "react/jsx-props-no-spreading": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "react/forbid-prop-types": "off"
   }
 }

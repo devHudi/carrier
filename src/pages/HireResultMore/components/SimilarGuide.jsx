@@ -8,7 +8,6 @@ import { RiHeartFill } from 'react-icons/ri';
 
 import placeData from 'assets/data/placeData';
 import themeData from 'assets/data/themeData';
-
 import Picture from '../data/img1.png';
 
 const Wrapper = styled.div`

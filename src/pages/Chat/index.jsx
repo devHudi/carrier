@@ -36,7 +36,6 @@ const Chat = () => {
           employer_profile_img: doc.data().employer_profile_img,
           employer_uid: doc.data().employer_uid,
         });
-        console.log(userObj);
       });
   }, [uid]);
 

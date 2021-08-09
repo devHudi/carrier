@@ -22,3 +22,7 @@ export const changeUserProfileImage = async (uid, file) => {
     profile_image: filePath,
   });
 };
+
+// 유저가져오기
+export const getUser = async (uid) =>
+  (await firestore.collection('users').doc(uid).get()).data();

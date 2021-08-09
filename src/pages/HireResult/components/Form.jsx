@@ -22,7 +22,7 @@ const FormWrapper = styled.div`
 `;
 
 const SubTitle = styled.div`
-  width: 500px;
+  width: 400px;
   height: 30px;
   text-align: left;
   font: normal normal bold 15px/15px NanumSquare;
@@ -42,7 +42,6 @@ const Form = ({ guides, submitId }) => (
     </div>
 
     <RecommendedGuide guides={guides} />
-    <Margin size={60} />
 
     <Flex justify="center">
       <Link to={`/hire/${submitId}/result/more`}>
@@ -50,6 +49,7 @@ const Form = ({ guides, submitId }) => (
           더 많은 가이드 보기
         </RoundedButton>
       </Link>
+      <Margin size={80} />
     </Flex>
   </FormWrapper>
 );

@@ -1,17 +1,18 @@
-/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-simple-toasts';
 
+import { auth } from 'misc/firebase';
 import { Container, Navigation, ProgressBar, Spinner } from 'carrier-ui';
 import { useQuery } from 'hooks';
 import { addSubmit } from 'controller/submits';
-import { getCurrentUser } from 'controller/auth';
+
 import Title from './components/Title';
 import Form from './components/Form';
 import LoginGuide from './components/LoginGuide';
 
 const Hire = () => {
+  const [user, setUser] = useState();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
@@ -45,6 +46,10 @@ const Hire = () => {
     }
   };
 
+  auth.onAuthStateChanged((u) => {
+    setUser(u);
+  });
+
   useEffect(() => {
     toast(); // Toast 라이브러리 버그 해결
   }, []);
@@ -77,8 +82,7 @@ const Hire = () => {
 
     setLoading(false);
 
-    const currentUser = await getCurrentUser();
-    if (!currentUser) {
+    if (!user) {
       setLogin(true);
     } else {
       history.push(`/hire/${docRef.id}/result`);

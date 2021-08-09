@@ -13,6 +13,7 @@ import {
   SignIn,
   SignUp,
   NotFound,
+  GuideProfile,
 } from 'pages';
 
 // 라우트명은 kebab-case 로 작성합니다
@@ -74,7 +75,7 @@ const Router = () => (
         내 프로필
       </Route>
       <Route exact path="/profile/:uid">
-        특정 사용자 프로필
+        <GuideProfile />
       </Route>
       <Route exact path="/profile/edit">
         내 프로필 수정
