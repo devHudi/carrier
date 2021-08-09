@@ -1,7 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import {
-  Main,
   Hire,
   HireResult,
   HireResultMore,
@@ -29,10 +28,6 @@ const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        <BodyStyle white />
-        <Main />
-      </Route>
-      <Route exact path="/intro">
         <BodyStyle white />
         <Intro />
       </Route>
