@@ -14,6 +14,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const SliderWrapper = styled.div`
+  margin-bottom: 50px;
+
   & > .slick-list {
     margin: 0 auto;
     padding: 0 20% 0 0 !important;
