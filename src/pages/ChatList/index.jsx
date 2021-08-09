@@ -43,8 +43,6 @@ const ChatList = () => {
       console.log(user);
     }
   }, [userObj]);
-  //* ***********************************************************************************//
-  // 밑에 useEffect 코드 리펙토링 할때 적은 코드로 사용할 수 있게 하기. + collection name chat->chats로 변경하기
   useEffect(() => {
     if (user === 'employer') {
       // const chats = [];
