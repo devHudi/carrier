@@ -695,7 +695,7 @@ export default [
     name: 'hanam',
     nameKr: '하남시',
     image:
-      'https://lh3.googleusercontent.com/proxy/QpDQzpstRWWTwE5EGx07FC6KWjKKW837c8wS5YLGeZWFYNMJ54tUgjfvew03o1BVPp3xowu9H59DJHnrMsxuEgydWT5J86MPv4l3gBR2bOZvzVqONGhCn1Z2pcsQMEOCrw',
+      'https://lh3.googleusercontent.com/proxy/xQss4Cn7QXX4d6eEO0_rfgrEZY0-rcvW_6aS0YMc9sewYU5ExIKS1cmnpaL4bFeTlkw785Bxns-Kel7Zsduf4rzKq1QMankpb1UQp15pIJv6ikzbKQ',
   },
   {
     sido: 'gyeonggido',
@@ -832,7 +832,7 @@ export default [
     name: 'chuncheon',
     nameKr: '춘천시',
     image:
-      'https://lh3.googleusercontent.com/proxy/yaJyWwMhKfIU3p5gjpKOIKR9do6AJJV67IWQiqLPWwRGuYsDFPLwEK2RYGmJ_bspJu8poEwk8xS6wbM31ZH81nzh1ifiLU0ayW9HEJpmpV8gnV_bvk5d6MlbsA',
+      'https://upload.wikimedia.org/wikipedia/commons/1/15/Chuncheon-01.jpg',
   },
   {
     sido: 'gangwondo',
@@ -877,7 +877,7 @@ export default [
     name: 'samcheok',
     nameKr: '삼척시',
     image:
-      'https://lh3.googleusercontent.com/proxy/yKkXl4K6xa6eNC7D1uA9vzJiA9KKdofkgIxzNkXJgdL8QDvH56alzud0fxXgDQ2tQZ-2uglwt-t2wvpyinoMaGr7Rzzw-7Y1S39oXd3Gok7T4jA_yHLsY3o-vUriuRrO3AHd',
+      'https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F22221C3956669B2411',
   },
   {
     sido: 'gangwondo',
@@ -924,7 +924,7 @@ export default [
     name: 'cheorwongun',
     nameKr: '철원군',
     image:
-      'https://lh3.googleusercontent.com/proxy/yOaDlx_kscJBRmOKzOtpcz49JB-z2JsEr0tOpyKDXPNaVzJwZWir5N6NO5M7KEgQewfCVMclwyWWHVvLf9zQJZAKXXVLF01-1QCCCCFwA9r1utWziA',
+      'https://img8.yna.co.kr/etc/inner/KR/2021/04/20/AKR20210420147000062_01_i_P2.jpg',
   },
   {
     sido: 'gangwondo',
