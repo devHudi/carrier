@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -7,6 +8,7 @@ import line from './assets/line.png';
 import camera from './assets/camera.png';
 import file from './assets/file.png';
 import video from './assets/video.png';
+import RequestModal from './components/RequestModal';
 
 const Div = styled.div`
   z-index: 255;
@@ -231,19 +233,37 @@ const MessageTypeBox = ({
   isMessage,
   onToggle,
   onClickPlus,
+  requestButtonStatus,
 }) => {
   const placeholder = '메세지를 입력하세요.';
+  const [isRequest, setIsRequest] = useState(false);
+  const [isReview, setIsReview] = useState(false);
+  const toggleIsRequest = () => {
+    console.log(isRequest);
+    setIsRequest((prev) => !prev);
+  };
+  const toggleIsReview = () => setIsReview((prev) => !prev);
   return (
     <>
+      <RequestModal isReview={isReview} />
+      <RequestModal isRequest={isRequest} ontoggle={toggleIsRequest} />
       <Div onClickPlus={onClickPlus}>
         <ConfirmDiv>
-          <Confirm onClick={() => toast('점검중인 서비스 입니다.', 1200)}>
-            약속 확정하기
-          </Confirm>
+          {requestButtonStatus ? (
+            <Confirm onClick={() => toast('이미 완료된 거래입니다.', 1200)}>
+              약속 확정하기
+            </Confirm>
+          ) : (
+            <Confirm onClick={toggleIsRequest}>약속 확정하기</Confirm>
+          )}
           <Line src={line} />
-          <Confirm onClick={() => toast('점검중인 서비스 입니다.', 1200)}>
-            후기 작성하기
-          </Confirm>
+          {requestButtonStatus ? (
+            <Confirm onClick={toggleIsReview}>리뷰 작성하기</Confirm>
+          ) : (
+            <Confirm onClick={() => toast('거래후 사용가능합니다.', 1200)}>
+              리뷰 작성하기
+            </Confirm>
+          )}
         </ConfirmDiv>
         <TextWrapper>
           <Form onSubmit={onSubmit}>
@@ -300,6 +320,7 @@ MessageTypeBox.propTypes = {
   isMessage: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
   onClickPlus: PropTypes.bool.isRequired,
+  requestButtonStatus: PropTypes.bool.isRequired,
 };
 
 export default MessageTypeBox;
