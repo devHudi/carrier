@@ -75,8 +75,9 @@ export const OptionTextWrapper = styled.div`
 export const OptionText = styled.div`
   border: 1px solid ${(props) => props.theme.colors.white};
   border-radius: 32px;
-  padding: 6px 10px 6px 10px;
-  margin 0px 7px 6px 0px;
+  font-size: 13px;
+  padding: 8px 10px 8px 10px;
+  margin 0px 7px 7px 0px;
 `;
 export const Slider = styled.div`
   display: flex;
