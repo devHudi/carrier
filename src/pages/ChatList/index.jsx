@@ -23,16 +23,24 @@ const ChatList = () => {
     if (userObj) {
       await firestore
         .collection('users')
-        .where('uid', '==', userObj?.uid)
+        .doc(userObj?.uid)
         .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
+        .then((doc) => {
+          if (doc.exists) {
             if (doc.data.type === 'employee') {
               setClassification(true);
             }
             setUser(doc.data().type);
-          });
+            console.log(user);
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!');
+          }
+        })
+        .catch((error) => {
+          console.log('Error getting document:', error);
         });
+      console.log(user);
     }
   }, [userObj]);
   //* ***********************************************************************************//
@@ -45,13 +53,13 @@ const ChatList = () => {
         .orderBy('updated_at')
         .where('employer_uid', '==', userObj?.uid)
         .onSnapshot((snapshot) => {
-          setChatRoomList(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            })),
-          );
+          const list = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setChatRoomList(list);
         });
+      console.log('setchat');
       setIsLoading(false);
     } else if (user === 'employee') {
       firestore
@@ -59,25 +67,16 @@ const ChatList = () => {
         .orderBy('updated_at')
         .where('employee_uid', '==', userObj?.uid)
         .onSnapshot((snapshot) => {
-          setChatRoomList(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              ...doc.data(),
-            })),
-          );
+          const list = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setChatRoomList(list);
         });
+      console.log('setchat');
       setIsLoading(false);
     }
   }, [user]);
-  const onChange = (e) => {
-    const {
-      target: { value },
-    } = e;
-    setSearchWord(value);
-  };
-  const onSubmit = () => {
-    setSearchWord('');
-  };
   const history = useHistory();
   const onLeftClick = () => {
     history.goBack();
@@ -92,12 +91,7 @@ const ChatList = () => {
         메신저
       </ChatNavigation>
       <Container top={63}>
-        <Search
-          top={20}
-          onChangeWord={onChange}
-          value={searchWord}
-          onSubmit={onSubmit}
-        />
+        <Search top={20} />
         {isLoading && <Spinner />}
         {chatRoomList.map((chat) =>
           classification ? (
