@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   border-radius: 26px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 `;
 
 const GuideWrapper = styled.div`

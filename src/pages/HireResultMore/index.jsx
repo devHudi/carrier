@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { IoIosArrowDown } from 'react-icons/io';
-import { Typography, Margin } from 'carrier-ui';
+import { Margin, Navigation } from 'carrier-ui';
 
 import { getRecommendedGuides } from 'controller/hire';
 
 import Form from './components/Form';
-import Navigation from './components/Navigation';
 
 const Container = styled.div`
   padding: 0 24px;
@@ -21,6 +19,10 @@ const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+`;
+
+const Title = styled.div`
+  font-size: 20px;
 `;
 
 const HireResultMore = () => {
@@ -38,14 +40,16 @@ const HireResultMore = () => {
 
   return (
     <>
-      <Navigation leftIcon="back" onLeftIconClick={() => history.goBack()} />
+      <Navigation
+        leftIcon="back"
+        rightIcon={null}
+        position="relative"
+        iconColor="#000000"
+        onLeftIconClick={() => history.goBack()}
+      />
 
-      <Margin size={90} />
       <TitleContainer>
-        <Typography title>이번 여행의 추천 가이드</Typography>
-        <Typography subhead style={{ fontWeight: 'bold' }}>
-          추천순 <IoIosArrowDown />
-        </Typography>
+        <Title>이번 여행의 추천 가이드</Title>
       </TitleContainer>
       <Margin size={25} />
       <Container>

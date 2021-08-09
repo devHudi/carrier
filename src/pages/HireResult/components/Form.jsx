@@ -46,7 +46,7 @@ const Form = ({ guides, submitId }) => (
 
     <Flex justify="center">
       <Link to={`/hire/${submitId}/result/more`}>
-        <RoundedButton blue filled>
+        <RoundedButton blue filled width={250}>
           더 많은 가이드 보기
         </RoundedButton>
       </Link>

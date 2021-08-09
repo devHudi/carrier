@@ -50,6 +50,12 @@ const Typography = styled.div`
     `}
 
   ${(props) =>
+    props.bold300 &&
+    `
+     font-weight : 300;
+   `}
+
+  ${(props) =>
     props.bold400 &&
     `
      font-weight : 400;
