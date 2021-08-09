@@ -19,8 +19,11 @@ import {
 
 const BodyStyle = createGlobalStyle`
   body {
-    background-color: ${(props) =>
-      props.white ? props.theme.colors.white : props.theme.colors.primary};
+    background-color: ${(props) => {
+      if (props.white) return props.theme.colors.white;
+      if (props.light) return '#EEEFFF';
+      return props.theme.colors.primary;
+    }}
   }
 `;
 
@@ -44,7 +47,7 @@ const Router = () => (
         <HireResult />
       </Route>
       <Route exact path="/hire/:submitId/result/more">
-        <BodyStyle white />
+        <BodyStyle light />
         <HireResultMore />
       </Route>
       <Route exact path="/sign-in">
@@ -77,6 +80,7 @@ const Router = () => (
         내 프로필 수정
       </Route>
       <Route exact path="/firebase-examples">
+        <BodyStyle white />
         <FirebaseExample />
       </Route>
       <Route path="/*">

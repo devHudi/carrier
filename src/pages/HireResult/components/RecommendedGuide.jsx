@@ -13,36 +13,66 @@ import themeData from 'assets/data/themeData';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const StyledSlider = styled(Slider)`
-  .slick-list {
-    width: 700px;
+const SliderWrapper = styled.div`
+  & > .slick-list {
     margin: 0 auto;
+    padding: 0 20% 0 0 !important;
   }
-  .slick-slide div {
+
+  & .slick-slide {
+    padding: 0 6px;
+  }
+
+  & > .slick-slide div {
     cursor: pointer;
-    margin: 0 10px;
+  }
+
+  & .slick-prev:before,
+  .slick-next:before {
+    color: #000000;
   }
 `;
 
-const Wrapper = styled.div`
+const Card = styled.div`
+  position: relative;
+  width: 200px;
+  height: 330px;
   background-image: url('${(props) => props.image}');
-  background-size: 100% 100%;
+  background-size: cover;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
-  border: 1px solid ${(props) => props.theme.colors.inputBorder};
+  border: 1px solid #e2e3e3;
   border-radius: 24px;
   opacity: 1;
 `;
 
+const Dimmer = styled.div`
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+  border-radius: 24px;
+`;
+
 const GuideWrapper = styled.div`
+  height: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 330px;
   opacity: 0.8;
-  padding-bottom: 10px;
+  padding: 12px;
+`;
+
+const Theme = styled(Typography)`
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const RecommendedGuide = ({ guides }) => {
@@ -50,53 +80,59 @@ const RecommendedGuide = ({ guides }) => {
 
   const settings = {
     dots: true,
-    infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    centerMode: true,
+    arrows: true,
   };
 
   return (
-    <div>
-      <StyledSlider {...settings}>
+    <SliderWrapper>
+      <Slider {...settings}>
         {_.map(guides, (guide) => (
-          <Wrapper
+          <Card
             key={guide.uid}
             image={guide.profile_image}
             onClick={() => history.push(`/profile/${guide.uid}`)}
           >
-            <GuideWrapper>
-              <Flex justify="space-between" width="100%">
-                <div style={{ margin: '0px' }}>
-                  <Typography headline color="white" style={{ margin: '0px' }}>
-                    {guide.name}
-                  </Typography>
-                  <Typography subhead color="white" style={{ margin: '0px' }}>
-                    {_.find(placeData, { sido: guide.place.sido }).sidoKr}
-                  </Typography>
-                </div>
-                <div>
-                  <Typography body color="white">
-                    <GoPerson color="blue" /> {guide.hired_count} 가이드
-                  </Typography>
-                  <Typography body color="white">
-                    <RiHeartFill color="#FF77B2" /> {guide.liked_count} like
-                  </Typography>
-                </div>
-              </Flex>
-              <Margin size={10} />
-              <Typography body color="white">
-                {_.map(
-                  guide.themes,
-                  (theme) =>
-                    `# ${_.snakeCase(_.find(themeData, { id: theme }).label)}`,
-                )}
-              </Typography>
-            </GuideWrapper>
-          </Wrapper>
+            <Dimmer>
+              <GuideWrapper>
+                <Flex justify="space-between" width="100%">
+                  <div style={{ margin: '0px' }}>
+                    <Typography
+                      headline
+                      color="white"
+                      style={{ margin: '0px' }}
+                    >
+                      {guide.name}
+                    </Typography>
+                    <Typography subhead color="white" style={{ margin: '0px' }}>
+                      {_.find(placeData, { sido: guide.place.sido }).sidoKr}
+                    </Typography>
+                  </div>
+                  <div>
+                    <Typography body color="white">
+                      <GoPerson color="blue" /> {guide.hired_count} 가이드
+                    </Typography>
+                    <Typography body color="white">
+                      <RiHeartFill color="#FF77B2" /> {guide.liked_count} like
+                    </Typography>
+                  </div>
+                </Flex>
+                <Margin size={10} />
+                <Theme body color="white" bold300>
+                  {_.map(
+                    guide.themes,
+                    (theme) => `# ${_.find(themeData, { id: theme }).label} `,
+                  )}
+                </Theme>
+              </GuideWrapper>
+            </Dimmer>
+          </Card>
         ))}
-      </StyledSlider>
-    </div>
+      </Slider>
+    </SliderWrapper>
   );
 };
 

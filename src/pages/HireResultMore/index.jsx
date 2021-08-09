@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { IoIosArrowDown } from 'react-icons/io';
-import { Typography, Margin } from 'carrier-ui';
+import { Margin, Navigation, Spinner } from 'carrier-ui';
 
 import { getRecommendedGuides } from 'controller/hire';
 
 import Form from './components/Form';
-import Navigation from './components/Navigation';
 
 const Container = styled.div`
   padding: 0 24px;
@@ -23,14 +21,21 @@ const TitleContainer = styled.div`
   align-items: flex-end;
 `;
 
+const Title = styled.div`
+  font-size: 20px;
+`;
+
 const HireResultMore = () => {
   const history = useHistory();
   const params = useParams();
   const [guides, setGuides] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const doWork = async () => {
+      setLoading(true);
       setGuides(await getRecommendedGuides(params.submitId));
+      setLoading(false);
     };
 
     doWork();
@@ -38,14 +43,18 @@ const HireResultMore = () => {
 
   return (
     <>
-      <Navigation leftIcon="back" onLeftIconClick={() => history.goBack()} />
+      {loading && <Spinner />}
 
-      <Margin size={90} />
+      <Navigation
+        leftIcon="back"
+        rightIcon={null}
+        position="relative"
+        iconColor="#000000"
+        onLeftIconClick={() => history.goBack()}
+      />
+
       <TitleContainer>
-        <Typography title>이번 여행의 추천 가이드</Typography>
-        <Typography subhead style={{ fontWeight: 'bold' }}>
-          추천순 <IoIosArrowDown />
-        </Typography>
+        <Title>이번 여행의 추천 가이드</Title>
       </TitleContainer>
       <Margin size={25} />
       <Container>

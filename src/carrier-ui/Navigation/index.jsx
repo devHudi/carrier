@@ -8,7 +8,7 @@ import { IoIosArrowBack } from 'react-icons/io';
 
 const Wrapper = styled.div`
   width: 100%;
-  position: fixed;
+  position: ${(props) => props.position};
   top: 0;
   padding: 37px 24px;
   display: flex;
@@ -20,7 +20,7 @@ const Icon = styled.div`
   display: flex;
   align-items: center;
   font-size: 25px;
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.iconColor};
   cursor: pointer;
 `;
 
@@ -45,15 +45,25 @@ const Navigation = ({
   rightIcon,
   onLeftIconClick,
   onRightIconClick,
+  position,
+  iconColor,
   children,
 }) => {
   const history = useHistory();
 
   return (
-    <Wrapper>
-      <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>
+    <Wrapper position={position}>
+      {leftIcon && (
+        <Icon iconColor={iconColor}>
+          {createIcon(history, leftIcon, onLeftIconClick)}
+        </Icon>
+      )}
       {children}
-      <Icon>{createIcon(history, rightIcon, onRightIconClick)}</Icon>
+      {rightIcon && (
+        <Icon iconColor={iconColor}>
+          {createIcon(history, rightIcon, onRightIconClick)}
+        </Icon>
+      )}
     </Wrapper>
   );
 };
@@ -63,6 +73,8 @@ Navigation.propTypes = {
   rightIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back']),
   onLeftIconClick: PropTypes.func,
   onRightIconClick: PropTypes.func,
+  position: PropTypes.string,
+  iconColor: PropTypes.string,
   children: PropTypes.element,
 };
 
@@ -71,6 +83,8 @@ Navigation.defaultProps = {
   rightIcon: 'mypage',
   onLeftIconClick: () => {},
   onRightIconClick: () => {},
+  position: 'fixed',
+  iconColor: '#ffffff',
   children: <></>,
 };
 
