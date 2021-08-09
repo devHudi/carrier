@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
 import { getGuideProfile } from 'controller/guideProfile';
+import { Navigation, Spinner } from 'carrier-ui';
+
 import ProfileForm from './components/ProfileForm';
 import Form from './components/Form';
-import Navigation from './components/Navigation';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,22 +27,31 @@ const GuideProfile = () => {
   const history = useHistory();
   const id = useParams();
   const [guide, setGuide] = useState('');
+  const [loading, setLoading] = useState(false);
 
   console.log(id.uid);
   useEffect(() => {
     const doWork = async () => {
-      setGuide(await getGuideProfile(id.uid));
+      setLoading(true);
+      const _guide = await getGuideProfile(id.uid);
+      console.log({ _guide });
+      setGuide(_guide);
+      setLoading(false);
     };
 
     doWork();
   }, []);
 
+  console.log({ guide });
+
   return (
     <>
+      {loading && <Spinner />}
       <GlobalStyle />
       <Navigation
         leftIcon="back"
         rightIcon="home"
+        iconColor="#000000"
         onLeftIconClick={() => history.goBack()}
         onRightIconClick={() => history.push('/')}
       />

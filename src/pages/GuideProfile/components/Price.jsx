@@ -89,7 +89,7 @@ const Price = () => (
               <Blur body>맞춤형 여행 계획 받아보기</Blur>
               <Flex justify="center" align="flex-end">
                 <Typography subhead style={{ fontSize: '2vw' }}>
-                  \ 50,000
+                  ₩ 50,000
                 </Typography>
                 <Typography body style={{ fontSize: '1vw' }}>
                   {' '}
@@ -109,7 +109,7 @@ const Price = () => (
 
               <Flex justify="center" align="flex-end">
                 <Typography subhead style={{ fontSize: '2vw' }}>
-                  \ 12,000
+                  ₩ 12,000
                 </Typography>
                 <Typography body style={{ fontSize: '1vw' }}>
                   {' '}

@@ -32,8 +32,8 @@ const ImageCircle = styled.div`
   position: absolute;
   z-index: 3;
   top: 15px;
-  background: transparent url(${(props) => (props.src ? props.src : Picture)})
-    0% 0% no-repeat padding-box;
+  background-image: url(${(props) => (props.src ? props.src : Picture)});
+  background-position: center;
   background-size: cover;
   border-radius: 112px;
   opacity: 1;
@@ -69,43 +69,41 @@ const StatisticsWrapper = styled.div`
 `;
 
 const Profile = ({ guide }) => (
-  <div>
-    <Wrapper>
-      <BackgroundCircle />
-      <ImageCircle src={guide.profile_image} />
-      <Container>
-        <Typography headline>{guide.name}</Typography>
-        <City subhead bold700>
-          {_.find(placeData, { sido: guide.place.sido }).sidoKr}
-        </City>
-        <Margin size={20} />
-        <StatisticsWrapper>
-          <Flex direction="column" align="center">
-            <GoPerson color="blue" />
-            <Typography headline bold400>
-              {guide.hired_count}명
-            </Typography>
-            <City subhead>가이드</City>
-          </Flex>
-          <Flex direction="column" align="center">
-            <RiHeartFill color="#FF77B2" />
-            <Typography headline bold400>
-              {guide.liked_count}명
-            </Typography>
-            <City subhead>좋아요</City>
-          </Flex>
-          <Flex direction="column" align="center">
-            <RiStarFill color="#FFDE0A" />
-            <Typography headline bold400>
-              4.8점
-            </Typography>
-            <City subhead>평점</City>
-          </Flex>
-        </StatisticsWrapper>
-        <Margin size={20} />
-      </Container>
-    </Wrapper>
-  </div>
+  <Wrapper>
+    <BackgroundCircle />
+    <ImageCircle src={guide.profile_image} />
+    <Container>
+      <Typography headline>{guide.name}</Typography>
+      <City subhead bold700>
+        {_.find(placeData, { sido: guide.place?.sido })?.sidoKr}
+      </City>
+      <Margin size={20} />
+      <StatisticsWrapper>
+        <Flex direction="column" align="center">
+          <GoPerson color="blue" />
+          <Typography headline bold400>
+            {guide.hired_count}명
+          </Typography>
+          <City subhead>가이드</City>
+        </Flex>
+        <Flex direction="column" align="center">
+          <RiHeartFill color="#FF77B2" />
+          <Typography headline bold400>
+            {guide.liked_count}명
+          </Typography>
+          <City subhead>좋아요</City>
+        </Flex>
+        <Flex direction="column" align="center">
+          <RiStarFill color="#FFDE0A" />
+          <Typography headline bold400>
+            4.8점
+          </Typography>
+          <City subhead>평점</City>
+        </Flex>
+      </StatisticsWrapper>
+      <Margin size={20} />
+    </Container>
+  </Wrapper>
 );
 
 Profile.propTypes = {

@@ -10,6 +10,7 @@ import {
 } from 'react-icons/ri';
 
 import languageData from 'assets/data/languageData';
+import guideData from 'assets/data/guideData';
 
 const Wrapper = styled.div`
   display: flex;
@@ -58,7 +59,7 @@ const Introduction = ({ guide }) => (
           <IconContainer>
             <RiTimeLine />
           </IconContainer>
-          {guide.available_time.start}시 ~ {guide.available_time.end}시 연락
+          {guide.available_time?.start}시 ~ {guide.available_time?.end}시 연락
           가능
         </Blur>
         <Blur body>
@@ -66,24 +67,26 @@ const Introduction = ({ guide }) => (
             <RiGlobalLine />
           </IconContainer>
           {_.map(
-            guide.languages,
+            guide?.languages,
             (language) =>
-              `# ${_.snakeCase(
-                _.find(languageData, { id: language }).languageKr,
-              )}`,
+              `#${_.find(languageData, { id: language }).languageKr} `,
           )}
         </Blur>
         <Blur body>
           <IconContainer>
             <RiFlagLine />
           </IconContainer>
-          여행 코스 계획 / 온라인 가이드 제공
+          {_.map(
+            guide?.guide_types,
+            (type) => _.find(guideData, { id: type }).title,
+          ).join(' / ')}{' '}
+          제공
         </Blur>
         <Blur body>
           <IconContainer>
             <RiBankCard2Line />
           </IconContainer>
-          계좌이체 가능
+          카드, 계좌이체 가능
         </Blur>
       </Container>
     </Wrapper>
