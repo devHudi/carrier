@@ -40,23 +40,24 @@ const settings = {
 };
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
+  & .slick-list > div {
+    margin-left: 0;
+  }
 `;
 
 const CityCarousel = ({ places }) => (
-  <Slider {...settings}>
-    {_.map(places, (place) => (
-      <Wrapper>
+  <Wrapper>
+    <Slider {...settings}>
+      {_.map(places, (place) => (
         <City
           sido={place.sido}
           place={place.name}
           img={place.image}
           name={place.nameKr}
         />
-      </Wrapper>
-    ))}
-  </Slider>
+      ))}
+    </Slider>
+  </Wrapper>
 );
 
 CityCarousel.propTypes = {

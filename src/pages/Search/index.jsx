@@ -1,12 +1,11 @@
-import React from 'react';
+import { useState, useMemo } from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
 
-import { Navigation, Container, Margin } from 'carrier-ui';
+import { Navigation, Container, Margin, SearchBar } from 'carrier-ui';
 import sidoData from 'assets/data/sidoData';
 import placeData from 'assets/data/placeData';
 
-import SearchBar from './components/SearchBar';
 import CityCarousel from './components/CityCarousel';
 
 const Logo = styled.div`
@@ -26,22 +25,42 @@ const Category = styled.div`
   margin-top: 30px;
 `;
 
-const Search = () => (
-  <>
-    <Navigation />
-    <Logo>CARRIER</Logo>
-    <Container top={90} padding={28}>
-      <SearchBar />
-      <Margin size={32} />
+const Search = () => {
+  const [search, setSearch] = useState('');
 
-      {_.map(sidoData, (sido) => (
-        <>
-          <Category>{sido.title}</Category>
-          <CityCarousel places={_.filter(placeData, { sido: sido.id })} />
-        </>
-      ))}
-    </Container>
-  </>
-);
+  const filteredPlaces = useMemo(
+    () => _.filter(placeData, (place) => _.includes(place.nameKr, search)),
+    [search],
+  );
+
+  const filteredSidos = useMemo(() => {
+    const sidos = _.chain(filteredPlaces)
+      .map((place) => place.sido)
+      .uniq()
+      .value();
+
+    return _.filter(sidoData, (sido) => _.includes(sidos, sido.id));
+  }, [filteredPlaces]);
+
+  return (
+    <>
+      <Navigation />
+      <Logo>CARRIER</Logo>
+      <Container top={90} padding={28}>
+        <SearchBar onChange={(e) => setSearch(e.target.value)} />
+        <Margin size={32} />
+
+        {_.map(filteredSidos, (sido) => (
+          <>
+            <Category>{sido.title}</Category>
+            <CityCarousel
+              places={_.filter(filteredPlaces, { sido: sido.id })}
+            />
+          </>
+        ))}
+      </Container>
+    </>
+  );
+};
 
 export default Search;

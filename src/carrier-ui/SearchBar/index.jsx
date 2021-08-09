@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 28px;
 `;
 
 const Icon = styled.div`
@@ -41,14 +40,14 @@ const Input = styled.input`
     color: ${(props) => props.theme.colors.blue};
   }
 `;
-const Search = ({ top, value, onChangeWord, onSubmit }) => {
+const Search = ({ top, value, onChange, onSubmit }) => {
   const placeholder = '검색';
   return (
     <Wrapper top={top} onSubmit={onSubmit}>
       <Icon>
         <AiOutlineMinus />
       </Icon>
-      <Input value={value} onChange={onChangeWord} placeholder={placeholder} />
+      <Input value={value} onChange={onChange} placeholder={placeholder} />
       <Icon>
         <AiOutlineSearch onClick={onSubmit} />
       </Icon>
@@ -58,7 +57,7 @@ const Search = ({ top, value, onChangeWord, onSubmit }) => {
 Search.propTypes = {
   top: PropTypes.number,
   value: PropTypes.string.isRequired,
-  onChangeWord: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 Search.defaultProps = {
