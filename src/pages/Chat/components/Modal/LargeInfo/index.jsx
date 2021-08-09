@@ -23,6 +23,7 @@ import line from './assets/line.png';
 const UserInfoModal = () => {
   const [clickModal, setClickModal] = useState(false);
   const ontoggle = () => setClickModal((prev) => !prev);
+  console.log('UserInfoModal');
   return (
     <Wrapper background="https://blog.kakaocdn.net/dn/6CEcF/btqxVzYzsYJ/hW9z8hX5DgILkKPk8AYr70/img.png">
       <Title>
