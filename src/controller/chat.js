@@ -5,12 +5,11 @@ export const createChatRoom = async (employerUid, employeeUid) => {
   (
     await firestore
       .collection('chats')
-      .where('employee_uid', '==', employerUid)
+      .where('employee_uid', '==', employeeUid)
       .get()
-  ).forEach((querySnapshot) => chats.push(querySnapshot.data()));
+  ).forEach((querySnapshot) => chats.push(querySnapshot.ref));
 
   if (chats.length > 0) {
-    console.log({ chats });
     return chats[0].id;
   }
 
