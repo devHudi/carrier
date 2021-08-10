@@ -3,7 +3,7 @@ import { firestore } from 'misc/firebase';
 import PropTypes from 'prop-types';
 import MessageTypeBox from './style';
 
-const ChatBox = ({ chatsDoc, user, chatRef }) => {
+const ChatBox = ({ conversation, chatsDoc, user, chatRef }) => {
   const [message, setMessage] = useState('');
   const [isMessage, setIsMessage] = useState(false);
   const [onClickPlus, setOnClickPlus] = useState(false);
@@ -25,17 +25,14 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
   };
   const onToggle = () => setOnClickPlus((prev) => !prev);
   const onSubmit = async (e) => {
+    conversation.push({
+      content: message,
+      sended_at: new Date(Date.now()),
+      sender_uid: user?.uid,
+    });
     e.preventDefault();
     if (isMessage) {
-      await firestore
-        .collection('chats')
-        .doc(chatsDoc?.id)
-        .collection('conversation')
-        .add({
-          content: message,
-          sended_at: new Date(Date.now()),
-          sender_uid: user?.uid,
-        });
+      await firestore.collection('chats').doc(chatsDoc?.id).set(conversation);
       setMessage('');
       setIsMessage(false);
       chatRef.current.scrollIntoView({
@@ -72,9 +69,10 @@ const ChatBox = ({ chatsDoc, user, chatRef }) => {
 };
 
 ChatBox.propTypes = {
-  user: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
   chatsDoc: PropTypes.array.isRequired,
   chatRef: PropTypes.func.isRequired,
+  conversation: PropTypes.array.isRequired,
 };
 
 export default ChatBox;
