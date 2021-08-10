@@ -21,7 +21,6 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 20%;
   width: 100%;
 `;
 
