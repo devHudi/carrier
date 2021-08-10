@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Spinner } from 'carrier-ui';
-import { auth, firestore } from '../../misc/firebase';
+import { firestore } from '../../misc/firebase';
 import ChatNavigation from './Component/ChatListNav/style';
 import Search from './Component/SearchBar/search';
 import ChatRoom from './Component/ChatRoom';
@@ -10,15 +10,15 @@ const ChatList = () => {
   const [chatRoomList, setChatRoomList] = useState([]);
   const [classification, setClassification] = useState(false); // false 는 소비자
   const [user, setUser] = useState('');
-  const [userObj, setUserObj] = useState(null);
   const [searchWord, setSearchWord] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   //* *********************로그인한 사용자로부터 유저 데이터 가져오는 곳************************//
 
-  useEffect(async () => {
-    await auth.signInWithEmailAndPassword('dlwnsgus07@naver.com', 'rdwg6867');
-    setUserObj(auth.currentUser);
-  }, []);
+  // 임시코드
+  const userObj = {
+    uid: 'temp',
+  };
+
   useEffect(() => {
     if (userObj) {
       firestore

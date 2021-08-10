@@ -14,6 +14,7 @@ import { changeUserName, changeUserProfileImage } from 'controller/user';
 import { addReview } from 'controller/review';
 import { likeGuide } from 'controller/like';
 import { getGuideProfile } from 'controller/guideProfile';
+import { createChatRoom } from 'controller/chat';
 
 const Form = styled.div`
   padding: 10px;
@@ -69,6 +70,11 @@ const FirebaseExample = () => {
   });
 
   const [likeForm, setLikeForm] = useState({
+    employerUid: '',
+    employeeUid: '',
+  });
+
+  const [chatForm, setChatForm] = useState({
     employerUid: '',
     employeeUid: '',
   });
@@ -438,6 +444,32 @@ const FirebaseExample = () => {
         <Title>더미가이드 모두 제거</Title>
         <button onClick={async () => await removeDummyGuide()}>
           더미가이드 제거
+        </button>
+      </Form>
+
+      <Form>
+        <Title>채팅방 생성</Title>
+
+        <input
+          type="text"
+          onChange={(e) =>
+            setChatForm({ ...chatForm, employerUid: e.target.value })
+          }
+          placeholder="Employer UID (리뷰다는 사람)"
+        />
+        <input
+          type="text"
+          onChange={(e) =>
+            setChatForm({ ...chatForm, employeeUid: e.target.value })
+          }
+          placeholder="Employee UID (가이드)"
+        />
+        <button
+          onClick={async () =>
+            await createChatRoom(chatForm.employerUid, chatForm.employeeUid)
+          }
+        >
+          변경
         </button>
       </Form>
     </>
