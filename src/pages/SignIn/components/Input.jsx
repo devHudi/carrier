@@ -15,7 +15,7 @@ export default function Input({ type, placeholder, icon, onChange }) {
 const StyledInput = styled.input`
   margin-top: 12px;
   border-radius: 200px;
-  width: 300px;
+  width: 100%;
   height: 3rem;
   padding: 1rem;
   border: none;

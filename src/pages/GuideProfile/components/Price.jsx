@@ -62,6 +62,7 @@ const PriceContainer = styled.div`
   justify-content: center;
   opacity: 1;
   width: 100%;
+  line-height: 1.5;
 `;
 
 const IllustrationWrapper = styled(Flex)`
@@ -79,19 +80,27 @@ const Illustration = styled.img`
   width: 75%;
 `;
 
-const Blur = styled(Typography)`
-  letter-spacing: 0px;
-  color: #b2b2b2;
-  opacity: 1;
-  font-size: 1vw;
+const Title = styled.div`
+  font-size: 12px;
 `;
 
-const SemiBlur = styled(Typography)`
-  letter-spacing: 0px;
-  color: #707070;
-  opacity: 1;
+const Subtitle = styled.div`
+  font-size: 9px;
+  color: #b2b2b2;
+`;
+
+const PriceNumber = styled.div`
+  font-size: 15px;
+`;
+
+const PriceUnit = styled.div`
+  font-size: 9px;
+`;
+
+const Label = styled.div`
+  font-size: 12px;
   text-align: right;
-  font-size: 1vw;
+  color: #707070;
 `;
 
 const Price = ({ guide }) => (
@@ -107,28 +116,25 @@ const Price = ({ guide }) => (
                 src={_.find(guideTypeData, { id: guideType }).svg}
               />
             </IllustrationWrapper>
-            <Typography subhead style={{ fontSize: '2vw' }}>
-              {_.find(guideTypeData, { id: guideType }).title}
-            </Typography>
-            <Blur body>
+            <Title>{_.find(guideTypeData, { id: guideType }).title}</Title>
+            <Subtitle>
               {_.find(guideTypeData, { id: guideType }).subtitle}
-            </Blur>
+            </Subtitle>
             <Flex justify="center" align="flex-end">
-              <Typography subhead style={{ fontSize: '2vw' }}>
+              <PriceNumber>
                 ₩ {guide?.prices[guideType].toLocaleString()}
-              </Typography>
-              <Typography body style={{ fontSize: '1vw' }}>
+              </PriceNumber>
+              <PriceUnit>
                 {' '}
                 / {_.find(guideTypeData, { id: guideType }).unit}
-              </Typography>
+              </PriceUnit>
             </Flex>
           </PriceContainer>
         </PriceWrapper>
       ))}
     </CardWrapper>
     <Margin size={10} />
-    <SemiBlur subhead>자세한 사항은 가이드와 직접 상의하세요</SemiBlur>
-    <Margin size={20} />
+    <Label>자세한 사항은 가이드와 직접 상의하세요</Label>
   </Container>
 );
 

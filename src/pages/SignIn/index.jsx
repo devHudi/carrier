@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import toast from 'react-simple-toasts';
-import { Margin, RoundedButton, Spinner } from 'carrier-ui';
+import { Margin, RoundedButton, Spinner, PageCenter } from 'carrier-ui';
 import { useQuery } from 'hooks';
 import { signIn } from 'controller/auth';
 
@@ -10,16 +10,6 @@ import Input from './components/Input';
 import person from '../SignUp/assets/Icon material-person.svg';
 
 // 비밀번호 입력 시 별표(*)로 표시되는지 확인 필요 (지원하지 않는 글꼴의 경우 패스워드 표시가 숨겨짐)
-
-const MainContainer = styled.p`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  padding: 0 10%;
-`;
 
 const Logo = styled.p`
   font-size: 30px;
@@ -95,7 +85,7 @@ const SignIn = () => {
   return (
     <>
       {loading && <Spinner />}
-      <MainContainer>
+      <PageCenter>
         <Logo>CARRIER</Logo>
         <Margin size={56} />
         <InputContainer>
@@ -120,7 +110,7 @@ const SignIn = () => {
           <New>CARRIER가 처음이신가요?</New>
           <SignUp onClick={onSignUpClick}>회원가입하기</SignUp>
         </TextWrapper>
-      </MainContainer>
+      </PageCenter>
     </>
   );
 };

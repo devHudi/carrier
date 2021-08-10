@@ -51,7 +51,7 @@ const Hire = () => {
   });
 
   useEffect(() => {
-    toast(); // Toast 라이브러리 버그 해결
+    toast('간단한 여행 계획을 선택해주세요.'); // Toast 라이브러리 버그 해결
   }, []);
 
   const validData = (data) => {
