@@ -28,15 +28,13 @@ const TitleText = styled.div`
 `;
 
 const Title = () => (
-  <>
-    <TitleWrapper>
-      <TitleText>
-        회원님을 위한,
-        <br />
-        Carrier의 가이드 추천
-      </TitleText>
-    </TitleWrapper>
-  </>
+  <TitleWrapper>
+    <TitleText>
+      회원님을 위한,
+      <br />
+      Carrier의 가이드 추천
+    </TitleText>
+  </TitleWrapper>
 );
 
 export default Title;
