@@ -10,7 +10,6 @@ import {
 } from './style';
 
 const ChatRoom = ({ userObj, classification }) => {
-  const count = 2;
   const history = useHistory();
   const click = () => {
     history.push(`/chat/${userObj.id}`);
@@ -46,21 +45,23 @@ const ChatRoom = ({ userObj, classification }) => {
               <span>이미 읽은 메세지 입니다.</span>
             )}
           </MessageBox>
-          <RecentBox>
-            <span>{userObj?.updated_at}</span>
-            <div>{count}</div>
-          </RecentBox>
+          <DateDiv>{today}</DateDiv>
+          <CountDiv>{userObj?.isNewMessage && <div>!</div>}</CountDiv>
         </Wrapper>
       ) : (
         <Wrapper onClick={click}>
           <Img src={userObj?.employee_profile_img} alt="" />
           <MessageBox>
             <span>{userObj?.employee_name}</span>
-            <span>안녕하세요 가이드 입니다~~~</span>
+            {userObj?.isNewMessage ? (
+              <span>새로운 메세지가 도착했습니다.</span>
+            ) : (
+              <span>이미 읽은 메세지 입니다.</span>
+            )}
           </MessageBox>
           <RecentBox>
             <DateDiv>{today}</DateDiv>
-            <CountDiv>{count}</CountDiv>
+            <CountDiv>{userObj?.isNewMessage && <div>!</div>}</CountDiv>
           </RecentBox>
         </Wrapper>
       )}
@@ -69,7 +70,7 @@ const ChatRoom = ({ userObj, classification }) => {
 };
 
 ChatRoom.propTypes = {
-  userObj: PropTypes.arrayOf(PropTypes.object).isRequired,
+  userObj: PropTypes.array.isRequired,
   classification: PropTypes.bool.isRequired,
 };
 export default ChatRoom;
