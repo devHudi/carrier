@@ -238,15 +238,26 @@ const MessageTypeBox = ({
   const placeholder = '메세지를 입력하세요.';
   const [isRequest, setIsRequest] = useState(false);
   const [isReview, setIsReview] = useState(false);
+  const [step, setStep] = useState(requestButtonStatus ? 3 : 1);
   const toggleIsRequest = () => {
-    console.log(isRequest);
+    console.log(step);
+    setStep(1);
     setIsRequest((prev) => !prev);
+  };
+  const toggleNext = () => {
+    setStep(2);
+    setTimeout(() => setStep(3), 3000);
   };
   const toggleIsReview = () => setIsReview((prev) => !prev);
   return (
     <>
       <RequestModal isReview={isReview} />
-      <RequestModal isRequest={isRequest} ontoggle={toggleIsRequest} />
+      <RequestModal
+        isRequest={isRequest}
+        ontoggle={toggleIsRequest}
+        step={step}
+        toggleNext={toggleNext}
+      />
       <Div onClickPlus={onClickPlus}>
         <ConfirmDiv>
           {requestButtonStatus ? (
