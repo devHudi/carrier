@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import toast from 'react-simple-toasts';
-import { Margin, RoundedButton, Spinner } from 'carrier-ui';
+import { Margin, RoundedButton, Spinner, PageCenter } from 'carrier-ui';
 import { signUp } from 'controller/auth';
 
 import Input from '../SignIn/components/Input';
@@ -10,12 +10,6 @@ import Welcome from './components/Welcome';
 import UserType from './components/UserType';
 
 // 비밀번호 입력 시 별표(*)로 표시되는지 확인 필요 (지원하지 않는 글꼴의 경우 패스워드 표시가 숨겨짐)
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 const MainContainer = styled.div`
   display: flex;
@@ -80,7 +74,7 @@ function SignUp() {
     <>
       {loading && <Spinner />}
 
-      <Wrapper>
+      <PageCenter>
         <MainContainer>
           <Welcome />
           <Margin size={69} />
@@ -108,7 +102,7 @@ function SignUp() {
             회원가입
           </RoundedButton>
         </MainContainer>
-      </Wrapper>
+      </PageCenter>
     </>
   );
 }
