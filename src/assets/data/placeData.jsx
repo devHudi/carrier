@@ -694,8 +694,7 @@ export default [
     sidoKr: '경기도',
     name: 'hanam',
     nameKr: '하남시',
-    image:
-      'https://lh3.googleusercontent.com/proxy/xQss4Cn7QXX4d6eEO0_rfgrEZY0-rcvW_6aS0YMc9sewYU5ExIKS1cmnpaL4bFeTlkw785Bxns-Kel7Zsduf4rzKq1QMankpb1UQp15pIJv6ikzbKQ',
+    image: 'http://www.kocus.com/news/photo/201605/388354_22893_5656.jpg',
   },
   {
     sido: 'gyeonggido',
@@ -786,7 +785,7 @@ export default [
     name: 'namyangju',
     nameKr: '남양주시',
     image:
-      'https://lh3.googleusercontent.com/proxy/f5uxAHhqIiRp8p5N5D523W-0CfIQY_7KGVJlBSnOpa0qCsrLgGP_CSUBDOcaW7FSDgPzByDxPCw4YtkTGpjkmSZdP-D5ye9s1GuEXzE',
+      'https://file.mk.co.kr/meet/neds/2019/04/image_readtop_2019_264473_15562410023726525.jpg',
   },
   {
     sido: 'gyeonggido',
@@ -807,16 +806,14 @@ export default [
     sidoKr: '경기도',
     name: 'pocheon',
     nameKr: '포천시',
-    image:
-      'https://lh3.googleusercontent.com/proxy/mKPWRaUKdUW41OaoqWyCuv6x_DnK0zS0E-_YKX5XU2PZxyQLzX7UaO-01K9OlWvd3gklIaJPNbPgLdbv9LXIwo35Soj5bV_h8RAzy9ugh7ISKg',
+    image: 'http://www.kyeonggi.com/news/photo/201812/2015389_815113_3958.jpg',
   },
   {
     sido: 'gyeonggido',
     sidoKr: '경기도',
     name: 'yeoncheongun',
     nameKr: '연천군',
-    image:
-      'https://lh3.googleusercontent.com/proxy/JH63QBosobOk6Aakv0zJMjEtTCse6dI-tRBAyZoRg04mM66S4JyhdU0gSXh-BmbKS6TzUZzMjWX74aX8JPhdsuOMisGu4A131rACoKV_iAPb_ZZc8meSsQ',
+    image: 'https://t1.daumcdn.net/cfile/blog/12021A464EA156A804',
   },
   {
     sido: 'gyeonggido',
@@ -1192,7 +1189,7 @@ export default [
     name: 'namwon',
     nameKr: '남원시',
     image:
-      'https://lh3.googleusercontent.com/proxy/PiVP6_7WJpDNiO0_gS9pfgvvN1bO1HOgftbS9LFyqU5wzvAdiSrK4rtNtPlSKvko6N5l2sQWrqxB6xkkHmDBzhDuD2NyDBfZ0henUz64v4NW8RwJg5qixRk',
+      'https://i.pinimg.com/originals/1a/c9/03/1ac90358a3f1dfad228778a10f31cc18.jpg',
   },
   {
     sido: 'jeollabukdo',
@@ -1266,8 +1263,7 @@ export default [
     sidoKr: '전라남도',
     name: 'mokpo',
     nameKr: '목포시',
-    image:
-      'https://lh3.googleusercontent.com/proxy/9JDhPbvdJVYQSkhqc6f8bqSDm2cXjgBvYnPYvVdmisVyjv4aqwkwX6BgrOyKvUCOvCj-B-2oCy5wCLlzX1ypsUjFTuz32AGaltTkQQ5ZXscbTPXO3iBan8xU',
+    image: 'http://www.nbn-news.co.kr/news/photo/202006/46255_45413_1911.jpg',
   },
   {
     sido: 'jeollanamdo',
@@ -1336,8 +1332,7 @@ export default [
     sidoKr: '전라남도',
     name: 'boseonggun',
     nameKr: '보성군',
-    image:
-      'https://lh3.googleusercontent.com/proxy/0N2wmyRS-ZuLB8rUJmIt8ELMTNIsUDk9vboNuHJXpgLdtGvzm9ShjOtU6Vx8OLMXE7ZFcsIOyjztcVG8xTi7FP7dZr1-OMLX5YA5BG-Ov-WittzRVi1h2alxPt0PT0sYpCBZCRl7erL6bDDwEU8',
+    image: 'https://t1.daumcdn.net/cfile/blog/027C994351A5CB2E3E',
   },
   {
     sido: 'jeollanamdo',
@@ -1382,8 +1377,7 @@ export default [
     sidoKr: '전라남도',
     name: 'muangun',
     nameKr: '무안군',
-    image:
-      'https://lh3.googleusercontent.com/proxy/odBYaSbIsDg3wbAWLfeBsdu9TBy9rCUoRM_46g6c9Xvc2YsAxxbTRtKcoigUDaGRmGzVCYNEHmrLPLQHUqxdFIZKbExEXRScXy1U-JGs-VmSSmdUuReBOEDINUYz',
+    image: 'http://www.msonews.co.kr/news/photo/202008/2965_3460_1127.png',
   },
   {
     sido: 'jeollanamdo',
@@ -1452,15 +1446,14 @@ export default [
     name: 'gimcheon',
     nameKr: '김천시',
     image:
-      'https://lh3.googleusercontent.com/proxy/HMv7bo2HXqH5KcC4-U-UQ0ZVsMrvKj7wpd_ZM5rTqDahnY-nqffdF_uXtj3CFKxabGrZddFEDHydv0SbEv18f1_9B6_O7JGWfPreaoT-SCrYXv6-8vpah8j87w',
+      'https://www.kyongbuk.co.kr/news/photo/201905/2004233_407541_3833.jpg',
   },
   {
     sido: 'gyeongsangbukdo',
     sidoKr: '경상북도',
     name: 'andong',
     nameKr: '안동시',
-    image:
-      'https://lh3.googleusercontent.com/proxy/5zJ4Wch9s76FH0I0OPjIp_FRp2PwSg3qCr6EyuZSbKBGPqhv68bEUF1rUCrWTmOLgg1kZ57yVbfoswHRYnWVZjMPSj8qAN0yZKzT60XG1v8w68fJRDUrQg0SdYH9zcQuarwXJzgzhm2zZg8p1Ng0EuzB2cOGNMfwlbzEjuVlh91plf78SfARx3NNUCZTUvjrYOhJ1wCagitamvtPZrxDQdnv48O-EatWt6o4S5HzslnMJAYiIbUkWGnRUrysxxZOGPCHxPb8KFpP1H8cDi1lzJeUaC6_WzeF7Ud36ddKPZJYwyiuW9lR3WE',
+    image: 'http://www.kyongbuk.co.kr/news/photo/201702/984021_262335_5644.jpg',
   },
   {
     sido: 'gyeongsangbukdo',
@@ -1475,7 +1468,7 @@ export default [
     name: 'yeongju',
     nameKr: '영주시',
     image:
-      'https://lh3.googleusercontent.com/proxy/d6wriLMSx5htpnV7OvEjMxxV9dtYf1XAeWAIwQHJqs1bNxqELjLv66jxmBtXrHlU28G4gKls-EneDms2KICJmMHLQhwxX7klugdDWutLMhxh',
+      'http://www.kyongbuk.co.kr/news/photo/202103/2070859_493630_3706.jpg',
   },
   {
     sido: 'gyeongsangbukdo',
@@ -1573,8 +1566,7 @@ export default [
     sidoKr: '경상북도',
     name: 'chilgokgun',
     nameKr: '칠곡군',
-    image:
-      'https://lh3.googleusercontent.com/proxy/qldm91nQpxVqrERZsLpFRkBazKfC78XI-6IdhVKsb41vkLEE3Yf-y0WibnKQzDcYNGKL-WC6lkSF8naRxKkJU2gPna7ym-nocPAFJGPS3pXqk_tHmw',
+    image: 'https://council.chilgok.go.kr/site/img/visual_03.jpg',
   },
   {
     sido: 'gyeongsangbukdo',
@@ -1628,16 +1620,14 @@ export default [
     sidoKr: '경상남도',
     name: 'tongyeong',
     nameKr: '통영시',
-    image:
-      'https://post-phinf.pstatic.net/MjAxNzA5MThfNzIg/MDAxNTA1NzMwODQwODU0.dK4-pe8xWLg-FloDYOSp_0giAkE_usn2UJ4_mm4PpGQg.lKaaWZwIPb6H42kkfogViZfP3P3xWrzVyMUIM9Q4hcQg.JPEG/%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4.jpg.small.jpg?type=w1200',
+    image: 'https://www.utour.go.kr/_res/utour/img/main/vpr1/v1002p1.jpg',
   },
   {
     sido: 'gyeongsangnamdo',
     sidoKr: '경상남도',
     name: 'sacheon',
     nameKr: '사천시',
-    image:
-      'https://lh3.googleusercontent.com/proxy/pTlpnFQ-0NKJm0seaLfgz7sqYeI1uH87tm7LTddy_uyEMzJIB29bojQIo9N2_1zIg6EdLImYhIeIr9_pTP1Zvc6KLUG-GUtHqxZSJRV7tzcVQmuHuhZ6BhqGtxZSQ2jrkIpYdKUL8rb59BM',
+    image: 'http://img.newspim.com/news//2020/05/21/2005210927236310.jpg',
   },
   {
     sido: 'gyeongsangnamdo',
@@ -1660,7 +1650,7 @@ export default [
     name: 'geoje',
     nameKr: '거제시',
     image:
-      'https://lh3.googleusercontent.com/proxy/qRe5Sxz-HgPmq6uz6BxCmk2Loida2v-WkFGv-UbFwOPVHkwaBKA6PDOG3KO-YTNki6BnzuXtw3De2ZrSmnQlOHjair6sDWK_CNVJGPd0xAxQXjo',
+      'https://upload.wikimedia.org/wikipedia/commons/f/ff/Okpo_mountain_view.jpg',
   },
   {
     sido: 'gyeongsangnamdo',
@@ -1741,8 +1731,7 @@ export default [
     sidoKr: '경상남도',
     name: 'hapcheongun',
     nameKr: '합천군',
-    image:
-      'https://lh3.googleusercontent.com/proxy/lkFnSyWiC8Q_yYBiWImu5wSKf9ZIxKpmDtJG5p4QbSIF97JD3R7z8q_F_kfLRBGJw89udu5TqUN8ABBOSg2t_mJqkZlNwngs57Pgg2Nw7K2xl5f_swrWgw',
+    image: 'https://www.hc.go.kr/_res/portal/img/sub/04/h06890_img1.jpg',
   },
   {
     sido: 'jejudo',
