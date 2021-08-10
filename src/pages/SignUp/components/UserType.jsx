@@ -96,13 +96,7 @@ const UserType = ({ activated }) => {
       <SubWrapper>
         <InputWrapper>
           <ImageWrapper activated={activated}>
-            <img
-              src={traveler}
-              background="rgba(225, 225, 225, 0)"
-              width="100%"
-              height="100%"
-              object-fit="cover"
-            />
+            <img src={traveler} width="100%" height="100%" object-fit="cover" />
           </ImageWrapper>
         </InputWrapper>
         <Margin size={10} />

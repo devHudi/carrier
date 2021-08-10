@@ -5,8 +5,8 @@ const Wrapper = styled.div`
   left: 48%;
   position: absolute;
   width: 176px;
-  height: 82px;
-  padding: 12px;
+  height: 86px;
+  padding: 14px;
   background-color: rgba(0, 0, 0, 0.7);
   color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
@@ -40,7 +40,10 @@ const HoverText = () => (
   <>
     <Wrapper>
       <Text>잠시만요!</Text>
-      <SubText>현재 가이드 심사 기간이 아닙니다.</SubText>
+      <SubText>
+        현재 가이드 심사 기간이
+        <br /> 아닙니다.
+      </SubText>
     </Wrapper>
   </>
 );
