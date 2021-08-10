@@ -31,7 +31,7 @@ const Title = () => (
   <>
     <TitleWrapper>
       <TitleText>
-        likelion님을 위한,
+        회원님을 위한,
         <br />
         Carrier의 가이드 추천
       </TitleText>

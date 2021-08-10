@@ -37,7 +37,7 @@ const Form = ({ guides, submitId }) => (
       <Typography headline>나만의 BEST 가이드</Typography>
       <Margin size={8} />
 
-      <SubTitle>likelion님을 위해 엄선된 가이드를 만나보세요!</SubTitle>
+      <SubTitle>회원님을 위해 엄선된 가이드를 만나보세요!</SubTitle>
       <Margin size={10} />
     </div>
 
