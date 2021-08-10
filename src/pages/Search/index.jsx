@@ -9,11 +9,7 @@ import placeData from 'assets/data/placeData';
 import CityCarousel from './components/CityCarousel';
 
 const Logo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 20pt;
-  margin-top: 30px;
   font-weight: 600;
   color: ${(props) => props.theme.colors.white};
 `;
@@ -44,8 +40,9 @@ const Search = () => {
 
   return (
     <>
-      <Navigation />
-      <Logo>CARRIER</Logo>
+      <Navigation>
+        <Logo>CARRIER</Logo>
+      </Navigation>
       <Container top={90} padding={28}>
         <SearchBar onChange={(e) => setSearch(e.target.value)} />
         <Margin size={32} />
