@@ -80,14 +80,6 @@ const Illustration = styled.img`
   width: 75%;
 `;
 
-const SemiBlur = styled(Typography)`
-  letter-spacing: 0px;
-  color: #707070;
-  opacity: 1;
-  text-align: right;
-  font-size: 1vw;
-`;
-
 const Title = styled.div`
   font-size: 12px;
 `;
@@ -103,6 +95,12 @@ const PriceNumber = styled.div`
 
 const PriceUnit = styled.div`
   font-size: 9px;
+`;
+
+const Label = styled.div`
+  font-size: 12px;
+  text-align: right;
+  color: #707070;
 `;
 
 const Price = ({ guide }) => (
@@ -136,8 +134,7 @@ const Price = ({ guide }) => (
       ))}
     </CardWrapper>
     <Margin size={10} />
-    <SemiBlur subhead>자세한 사항은 가이드와 직접 상의하세요</SemiBlur>
-    <Margin size={20} />
+    <Label>자세한 사항은 가이드와 직접 상의하세요</Label>
   </Container>
 );
 
