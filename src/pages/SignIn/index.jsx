@@ -5,9 +5,11 @@ import toast from 'react-simple-toasts';
 import { Margin, RoundedButton, Spinner, PageCenter } from 'carrier-ui';
 import { useQuery } from 'hooks';
 import { signIn } from 'controller/auth';
+import person from './assets/person.svg';
+import lock from './assets/lock.svg';
 
 import Input from './components/Input';
-import person from '../SignUp/assets/Icon material-person.svg';
+// import person from '../SignUp/assets/Icon material-person.svg';
 
 // 비밀번호 입력 시 별표(*)로 표시되는지 확인 필요 (지원하지 않는 글꼴의 경우 패스워드 표시가 숨겨짐)
 
@@ -97,6 +99,7 @@ const SignIn = () => {
           <Input
             type="password"
             placeholder="비밀번호"
+            icon={lock}
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
         </InputContainer>

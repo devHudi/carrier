@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Margin } from 'carrier-ui';
 import guide from '../assets/Guide.png';
 import traveler from '../assets/Traveler.svg';
+import HoverText from './HoverText';
 
 const Wrapper = styled.div`
   width: 300px;
@@ -28,18 +30,6 @@ const GuideImage = styled.div`
   opacity: 1;
 `;
 
-// &:hover {
-//   width: 220px;
-//   height: 158px;
-//   text-align: center;
-//   font: normal normal normal 24px/40px NanumSquare;
-//   letter-spacing: 0px;
-//   color: #fff;
-//   opacity: 1;
-//   background: rgba(0, 0, 0, 0.7) 0% 0% no-repeat padding-box;
-//   opacity: 0.7;
-// }
-
 const ImageWrapper = styled.div`
   width: 97px;
   height: 97px;
@@ -48,7 +38,6 @@ const ImageWrapper = styled.div`
   cursor: pointer;
   transition: border 0.3s;
 `;
-// border: 1px solid #888;
 
 const InputWrapper = styled.button`
   width: 97px;
@@ -81,8 +70,28 @@ const Text = styled.div`
   color: #9b9b9b;
 `;
 
-const UserType = ({ activated }) => (
-  <>
+// eslint-disable-next-line react/prop-types
+const HoverableDiv = ({ handleMouseOver, handleMouseOut }) => (
+  <SubWrapper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <GuideImage />
+    <Margin size={10} />
+    <Type>가이드</Type>
+    <Margin size={4} />
+    <Text>여행자를 구하고 있어요!</Text>
+  </SubWrapper>
+);
+
+const UserType = ({ activated }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
+
+  return (
     <Wrapper>
       <SubWrapper>
         <InputWrapper>
@@ -102,16 +111,14 @@ const UserType = ({ activated }) => (
         <Text>가이드가 필요해요!</Text>
       </SubWrapper>
 
-      <SubWrapper>
-        <GuideImage />
-        <Margin size={10} />
-        <Type>가이드</Type>
-        <Margin size={4} />
-        <Text>여행자를 구하고 있어요!</Text>
-      </SubWrapper>
+      <HoverableDiv
+        handleMouseOver={handleMouseOver}
+        handleMouseOut={handleMouseOut}
+      />
+      {isHovering && <HoverText />}
     </Wrapper>
-  </>
-);
+  );
+};
 
 UserType.propTypes = {
   activated: PropTypes.bool,

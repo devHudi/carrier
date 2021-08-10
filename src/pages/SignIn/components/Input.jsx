@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+// import { FaUserAlt } from 'react-icons/fa';
 
 // eslint-disable-next-line react/prop-types
 export default function Input({ type, placeholder, icon, onChange }) {
@@ -24,7 +25,10 @@ const StyledInput = styled.input`
   font-size: 1rem;
   font-weight: bold;
   background-image: url(${(props) => props.icon});
-  background-position: 5px center;
+  background-size: 15px;
+  background-repeat: no-repeat;
+  background-position: 17px 15px;
+  padding: 12px 20px 12px 42px;
   &:focus {
     display: inline-block;
     box-shadow: 0 0 0 0.2rem ${(props) => props.theme.colors.primary};
@@ -36,3 +40,8 @@ const StyledInput = styled.input`
     font-size: 14px;
   }
 `;
+
+// background-image: url('${(<FaUserAlt />)}');
+
+// background-image: url(${(props) => props.icon});
+// background-position: 5px center;
