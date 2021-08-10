@@ -73,6 +73,59 @@ export const Wrapper = styled.div`
   margin-bottom: 140px;
   margin: 100 24 140 24;
 `;
+export const WrapperOne = styled.div`
+  z-index: 801;
+  width: 100%;
+  height: 100%;
+  display: ${(props) => {
+    console.log(props);
+    const test = props.isRequest;
+    console.log(test);
+    if (test === true) {
+      return 'flex';
+    }
+    return 'none';
+  }};
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+`;
+export const WrapperTwo = styled.div`
+  width: 100%;
+  height: 100%;
+  display: ${(props) => {
+    console.log(props);
+    const test = props.isRequest;
+    console.log(test);
+    if (test === true) {
+      return 'flex';
+    }
+    return 'none';
+  }};
+  justify-content: space-around;
+  align-items: center;
+
+  & > img {
+    width: 65px;
+    height: 61px;
+  }
+`;
+export const WrapperThree = styled.div`
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  display: ${(props) => {
+    console.log(props);
+    const test = props.isRequest;
+    console.log(test);
+    if (test === true) {
+      return 'flex';
+    }
+    return 'none';
+  }};
+`;
 export const OptionsDiv = styled.div`
   width: 80%;
   height: 98px;
@@ -114,7 +167,7 @@ export const SmallFont = styled.div`
 export const Title = styled.div`
   font-size: 22px;
   color: ${(props) => props.theme.colors.black};
-  margin: 24% 0px 24px 0px;
+  margin: 12% 0px 24px 0px;
 `;
 
 export const Submit = styled.div`
@@ -128,4 +181,10 @@ export const Submit = styled.div`
   border: 2px solid #c2c8ff;
   margin-bottom: 20px;
   color: ${(props) => props.theme.colors.blue};
+
+  &:hover {
+    color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.colors.blue};
+    border: 2px solid ${(props) => props.theme.colors.blue};
+  }
 `;
