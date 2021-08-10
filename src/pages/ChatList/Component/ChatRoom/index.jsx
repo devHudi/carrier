@@ -33,7 +33,6 @@ const ChatRoom = ({ userObj, classification }) => {
     today = `${Month}월 ${date}일`;
   }
 
-  console.log('chatRoom');
   return (
     <>
       {classification ? (
@@ -41,7 +40,11 @@ const ChatRoom = ({ userObj, classification }) => {
           <MessageBox>
             <Img src={userObj?.employer_profile_img} alt="" />
             <span>{userObj?.employer_name}</span>
-            <span>안녕하세요 소비자 입니다~~~</span>
+            {userObj?.isNewMessage ? (
+              <span>새로운 메세지가 도착했습니다.</span>
+            ) : (
+              <span>이미 읽은 메세지 입니다.</span>
+            )}
           </MessageBox>
           <RecentBox>
             <span>{userObj?.updated_at}</span>
