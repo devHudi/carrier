@@ -1,20 +1,11 @@
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { RoundedButton, Margin } from 'carrier-ui';
+import { RoundedButton, Margin, PageCenter } from 'carrier-ui';
 import signinUpSuccess from './assets/signUpSuccess.png';
 
-const Section = styled.div`
-  display: flex;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
 const SignUpSuccess = () => {
+  const history = useHistory();
+
   const Wrapper = styled.div`
     display: flex;
     justify-content: center;
@@ -40,9 +31,9 @@ const SignUpSuccess = () => {
   `;
 
   return (
-    <Section>
+    <PageCenter>
       <ImgWrapper>
-        <img src={signinUpSuccess} width="207" height="291" alt="testA" />
+        <img src={signinUpSuccess} width="207" alt="testA" />
       </ImgWrapper>
       <Margin size={34} />
       <Wrapper>
@@ -55,11 +46,18 @@ const SignUpSuccess = () => {
         <Margin size={8} />
         <GrayTypography>나에게 맞는 가이드를 찾아 가볼까요?</GrayTypography>
         <Margin size={51} />
-        <RoundedButton blue width="270" radius="100" color="blue" fontSize="17">
+        <RoundedButton
+          blue
+          width="270"
+          radius="100"
+          color="blue"
+          fontSize="17"
+          onClick={() => history.push('/')}
+        >
           나만의 가이드 찾으러 가기
         </RoundedButton>
       </Wrapper>
-    </Section>
+    </PageCenter>
   );
 };
 
