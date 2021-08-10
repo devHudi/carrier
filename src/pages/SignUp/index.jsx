@@ -8,6 +8,9 @@ import { signUp } from 'controller/auth';
 import Input from '../SignIn/components/Input';
 import Welcome from './components/Welcome';
 import UserType from './components/UserType';
+import person from '../SignIn/assets/person.svg';
+import mail from '../SignIn/assets/email.svg';
+import lock from '../SignIn/assets/lock.svg';
 
 // 비밀번호 입력 시 별표(*)로 표시되는지 확인 필요 (지원하지 않는 글꼴의 경우 패스워드 표시가 숨겨짐)
 
@@ -84,16 +87,19 @@ function SignUp() {
               type="text"
               placeholder="이메일을 입력해주세요"
               onChange={(e) => setForm({ ...form, email: e.target.value })}
+              icon={mail}
             />
             <Input
               type="text"
               placeholder="이름을 입력해주세요"
               onChange={(e) => setForm({ ...form, name: e.target.value })}
+              icon={person}
             />
             <Input
               type="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={(e) => setForm({ ...form, password: e.target.value })}
+              icon={lock}
             />
           </InputContainer>
           <Margin size={90} />
