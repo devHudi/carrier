@@ -17,7 +17,7 @@ const GlobalStyles = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    font-family: 'NanumSquare' !important;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;
     outline: none;
   }
 `;
