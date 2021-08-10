@@ -43,23 +43,31 @@ const Blur = styled(Typography)`
   opacity: 1;
 `;
 
-const SliderContainer = styled.div`
-  width: 100%;
-`;
-
-const StyledSlider = styled.div`
+const SliderWrapper = styled.div`
   & > .slick-list {
-    padding: 0 20% 0 0 !important;
+    margin: 0 auto;
+  }
+
+  & .slick-slide {
+    padding: 0 6px;
+  }
+
+  & > .slick-slide div {
+    cursor: pointer;
+  }
+
+  & .slick-prev:before,
+  .slick-next:before {
+    color: #000000;
   }
 `;
 
 const CardWrapper = styled.div`
-  padding-right: 10px;
+  padding: 0 2px;
 `;
 
 const Card = styled.div`
   padding: 10px;
-  margin: 0 10px;
   background: 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
@@ -86,11 +94,13 @@ const NoReview = styled(Flex)`
 
 const Review = ({ reviews }) => {
   const settings = {
-    infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
+    centerMode: true,
     dots: true,
+    infinite: false,
+    arrows: false,
   };
 
   return (
@@ -109,34 +119,34 @@ const Review = ({ reviews }) => {
             점 ({reviews.length}개)
           </Blur>
           <Margin size={20} />
-          <SliderContainer {...settings}>
-            <StyledSlider>
-              <Slider>
-                {_.map(reviews, (review) => (
-                  <CardWrapper>
-                    <Card className="outline">
-                      <Reviewer>
-                        <Image src={ReviewerPicture} />
-                        <Margin row size={10} />
-                        <Flex direction="column">
-                          <Typography body>{review.employer_name}</Typography>
-                          <Blur body color="#A5A5A5">
-                            <RiStarFill /> {review.score} <BsDot />{' '}
-                            {moment(
-                              review.created_at.seconds * 1000 +
-                                review.created_at.nanoseconds / 1000000,
-                            ).fromNow()}
-                          </Blur>
-                        </Flex>
-                      </Reviewer>
-                      <Margin size={10} />
-                      <Typography body>{review.comment}</Typography>
-                    </Card>
-                  </CardWrapper>
-                ))}
-              </Slider>
-            </StyledSlider>
-          </SliderContainer>
+
+          <SliderWrapper>
+            <Slider {...settings}>
+              {_.map(reviews, (review) => (
+                <CardWrapper>
+                  <Card className="outline">
+                    <Reviewer>
+                      <Image src={ReviewerPicture} />
+                      <Margin row size={10} />
+                      <Flex direction="column">
+                        <Typography body>{review.employer_name}</Typography>
+                        <Blur body color="#A5A5A5">
+                          <RiStarFill /> {review.score} <BsDot />{' '}
+                          {moment(
+                            review.created_at.seconds * 1000 +
+                              review.created_at.nanoseconds / 1000000,
+                          ).fromNow()}
+                        </Blur>
+                      </Flex>
+                    </Reviewer>
+                    <Margin size={10} />
+                    <Typography body>{review.comment}</Typography>
+                  </Card>
+                </CardWrapper>
+              ))}
+            </Slider>
+            <Margin size={20} />
+          </SliderWrapper>
           {reviews.length <= 0 && (
             <NoReview justify="center">후기가 없습니다.</NoReview>
           )}
