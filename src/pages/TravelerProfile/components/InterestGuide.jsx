@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { Typography, Margin } from 'carrier-ui';
+import { Typography, Margin, Flex } from 'carrier-ui';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import image from '../data/interest.svg';
+import heart from '../data/heart.svg';
 
-const Wrapper = styled.div`
+const DivWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,33 +29,107 @@ const InnerWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const Container = styled.div`
+  background: #ffffff 0% 0% no-repeat padding-box;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 26px;
+  opacity: 1;
+  filter: blur(px);
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px -5px #ababab;
+`;
+
+const Wrapper = styled.div`
+  margin-bottom: 17px;
+  width: 100%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  border-radius: 26px;
+`;
+
+const GuideWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 22px;
+  opacity: 1;
+`;
+
+const City = styled(Typography)`
+  font: normal normal bold 18px/27px NanumSquare;
+  letter-spacing: 0px;
+  color: #c2c2c2;
+  opacity: 1;
+`;
+
+const ImgContainer = styled.div`
+  background-color: white;
+  background-size: cover;
+  width: 130px;
+  height: 130px;
+  border: 1px solid #dfdfdf;
+  border-radius: 24px;
+  opacity: 1;
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+`;
+
+const HeartContainer = styled.img`
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  visibility: visible;
+  width: 20px;
+  height: 20px;
+`;
+
 const InterestGuide = () => {
-  const Container = styled.div`
-    background: #ffffff 0% 0% no-repeat padding-box;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 26px;
-    opacity: 1;
-    filter: blur(px);
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 0px 0px 20px -5px #ababab;
-  `;
   const noneinterest = true;
+
   return (
     <div>
-      <Wrapper>
-        {noneinterest && (
+      <DivWrapper>
+        {!noneinterest && (
           <Container>
             <Typography headline>관심 가이드 목록</Typography>
+            <Margin size={22} />
             <InnerWrapper>
               <ImageCircle />
               <Margin size={10} />
             </InnerWrapper>
           </Container>
         )}
-      </Wrapper>
+        {noneinterest && (
+          <Container>
+            <Typography headline>관심 가이드 목록</Typography>
+            <Margin size={22} />
+            <Wrapper>
+              <GuideWrapper>
+                <Flex direction="column" justify="center" align="center">
+                  <ImgContainer>
+                    <HeartContainer src={heart} />
+                  </ImgContainer>
+                  <Margin row size={18} />
+                  <Flex>
+                    <Flex direction="column" align="center" justify="center">
+                      <Typography headline>name</Typography>
+                      <Margin size={4} />
+                      <City subhead>sido</City>
+                    </Flex>
+                    <Margin size={5} />
+                  </Flex>
+                </Flex>
+              </GuideWrapper>
+            </Wrapper>
+          </Container>
+        )}
+      </DivWrapper>
     </div>
   );
 };
