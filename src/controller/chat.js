@@ -9,7 +9,10 @@ export const createChatRoom = async (employerUid, employeeUid) => {
       .get()
   ).forEach((querySnapshot) => chats.push(querySnapshot.data()));
 
-  if (chats.length > 0) return false;
+  if (chats.length > 0) {
+    console.log({ chats });
+    return chats[0].id;
+  }
 
   const employer = (
     await firestore.collection('users').doc(employerUid).get()
@@ -18,9 +21,9 @@ export const createChatRoom = async (employerUid, employeeUid) => {
     await firestore.collection('users').doc(employeeUid).get()
   ).data();
 
-  console.log({ employer, employee });
+  const chatRef = firestore.collection('chats').doc();
 
-  return firestore.collection('chats').add({
+  await firestore.collection('chats').doc(chatRef.id).set({
     created_at: new Date(),
     updated_at: new Date(),
     employee_uid: employeeUid,
@@ -34,4 +37,6 @@ export const createChatRoom = async (employerUid, employeeUid) => {
     isNewMessage: false,
     conversations: [],
   });
+
+  return chatRef.id;
 };
