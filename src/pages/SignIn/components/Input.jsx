@@ -40,8 +40,3 @@ const StyledInput = styled.input`
     font-size: 14px;
   }
 `;
-
-// background-image: url('${(<FaUserAlt />)}');
-
-// background-image: url(${(props) => props.icon});
-// background-position: 5px center;
