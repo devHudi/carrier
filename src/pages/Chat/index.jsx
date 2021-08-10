@@ -15,42 +15,38 @@ import UserInfoModal from './components/Modal/LargeInfo';
 
 const Chat = () => {
   const [userObj, setUserObj] = useState([]);
-  const [conversation, setconversation] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
   const { uid } = useParams();
-  useEffect(async () => {
-    await firestore
-      .collection('chats')
-      .doc(uid)
-      .get()
-      .then((doc) => {
-        setUserObj({
-          id: uid,
-          created_at: doc.data().created_at,
-          employee_name: doc.data().employee_name,
-          employee_profile_img: doc.data().employee_profile_img,
-          employee_uid: doc.data().employee_uid,
-          employer_name: doc.data().employer_name,
-          employer_profile_img: doc.data().employer_profile_img,
-          employer_uid: doc.data().employer_uid,
-          review_creation_status: doc.data().review_creation_status,
-          transaction_completed: doc.data().transaction_completed,
-          isNewMessage: doc.data().isNewMessage,
-        });
-      });
-    console.log('user');
-  }, [uid]);
+  // useEffect(async () => {
+  //   await firestore
+  //     .collection('chats')
+  //     .doc(uid)
+  //     .get()
+  //     .then((doc) => {
+  //       setUserObj({
+  //         id: uid,
+  //         created_at: doc.data().created_at,
+  //         employee_name: doc.data().employee_name,
+  //         employee_profile_img: doc.data().employee_profile_img,
+  //         employee_uid: doc.data().employee_uid,
+  //         employer_name: doc.data().employer_name,
+  //         employer_profile_img: doc.data().employer_profile_img,
+  //         employer_uid: doc.data().employer_uid,
+  //         review_creation_status: doc.data().review_creation_status,
+  //         transaction_completed: doc.data().transaction_completed,
+  //         isNewMessage: doc.data().isNewMessage,
+  //       });
+  //     });
+  //   setIsLoading(false);
+  // }, [uid]);
 
-  useEffect(async () => {
+  useEffect(() => {
     firestore
       .collection('chats')
       .doc(uid)
-      .collection('conversation')
-      .orderBy('sended_at')
       .onSnapshot((snapshot) => {
-        console.log('get chats');
-        setconversation(
+        setUserObj(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
           })),
@@ -81,7 +77,7 @@ const Chat = () => {
         </InfoWrapper>
         <MsgerChat>
           {isLoading && <Spinner />}
-          {conversation.map((chat) =>
+          {userObj?.conversation.map((chat) =>
             chat?.sender_uid === user?.uid ? (
               <MyContent
                 key={chat.sended_at}
@@ -108,7 +104,12 @@ const Chat = () => {
           )}
           <div ref={chatRef} />
         </MsgerChat>
-        <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
+        <ChatBox
+          chatsDoc={userObj}
+          user={user}
+          chatRef={chatRef}
+          conversation={userObj.conversation}
+        />
       </Wrapper>
     </>
   );
