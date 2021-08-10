@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import _ from 'lodash';
 
@@ -22,6 +23,7 @@ const Category = styled.div`
 `;
 
 const Search = () => {
+  const history = useHistory();
   const [search, setSearch] = useState('');
 
   const filteredPlaces = useMemo(
@@ -40,7 +42,14 @@ const Search = () => {
 
   return (
     <>
-      <Navigation>
+      <Navigation
+        onLeftIconClick={() => {
+          history.push('/chat');
+        }}
+        onRightIconClick={() => {
+          history.push('/profile');
+        }}
+      >
         <Logo>CARRIER</Logo>
       </Navigation>
       <Container top={90} padding={28}>
