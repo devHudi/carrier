@@ -14,46 +14,21 @@ import ChatBox from './components/ChatBox';
 import UserInfoModal from './components/Modal/LargeInfo';
 
 const Chat = () => {
-  const [userObj, setUserObj] = useState([]);
+  const [userObj, setUserObj] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
   const { uid } = useParams();
-  // useEffect(async () => {
-  //   await firestore
-  //     .collection('chats')
-  //     .doc(uid)
-  //     .get()
-  //     .then((doc) => {
-  //       setUserObj({
-  //         id: uid,
-  //         created_at: doc.data().created_at,
-  //         employee_name: doc.data().employee_name,
-  //         employee_profile_img: doc.data().employee_profile_img,
-  //         employee_uid: doc.data().employee_uid,
-  //         employer_name: doc.data().employer_name,
-  //         employer_profile_img: doc.data().employer_profile_img,
-  //         employer_uid: doc.data().employer_uid,
-  //         review_creation_status: doc.data().review_creation_status,
-  //         transaction_completed: doc.data().transaction_completed,
-  //         isNewMessage: doc.data().isNewMessage,
-  //       });
-  //     });
-  //   setIsLoading(false);
-  // }, [uid]);
 
   useEffect(() => {
+    console.log('채팅방 가져오기');
     firestore
       .collection('chats')
       .doc(uid)
-      .onSnapshot((snapshot) => {
-        setUserObj(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-          })),
-        );
+      .onSnapshot((doc) => {
+        setUserObj(doc.data());
       });
     setIsLoading(false);
-  }, []);
+  }, [uid]);
   const history = useHistory();
   const onLeftClick = () => {
     history.goBack();
@@ -77,7 +52,7 @@ const Chat = () => {
         </InfoWrapper>
         <MsgerChat>
           {isLoading && <Spinner />}
-          {userObj?.conversation.map((chat) =>
+          {userObj?.conversations?.map((chat) =>
             chat?.sender_uid === user?.uid ? (
               <MyContent
                 key={chat.sended_at}
@@ -108,7 +83,8 @@ const Chat = () => {
           chatsDoc={userObj}
           user={user}
           chatRef={chatRef}
-          conversation={userObj.conversation}
+          conversations={userObj?.conversations}
+          uid={uid}
         />
       </Wrapper>
     </>
