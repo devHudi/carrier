@@ -28,6 +28,12 @@ const Chat = () => {
     setIsLoading(false);
   }, [uid]);
 
+  useEffect(async () => {
+    await firestore.collection('chats').doc(uid).update({
+      isNewMessage: false,
+    });
+  }, []);
+
   const history = useHistory();
   const chatRef = useRef();
 

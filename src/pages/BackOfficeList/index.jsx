@@ -13,6 +13,10 @@ const ChatList = () => {
     setUserObj(u);
   });
 
+  useEffect(() => {
+    console.log({ user });
+  }, [user]);
+
   useEffect(async () => {
     if (userObj) {
       await firestore
