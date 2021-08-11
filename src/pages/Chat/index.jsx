@@ -26,7 +26,7 @@ const Chat = () => {
       .doc(uid)
       .onSnapshot((doc) => {
         setUserObj(doc.data());
-      });
+      }, console.log('채팅가져오기 스냅샷'));
     setIsLoading(false);
   }, [uid]);
   const history = useHistory();
@@ -35,6 +35,11 @@ const Chat = () => {
   };
   console.log('Chat');
   const chatRef = useRef();
+  useEffect(async () => {
+    await firestore.collection('chats').doc(uid).update({
+      isNewMessage: false,
+    });
+  }, []);
   return (
     <>
       <ChatNavBar
@@ -84,7 +89,6 @@ const Chat = () => {
           user={user}
           chatRef={chatRef}
           conversations={userObj?.conversations}
-          uid={uid}
         />
       </Wrapper>
     </>
