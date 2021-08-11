@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
@@ -31,36 +32,15 @@ const GuideImage = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: 97px;
-  height: 97px;
+  width: 91px;
+  height: 93.5px;
   border-radius: 70%;
   overflow: hidden;
   cursor: pointer;
   transition: border 0.3s;
 `;
 
-const InputWrapper = styled.button`
-  width: 97px;
-  height: 97px;
-  border-radius: 70%;
-  border: 1px solid black;
-
-  &:focus {
-    overflow: hidden;
-    display: inline-block;
-    box-shadow: 0 0 0 0.2rem ${(props) => props.theme.colors.primary};
-    transition: 0.3s;
-  }
-`;
-
-// border: none;
-
-// border: ${(props) =>
-//   props.activated
-//     ? `1px solid ${props.theme.colors.blue}`
-//     : '0px solid #fff'};
-
-const Type = styled.div`
+const TypeG = styled.div`
   font-size: 20px;
   font-weight: 400;
 `;
@@ -75,13 +55,13 @@ const HoverableDiv = ({ handleMouseOver, handleMouseOut }) => (
   <SubWrapper onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
     <GuideImage />
     <Margin size={10} />
-    <Type>가이드</Type>
+    <TypeG>가이드</TypeG>
     <Margin size={4} />
     <Text>여행자를 구하고 있어요!</Text>
   </SubWrapper>
 );
 
-const UserType = ({ activated }) => {
+const UserType = ({ state }) => {
   const [isHovering, setIsHovering] = useState(false);
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -91,16 +71,46 @@ const UserType = ({ activated }) => {
     setIsHovering(false);
   };
 
+  const [border, setBorder] = useState('#888');
+  const [textColor, setTextColor] = useState('black');
+
+  // eslint-disable-next-line no-shadow
+  const setStyle = (selected, unselected) => {
+    if (state === 0) {
+      setBorder(selected);
+      setTextColor(selected);
+      state = 1;
+    } else {
+      setBorder(unselected);
+      setTextColor('black');
+      state = 0;
+    }
+  };
+
+  const InputWrapper = styled.button`
+    background-color: white;
+    width: 97px;
+    height: 97px;
+    border-radius: 70%;
+    border: 1px solid ${border};
+  `;
+
+  const TypeT = styled.div`
+    font-size: 20px;
+    font-weight: 400;
+    color: ${textColor};
+  `;
+
   return (
     <Wrapper>
       <SubWrapper>
         <InputWrapper>
-          <ImageWrapper activated={activated}>
+          <ImageWrapper onClick={() => setStyle('#5061fb', '#888')}>
             <img src={traveler} width="100%" height="100%" object-fit="cover" />
           </ImageWrapper>
         </InputWrapper>
         <Margin size={10} />
-        <Type>여행자</Type>
+        <TypeT>여행자</TypeT>
         <Margin size={4} />
         <Text>가이드가 필요해요!</Text>
       </SubWrapper>
@@ -115,11 +125,11 @@ const UserType = ({ activated }) => {
 };
 
 UserType.propTypes = {
-  activated: PropTypes.bool,
+  state: PropTypes.bool,
 };
 
 UserType.defaultProps = {
-  activated: false,
+  state: 0,
 };
 
 export default UserType;
