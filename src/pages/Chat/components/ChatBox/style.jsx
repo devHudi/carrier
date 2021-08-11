@@ -235,7 +235,6 @@ const MessageTypeBox = ({
   onToggle,
   onClickPlus,
   requestButtonStatus,
-  guideUid,
 }) => {
   const placeholder = '메세지를 입력하세요.';
   const [isRequest, setIsRequest] = useState(false);
@@ -249,7 +248,6 @@ const MessageTypeBox = ({
     setStep(2);
     setTimeout(() => setStep(3), 3000);
   };
-  const onSubmitReview = () => {};
   const toggleIsReview = () => setIsReview((prev) => !prev);
   return (
     <>
@@ -259,17 +257,12 @@ const MessageTypeBox = ({
         step={step}
         toggleNext={toggleNext}
       />
-      <Review
-        isRequest={isReview}
-        onSubmit={onSubmitReview}
-        ontoggle={toggleIsReview}
-        guideUid={guideUid}
-      />
+      <Review isRequest={isReview} ontoggle={toggleIsReview} />
       <Div onClickPlus={onClickPlus}>
         <ConfirmDiv>
           {requestButtonStatus ? (
             <Confirm onClick={() => toast('이미 완료된 거래입니다.', 1200)}>
-              여행계획 보기
+              여행계획 다시보기
             </Confirm>
           ) : (
             <Confirm onClick={toggleIsRequest}>약속 확정하기</Confirm>
@@ -339,7 +332,6 @@ MessageTypeBox.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onClickPlus: PropTypes.bool.isRequired,
   requestButtonStatus: PropTypes.bool.isRequired,
-  guideUid: PropTypes.string.isRequired,
 };
 
 export default MessageTypeBox;
