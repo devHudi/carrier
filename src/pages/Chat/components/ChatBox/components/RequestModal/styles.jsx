@@ -71,16 +71,14 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin-top: 100px;
   margin-bottom: 140px;
-  margin: 100 24 140 24;
+  margin: 100px 24px 140px 24px;
 `;
 export const WrapperOne = styled.div`
   z-index: 801;
   width: 100%;
   height: 100%;
   display: ${(props) => {
-    console.log(props);
     const test = props.isRequest;
-    console.log(test);
     if (test === true) {
       return 'flex';
     }
@@ -94,9 +92,7 @@ export const WrapperTwo = styled.div`
   width: 100%;
   height: 100%;
   display: ${(props) => {
-    console.log(props);
     const test = props.isRequest;
-    console.log(test);
     if (test === true) {
       return 'flex';
     }
@@ -117,9 +113,7 @@ export const WrapperThree = styled.div`
   align-items: center;
   flex-direction: column;
   display: ${(props) => {
-    console.log(props);
     const test = props.isRequest;
-    console.log(test);
     if (test === true) {
       return 'flex';
     }
