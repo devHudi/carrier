@@ -13,7 +13,6 @@ const ChatList = () => {
   const [userObj, setUserObj] = useState();
   const [isLoading, setIsLoading] = useState(true);
   //* *********************로그인한 사용자로부터 유저 데이터 가져오는 곳************************//
-
   auth.onAuthStateChanged((u) => {
     setUserObj(u);
   });
@@ -30,7 +29,6 @@ const ChatList = () => {
               setClassification(true);
             }
             setUser(doc.data().type);
-            console.log(user);
           } else {
             // doc.data() will be undefined in this case
             console.log('No such document!');
@@ -39,16 +37,14 @@ const ChatList = () => {
         .catch((error) => {
           console.log('Error getting document:', error);
         });
-      console.log(user);
     }
   }, [userObj]);
 
   useEffect(() => {
     if (user === 'employer') {
-      // const chats = [];
       firestore
         .collection('chats')
-        .orderBy('updated_at')
+        .orderBy('updated_at', 'desc')
         .where('employer_uid', '==', userObj?.uid)
         .onSnapshot((snapshot) => {
           const list = snapshot.docs.map((doc) => ({
@@ -57,12 +53,11 @@ const ChatList = () => {
           }));
           setChatRoomList(list);
         });
-      console.log('setchat');
       setIsLoading(false);
     } else if (user === 'employee') {
       firestore
         .collection('chats')
-        .orderBy('updated_at')
+        .orderBy('updated_at', 'desc')
         .where('employee_uid', '==', userObj?.uid)
         .onSnapshot((snapshot) => {
           const list = snapshot.docs.map((doc) => ({
@@ -71,10 +66,10 @@ const ChatList = () => {
           }));
           setChatRoomList(list);
         });
-      console.log('setchat');
       setIsLoading(false);
     }
   }, [user]);
+
   const history = useHistory();
   const onLeftClick = () => {
     history.goBack();
