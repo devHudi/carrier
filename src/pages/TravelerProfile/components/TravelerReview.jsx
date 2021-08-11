@@ -1,7 +1,10 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import _ from 'lodash';
 import { Typography, Margin, Flex } from 'carrier-ui';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 import image from '../data/review.svg';
 
 const DivWrapper = styled.div`
@@ -46,8 +49,8 @@ const Container = styled.div`
 `;
 
 const ImageCircle = styled.div`
-  width: 225px;
-  height: 225px;
+  width: 220px;
+  height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,18 +59,17 @@ const ImageCircle = styled.div`
   border-radius: 130px;
 `;
 
-const InnerWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const TravelerReview = () => {
-  const nonereview = true;
+const TravelerReview = ({ reviews }) => {
+  const InnerWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `;
+  console.log(reviews);
   return (
     <div>
       <DivWrapper>
-        {!nonereview && (
+        {false && (
           <Container>
             <Typography headline>내가 작성한 후기</Typography>
             <InnerWrapper>
@@ -76,37 +78,37 @@ const TravelerReview = () => {
             </InnerWrapper>
           </Container>
         )}
-        {nonereview && (
+        {true && (
           <Container>
-            <Typography headline>내가 작성한 후기</Typography>
+            <Typography headline>내가 작성한 </Typography>
             <Margin size={22} />
             <Wrapper>
-              <ReviewWrapper>
-                <Flex direction="column" justify="flex-start" width="100%">
-                  <Margin row size={18} />
+              {_.map(reviews, (review) => (
+                <ReviewWrapper>
                   <Flex direction="column" justify="flex-start" width="100%">
-                    <Flex
-                      direction="row"
-                      justify="space-between"
-                      align="center"
-                    >
-                      <Typography body color="gray">
-                        ★ 별점
-                      </Typography>
-                      <Typography body color="blue">
-                        가이드에게
-                      </Typography>
-                    </Flex>
-                    <Margin size={1} />
-                    <Flex direction="column" align="flex-start">
-                      <Typography body>
-                        여기는 리뷰의 내용이 와야함~~~!
-                      </Typography>
-                      <Margin size={4} />
+                    <Margin row size={18} />
+                    <Flex direction="column" justify="flex-start" width="100%">
+                      <Flex
+                        direction="row"
+                        justify="space-between"
+                        align="center"
+                      >
+                        <Typography body color="gray">
+                          ★ 별점
+                        </Typography>
+                        <Typography body color="blue">
+                          {review.employer_name}
+                        </Typography>
+                      </Flex>
+                      <Margin size={1} />
+                      <Flex direction="column" align="flex-start">
+                        <Typography body>{review.comment}</Typography>
+                        <Margin size={4} />
+                      </Flex>
                     </Flex>
                   </Flex>
-                </Flex>
-              </ReviewWrapper>
+                </ReviewWrapper>
+              ))}
             </Wrapper>
           </Container>
         )}
@@ -115,4 +117,7 @@ const TravelerReview = () => {
   );
 };
 
+TravelerReview.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 export default TravelerReview;
