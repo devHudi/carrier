@@ -13,9 +13,11 @@ import ChatBox from './components/ChatBox';
 import UserInfoModal from './components/Modal/LargeInfo';
 
 const Chat = () => {
+  const history = useHistory();
   const [userObj, setUserObj] = useState();
+  const [currentUserObj, setCurrentUserObj] = useState();
+  const [user, setUser] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const user = auth.currentUser;
   const { uid } = useParams();
 
   useEffect(() => {
@@ -34,7 +36,33 @@ const Chat = () => {
     });
   }, []);
 
-  const history = useHistory();
+  auth.onAuthStateChanged((u) => {
+    setCurrentUserObj(u);
+  });
+
+  useEffect(async () => {
+    if (currentUserObj) {
+      await firestore
+        .collection('users')
+        .doc(currentUserObj?.uid)
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            setUser(doc.data());
+          } else {
+            history.push('/');
+          }
+        })
+        .catch(() => {
+          history.push('/');
+        });
+    }
+  }, [currentUserObj]);
+
+  useEffect(() => {
+    if (user && !user?.admin) history.push('/');
+  }, [user]);
+
   const chatRef = useRef();
 
   return (

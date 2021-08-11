@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Spinner } from 'carrier-ui';
 import { firestore, auth } from '../../misc/firebase';
 import ChatRoom from './Component/ChatRoom';
 
 const ChatList = () => {
+  const history = useHistory();
   const [chatRoomList, setChatRoomList] = useState([]);
   const [user, setUser] = useState('');
   const [userObj, setUserObj] = useState();
@@ -14,7 +16,7 @@ const ChatList = () => {
   });
 
   useEffect(() => {
-    console.log({ user });
+    if (user && !user?.admin) history.push('/');
   }, [user]);
 
   useEffect(async () => {
@@ -25,7 +27,7 @@ const ChatList = () => {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            setUser(doc.data().type);
+            setUser(doc.data());
           } else {
             console.log('No such document!');
           }
