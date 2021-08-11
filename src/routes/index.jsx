@@ -18,6 +18,7 @@ import {
   Review,
 } from 'pages';
 import { ResWarning } from 'carrier-ui';
+import RecommendResult from 'pages/RecommendResult';
 
 // 라우트명은 kebab-case 로 작성합니다
 
@@ -92,6 +93,9 @@ const Router = () => (
       </Route>
       <Route path="/review">
         <Review />
+      </Route>
+      <Route path="/result">
+        <RecommendResult />
       </Route>
       <Route path="/*">
         <BodyStyle color="#FFFFFF" />
