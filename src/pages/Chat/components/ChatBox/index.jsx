@@ -1,17 +1,19 @@
 import { useState, useCallback, useEffect } from 'react';
 import { firestore } from 'misc/firebase';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import MessageTypeBox from './style';
 
-const ChatBox = ({ conversations, chatsDoc, user, chatRef, uid }) => {
+const ChatBox = ({ conversations, chatsDoc, user, chatRef }) => {
   const [message, setMessage] = useState('');
   const [isMessage, setIsMessage] = useState(false);
   const [onClickPlus, setOnClickPlus] = useState(false);
   const [requestButtonStatus, setRequestButtonStatus] = useState(false);
+  const { uid } = useParams();
   useEffect(() => {
     setRequestButtonStatus(chatsDoc?.transaction_completed);
   }, [chatsDoc?.transaction_completed]);
-  const onChangeMessage = (e) => {
+  const onChangeMessage = useCallback((e) => {
     const {
       target: { value },
     } = e;
@@ -21,7 +23,7 @@ const ChatBox = ({ conversations, chatsDoc, user, chatRef, uid }) => {
     } else {
       setIsMessage(false);
     }
-  };
+  }, []);
   const onToggle = () => setOnClickPlus((prev) => !prev);
   const onSubmit = async (e) => {
     const conversation = conversations;
@@ -32,9 +34,14 @@ const ChatBox = ({ conversations, chatsDoc, user, chatRef, uid }) => {
     });
     e.preventDefault();
     if (isMessage) {
-      await firestore.collection('chats').doc(uid).update({
-        conversations: conversation,
-      });
+      await firestore
+        .collection('chats')
+        .doc(uid)
+        .update({
+          conversations: conversation,
+          isNewMessage: true,
+          updated_at: new Date(Date.now()),
+        });
       setMessage('');
       setIsMessage(false);
       chatRef.current.scrollIntoView({
@@ -75,7 +82,6 @@ ChatBox.propTypes = {
   chatsDoc: PropTypes.array.isRequired,
   chatRef: PropTypes.func.isRequired,
   conversations: PropTypes.array.isRequired,
-  uid: PropTypes.string.isRequired,
 };
 
 export default ChatBox;
