@@ -32,13 +32,12 @@ const GuideImage = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  width: 95px;
+  width: 91px;
   height: 93.5px;
   border-radius: 70%;
   overflow: hidden;
   cursor: pointer;
   transition: border 0.3s;
-  margin: 0px 19px 3px 0;
 `;
 
 const TypeG = styled.div`
@@ -72,20 +71,24 @@ const UserType = ({ state }) => {
     setIsHovering(false);
   };
 
-  const [border, setBorder] = useState('black');
+  const [border, setBorder] = useState('#888');
+  const [textColor, setTextColor] = useState('black');
 
   // eslint-disable-next-line no-shadow
   const setStyle = (selected, unselected) => {
     if (state === 0) {
       setBorder(selected);
+      setTextColor(selected);
       state = 1;
     } else {
       setBorder(unselected);
+      setTextColor('black');
       state = 0;
     }
   };
 
   const InputWrapper = styled.button`
+    background-color: white;
     width: 97px;
     height: 97px;
     border-radius: 70%;
@@ -95,14 +98,14 @@ const UserType = ({ state }) => {
   const TypeT = styled.div`
     font-size: 20px;
     font-weight: 400;
-    color: ${border};
+    color: ${textColor};
   `;
 
   return (
     <Wrapper>
       <SubWrapper>
         <InputWrapper>
-          <ImageWrapper onClick={() => setStyle('blue', 'black')}>
+          <ImageWrapper onClick={() => setStyle('#5061fb', '#888')}>
             <img src={traveler} width="100%" height="100%" object-fit="cover" />
           </ImageWrapper>
         </InputWrapper>
