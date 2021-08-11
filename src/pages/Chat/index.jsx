@@ -20,20 +20,18 @@ const Chat = () => {
   const { uid } = useParams();
 
   useEffect(() => {
-    console.log('채팅방 가져오기');
     firestore
       .collection('chats')
       .doc(uid)
       .onSnapshot((doc) => {
         setUserObj(doc.data());
-      }, console.log('채팅가져오기 스냅샷'));
+      });
     setIsLoading(false);
   }, [uid]);
   const history = useHistory();
   const onLeftClick = () => {
     history.goBack();
   };
-  console.log('Chat');
   const chatRef = useRef();
   useEffect(async () => {
     await firestore.collection('chats').doc(uid).update({
