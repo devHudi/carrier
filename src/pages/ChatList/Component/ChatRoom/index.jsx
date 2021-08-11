@@ -15,13 +15,14 @@ const ChatRoom = ({ userObj, classification }) => {
     history.push(`/chat/${userObj.id}`);
   };
   let today;
-  const Today = new Date(userObj.updated_at);
+  const Today = new Date(userObj?.updated_at?.toDate());
+  const now = new Date(Date.now());
   const date = Today.getDate();
-  const Month = Today.getMonth();
+  const Month = Today.getMonth() + 1;
   let Hours = Today.getHours();
   const Minutes = Today.getMinutes();
 
-  if (Date.now().getMonth === Month && Date.now().getDate() === date) {
+  if (now.getMonth() + 1 === Month && now.getDate() === date) {
     if (Hours > 12) {
       Hours -= 12;
       today = `오후 ${Hours}시 ${Minutes}분`;
@@ -61,7 +62,7 @@ const ChatRoom = ({ userObj, classification }) => {
           </MessageBox>
           <RecentBox>
             <DateDiv>{today}</DateDiv>
-            <CountDiv>{userObj?.isNewMessage && <div>!</div>}</CountDiv>
+            {userObj?.isNewMessage && <CountDiv>!</CountDiv>}
           </RecentBox>
         </Wrapper>
       )}
