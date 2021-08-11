@@ -31,6 +31,7 @@ export const createGuideProfile = async (employeeUid) => {
     prices,
     faq,
     dummy: true,
+    written_review: [],
   };
 
   return (await firestore.collection('guide_profiles').doc(employeeUid)).set(
