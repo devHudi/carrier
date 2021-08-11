@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import toast from 'react-simple-toasts';
 import { useState } from 'react';
 import { firestore } from 'misc/firebase';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import {
   Wrapper,
   WrapperOne,
@@ -28,12 +28,17 @@ const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
   const [onClickButton, setOnClickButton] = useState(false);
   const clickButton = () => setOnClickButton((prev) => !prev);
   const { uid } = useParams();
+  const history = useHistory();
+  const click = () => {
+    history.push('/result');
+  };
   const onSubmit = async (e) => {
     e.preventDefault();
     await firestore.collection('chats').doc(uid).update({
       transaction_completed: true,
     });
     ontoggle();
+    click();
   };
   return (
     <>
