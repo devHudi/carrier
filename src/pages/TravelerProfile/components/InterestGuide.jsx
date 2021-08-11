@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { PropTypes } from 'prop-types';
+import _ from 'lodash';
 import { Typography, Margin, Flex } from 'carrier-ui';
+import { firestore } from 'misc/firebase';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import image from '../data/interest.svg';
@@ -12,7 +16,6 @@ const DivWrapper = styled.div`
   margin: 0;
   padding: 0;
 `;
-
 const ImageCircle = styled.div`
   width: 220px;
   height: 220px;
@@ -68,7 +71,7 @@ const City = styled(Typography)`
 `;
 
 const ImgContainer = styled.div`
-  background-color: white;
+  background-image: url('${(props) => props.image}');
   background-size: cover;
   width: 130px;
   height: 130px;
@@ -89,13 +92,23 @@ const HeartContainer = styled.img`
   height: 20px;
 `;
 
-const InterestGuide = () => {
-  const noneinterest = true;
+const InterestGuide = ({ likeEmployees }) => {
+  const [likeEmployee, setLikeEmployee] = useState();
+  useEffect(() => {
+    const promises = _.map(likeEmployees, (data) =>
+      firestore.collection('users').doc(data).get(),
+    );
+
+    Promise.all(promises).then((refs) => {
+      const docs = _.map(refs, (ref) => ref.data());
+      setLikeEmployee(docs);
+    });
+  }, []);
 
   return (
     <div>
       <DivWrapper>
-        {!noneinterest && (
+        {likeEmployees?.length <= 0 && (
           <Container>
             <Typography headline>관심 가이드 목록</Typography>
             <Margin size={22} />
@@ -105,33 +118,39 @@ const InterestGuide = () => {
             </InnerWrapper>
           </Container>
         )}
-        {noneinterest && (
+        {likeEmployees?.length > 0 && (
           <Container>
             <Typography headline>관심 가이드 목록</Typography>
             <Margin size={22} />
             <Wrapper>
-              <GuideWrapper>
-                <Flex direction="column" justify="center" align="center">
-                  <ImgContainer>
-                    <HeartContainer src={heart} />
-                  </ImgContainer>
-                  <Margin row size={18} />
-                  <Flex>
-                    <Flex direction="column" align="center" justify="center">
-                      <Typography headline>name</Typography>
-                      <Margin size={4} />
-                      <City subhead>sido</City>
+              {_.map(likeEmployee, (likeEmploye) => (
+                <GuideWrapper>
+                  <Flex direction="column" justify="center" align="center">
+                    <ImgContainer image={likeEmploye.profile_image}>
+                      <HeartContainer src={heart} />
+                    </ImgContainer>
+                    <Margin row size={18} />
+                    <Flex>
+                      <Flex direction="column" align="center" justify="center">
+                        <Typography headline>{likeEmploye.name}</Typography>
+                        <Margin size={4} />
+                        <City subhead>{likeEmploye.place.sido}</City>
+                      </Flex>
+                      <Margin size={5} />
                     </Flex>
-                    <Margin size={5} />
                   </Flex>
-                </Flex>
-              </GuideWrapper>
+                </GuideWrapper>
+              ))}
             </Wrapper>
           </Container>
         )}
       </DivWrapper>
     </div>
   );
+};
+
+InterestGuide.propTypes = {
+  likeEmployees: PropTypes.object.isRequired,
 };
 
 export default InterestGuide;

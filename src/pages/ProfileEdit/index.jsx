@@ -1,7 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import ProfileForm from './components/ProfileForm';
-import TravelerForm from './components/TravelerForm';
 import Navigation from './components/Navigation';
 
 const GlobalStyle = createGlobalStyle`
@@ -20,9 +19,9 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const TravelerProfile = () => {
+const ProfileEdit = () => {
   const history = useHistory();
-
+  console.log('여기는 오니');
   return (
     <>
       <GlobalStyle />
@@ -30,16 +29,13 @@ const TravelerProfile = () => {
         leftIcon="back"
         rightIcon="home"
         onLeftIconClick={() => history.goBack()}
-        onRightIconClick={() => history.push('/TravelerProfile/edit')}
+        onRightIconClick={() => history.push('/')}
       />
       <Container top={0}>
         <ProfileForm />
-      </Container>
-      <Container top={60}>
-        <TravelerForm />
       </Container>
     </>
   );
 };
 
-export default TravelerProfile;
+export default ProfileEdit;

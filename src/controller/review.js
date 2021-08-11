@@ -37,3 +37,15 @@ export const getReviews = async (employeeUid) => {
 
   return reviews;
 };
+
+export const getReviewsFromEmployer = async (employerUid) => {
+  const reviews = [];
+  (
+    await firestore
+      .collection('reviews')
+      .where('employer_uid', '==', employerUid)
+      .get()
+  ).forEach((querySnapshot) => reviews.push(querySnapshot.data()));
+
+  return reviews;
+};

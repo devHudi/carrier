@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Typography, Flex, Margin } from 'carrier-ui';
-import firebase from 'misc/firebase';
+
+import { useEffect, useState } from 'react';
+import { auth, firestore } from 'misc/firebase';
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill } from 'react-icons/ri';
 import Picture from '../data/img1.png';
@@ -56,17 +58,34 @@ const StatisticsWrapper = styled.div`
   display: flex;
   justify-content: space-around;
 `;
-
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+`;
 const Profile = () => {
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-  `;
-  const user = firebase.auth().currentUser;
+  const [user, setUser] = useState();
+  const [uid, setUid] = useState();
+  const [userName, setUserName] = useState();
+  const [likeEmployees, setLikeEmployees] = useState();
+  auth.onAuthStateChanged((u) => {
+    setUser(u);
+    setUid(u.uid);
+  });
   console.log(user);
+
+  useEffect(() => {
+    firestore
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setUserName(doc.data()?.name);
+        setLikeEmployees(doc.data()?.like_employees);
+      });
+  }, [uid]);
 
   return (
     <div>
@@ -74,7 +93,7 @@ const Profile = () => {
         <BackgroundCircle />
         <ImageCircle />
         <Container>
-          <Typography headline>{user}</Typography>
+          <Typography headline>{userName}</Typography>
           <City subhead bold700>
             여행객
           </City>
@@ -90,9 +109,9 @@ const Profile = () => {
             <Flex direction="column" align="center">
               <RiHeartFill color="#FF77B2" />
               <Typography headline bold400>
-                0개
+                {likeEmployees?.length}
               </Typography>
-              <City subhead>리뷰 수</City>
+              <City subhead>관심있는 가이드 수</City>
             </Flex>
           </StatisticsWrapper>
           <Margin size={20} />

@@ -1,6 +1,10 @@
 import styled, { keyframes } from 'styled-components';
-import { Margin } from 'carrier-ui';
+import { Margin, Spinner } from 'carrier-ui';
 
+import { getReviewsFromEmployer } from 'controller/review';
+
+import { useEffect, useState } from 'react';
+import { auth, firestore } from 'misc/firebase';
 import GuideMatching from './GuideMatching';
 import TravelerReview from './TravelerReview';
 import InterestGuide from './InterestGuide';
@@ -24,18 +28,58 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const TravelerForm = () => (
-  <>
-    <FormWrapper>
-      <Margin size={20} />
-      <InterestGuide />
-      <Margin size={20} />
-      <GuideMatching />
-      <Margin size={20} />
-      <TravelerReview />
-      <Margin size={120} />
-    </FormWrapper>
-  </>
-);
+const TravelerForm = () => {
+  const [user, setUser] = useState();
+  const [uid, setUid] = useState();
+  const [likeEmployees, setLikeEmployees] = useState();
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
+  auth.onAuthStateChanged((u) => {
+    setUser(u);
+    setUid(u.uid);
+  });
+  console.log(user);
+  // console.log(uid);
+
+  useEffect(() => {
+    firestore
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setLikeEmployees(doc.data()?.like_employees);
+      });
+  }, [uid]);
+  // console.log(userName);
+  // console.log(likeEmployees);
+
+  useEffect(() => {
+    const doWork = async () => {
+      if (uid) {
+        setLoading(true);
+        setReviews(await getReviewsFromEmployer(uid));
+        setLoading(false);
+      }
+    };
+
+    doWork();
+  }, [uid]);
+  console.log(reviews);
+  return (
+    <>
+      {loading && <Spinner />}
+
+      <FormWrapper>
+        <Margin size={20} />
+        <InterestGuide likeEmployees={likeEmployees} />
+        <Margin size={20} />
+        <GuideMatching />
+        <Margin size={20} />
+        <TravelerReview reviews={reviews} />
+        <Margin size={120} />
+      </FormWrapper>
+    </>
+  );
+};
 
 export default TravelerForm;

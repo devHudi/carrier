@@ -15,6 +15,7 @@ import {
   NotFound,
   GuideProfile,
   TravelerProfile,
+  ProfileEdit,
 } from 'pages';
 import { ResWarning } from 'carrier-ui';
 
@@ -73,14 +74,14 @@ const Router = () => (
         <BodyStyle />
         <ChatList />
       </Route>
-      <Route exact path="/Travelerprofile">
+      <Route exact path="/profile">
         <TravelerProfile />
       </Route>
       <Route exact path="/profile/:uid">
         <GuideProfile />
       </Route>
-      <Route exact path="/profile/edit">
-        내 프로필 수정
+      <Route exact path="/TravelerProfile/edit">
+        <ProfileEdit />
       </Route>
       <Route exact path="/firebase-examples">
         <BodyStyle color="#FFFFFF" />
