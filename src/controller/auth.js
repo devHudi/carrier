@@ -22,6 +22,7 @@ export const signUp = async (email, name, password) => {
     like_employees: [],
     type: 'employer',
     amdin: false,
+    review_created: [],
   };
 
   return firestore.collection('users').doc(user.uid).set(userDoc);
