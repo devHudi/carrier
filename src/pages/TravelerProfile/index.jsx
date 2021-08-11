@@ -1,5 +1,8 @@
+import { useState, useEffect } from 'react';
+import _ from 'lodash';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import { firestore, auth } from 'misc/firebase';
 import ProfileForm from './components/ProfileForm';
 import TravelerForm from './components/TravelerForm';
 import Navigation from './components/Navigation';
@@ -21,7 +24,43 @@ const Container = styled.div`
 `;
 
 const TravelerProfile = () => {
+  const [uid, setUid] = useState();
   const history = useHistory();
+  const [guides, setGuides] = useState([]);
+
+  auth.onAuthStateChanged((u) => {
+    setUid(u.uid);
+  });
+
+  useEffect(() => {
+    const doWork = async () => {
+      if (uid) {
+        const completes = _.map(
+          await Promise.all(
+            _.map(
+              (
+                await firestore
+                  .collection('chats')
+                  .where('employer_uid', '==', uid)
+                  .where('transaction_completed', '==', true)
+                  .get()
+              ).docs,
+              (doc) =>
+                firestore
+                  .collection('users')
+                  .doc(doc.data().employee_uid)
+                  .get(),
+            ),
+          ),
+          (doc) => doc.data(),
+        );
+
+        setGuides(completes);
+      }
+    };
+
+    doWork();
+  }, [uid]);
 
   return (
     <>
@@ -33,10 +72,10 @@ const TravelerProfile = () => {
         onRightIconClick={() => history.push('/TravelerProfile/edit')}
       />
       <Container top={0}>
-        <ProfileForm />
+        <ProfileForm guides={guides} />
       </Container>
       <Container top={60}>
-        <TravelerForm />
+        <TravelerForm guides={guides} />
       </Container>
     </>
   );

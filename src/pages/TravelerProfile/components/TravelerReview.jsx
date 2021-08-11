@@ -65,53 +65,55 @@ const TravelerReview = ({ reviews }) => {
     justify-content: center;
     align-items: center;
   `;
-  console.log(reviews);
+
   return (
     <div>
       <DivWrapper>
-        {false && (
-          <Container>
-            <Typography headline>내가 작성한 후기</Typography>
+        <Container>
+          <Typography headline>내가 작성한 후기 </Typography>
+          <Margin size={22} />
+          {reviews.length <= 0 ? (
             <InnerWrapper>
               <ImageCircle />
               <Margin size={10} />
             </InnerWrapper>
-          </Container>
-        )}
-        {true && (
-          <Container>
-            <Typography headline>내가 작성한 </Typography>
-            <Margin size={22} />
-            <Wrapper>
-              {_.map(reviews, (review) => (
-                <ReviewWrapper>
-                  <Flex direction="column" justify="flex-start" width="100%">
-                    <Margin row size={18} />
+          ) : (
+            <>
+              <Wrapper>
+                {_.map(reviews, (review) => (
+                  <ReviewWrapper>
                     <Flex direction="column" justify="flex-start" width="100%">
+                      <Margin row size={18} />
                       <Flex
-                        direction="row"
-                        justify="space-between"
-                        align="center"
+                        direction="column"
+                        justify="flex-start"
+                        width="100%"
                       >
-                        <Typography body color="gray">
-                          ★ 별점
-                        </Typography>
-                        <Typography body color="blue">
-                          {review.employer_name}
-                        </Typography>
-                      </Flex>
-                      <Margin size={1} />
-                      <Flex direction="column" align="flex-start">
-                        <Typography body>{review.comment}</Typography>
-                        <Margin size={4} />
+                        <Flex
+                          direction="row"
+                          justify="space-between"
+                          align="center"
+                        >
+                          <Typography body color="gray">
+                            ★ {review.score} 점
+                          </Typography>
+                          <Typography body color="blue">
+                            {review.employee_name}
+                          </Typography>
+                        </Flex>
+                        <Margin size={1} />
+                        <Flex direction="column" align="flex-start">
+                          <Typography body>{review.comment}</Typography>
+                          <Margin size={4} />
+                        </Flex>
                       </Flex>
                     </Flex>
-                  </Flex>
-                </ReviewWrapper>
-              ))}
-            </Wrapper>
-          </Container>
-        )}
+                  </ReviewWrapper>
+                ))}
+              </Wrapper>
+            </>
+          )}
+        </Container>
       </DivWrapper>
     </div>
   );

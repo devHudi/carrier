@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { Margin, Spinner } from 'carrier-ui';
 
@@ -28,18 +29,14 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const TravelerForm = () => {
-  const [user, setUser] = useState();
+const TravelerForm = ({ guides }) => {
   const [uid, setUid] = useState();
   const [likeEmployees, setLikeEmployees] = useState();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   auth.onAuthStateChanged((u) => {
-    setUser(u);
     setUid(u.uid);
   });
-  console.log(user);
-  // console.log(uid);
 
   useEffect(() => {
     firestore
@@ -50,8 +47,6 @@ const TravelerForm = () => {
         setLikeEmployees(doc.data()?.like_employees);
       });
   }, [uid]);
-  // console.log(userName);
-  // console.log(likeEmployees);
 
   useEffect(() => {
     const doWork = async () => {
@@ -64,7 +59,7 @@ const TravelerForm = () => {
 
     doWork();
   }, [uid]);
-  console.log(reviews);
+
   return (
     <>
       {loading && <Spinner />}
@@ -73,13 +68,17 @@ const TravelerForm = () => {
         <Margin size={20} />
         <InterestGuide likeEmployees={likeEmployees} />
         <Margin size={20} />
-        <GuideMatching />
+        <GuideMatching guides={guides} />
         <Margin size={20} />
         <TravelerReview reviews={reviews} />
         <Margin size={120} />
       </FormWrapper>
     </>
   );
+};
+
+TravelerForm.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TravelerForm;
