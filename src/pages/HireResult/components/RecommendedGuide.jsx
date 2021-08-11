@@ -88,9 +88,6 @@ const RecommendedGuide = ({ guides }) => {
     centerMode: true,
     arrows: true,
   };
-
-  const history = useHistory();
-
   return (
     <SliderWrapper>
       <Slider {...settings}>

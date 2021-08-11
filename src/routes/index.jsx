@@ -15,6 +15,7 @@ import {
   NotFound,
   GuideProfile,
   TravelerProfile,
+  Review,
 } from 'pages';
 import { ResWarning } from 'carrier-ui';
 
@@ -88,6 +89,9 @@ const Router = () => (
       <Route exact path="/firebase-examples">
         <BodyStyle color="#FFFFFF" />
         <FirebaseExample />
+      </Route>
+      <Route path="/review">
+        <Review />
       </Route>
       <Route path="/*">
         <BodyStyle color="#FFFFFF" />
