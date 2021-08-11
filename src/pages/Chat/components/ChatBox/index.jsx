@@ -9,10 +9,16 @@ const ChatBox = ({ conversations, chatsDoc, user, chatRef }) => {
   const [isMessage, setIsMessage] = useState(false);
   const [onClickPlus, setOnClickPlus] = useState(false);
   const [requestButtonStatus, setRequestButtonStatus] = useState(false);
+  const [reviewButtonStatus, setReviewButtonStatus] = useState(false);
   const { uid } = useParams();
   useEffect(() => {
     setRequestButtonStatus(chatsDoc?.transaction_completed);
+    console.log('transaction');
   }, [chatsDoc?.transaction_completed]);
+  useEffect(() => {
+    setReviewButtonStatus(chatsDoc?.review_creation_status);
+    console.log('review status');
+  }, [chatsDoc?.review_creation_status]);
   const onChangeMessage = useCallback((e) => {
     const {
       target: { value },
@@ -73,6 +79,7 @@ const ChatBox = ({ conversations, chatsDoc, user, chatRef }) => {
       onToggle={onToggle}
       onClickPlus={onClickPlus}
       requestButtonStatus={requestButtonStatus}
+      reviewButtonStatus={reviewButtonStatus}
     />
   );
 };
