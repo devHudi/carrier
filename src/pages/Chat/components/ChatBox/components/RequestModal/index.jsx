@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import toast from 'react-simple-toasts';
 import { useState } from 'react';
+import { firestore } from 'misc/firebase';
+import { useParams } from 'react-router-dom';
 import {
   Wrapper,
   WrapperOne,
@@ -25,6 +27,14 @@ import travel from './assets/travel.png';
 const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
   const [onClickButton, setOnClickButton] = useState(false);
   const clickButton = () => setOnClickButton((prev) => !prev);
+  const { uid } = useParams();
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    await firestore.collection('chats').doc(uid).update({
+      transaction_completed: true,
+    });
+    ontoggle();
+  };
   return (
     <>
       <Background isRequest={isRequest} onClick={ontoggle} />
@@ -81,7 +91,7 @@ const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
           <WrapperThree isRequest={step === 3}>
             <Title>약속한 서비스를 선택해주세요</Title>
             <img src={company} />
-            <Submit onClick={toggleNext}>거래확정</Submit>
+            <Submit onClick={onSubmit}>거래확정</Submit>
           </WrapperThree>
         </Wrapper>
       </BackWrapper>
