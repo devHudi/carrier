@@ -89,8 +89,9 @@ const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
             <img src={travel} />
           </WrapperTwo>
           <WrapperThree isRequest={step === 3}>
-            <Title>약속한 서비스를 선택해주세요</Title>
-            <img src={company} />
+            <Title>
+              가이드가 정해준 루트를 받아보실려면 거래확정버튼을 누르세요!
+            </Title>
             <Submit onClick={onSubmit}>거래확정</Submit>
           </WrapperThree>
         </Wrapper>
