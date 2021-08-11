@@ -9,6 +9,7 @@ import camera from './assets/camera.png';
 import file from './assets/file.png';
 import video from './assets/video.png';
 import RequestModal from './components/RequestModal';
+import Review from './components/ReviewModal';
 
 const Div = styled.div`
   z-index: 255;
@@ -234,13 +235,13 @@ const MessageTypeBox = ({
   onToggle,
   onClickPlus,
   requestButtonStatus,
+  guideUid,
 }) => {
   const placeholder = '메세지를 입력하세요.';
   const [isRequest, setIsRequest] = useState(false);
-  const [isReview, setIsReview] = useState(false);
+  const [isReview, setIsReview] = useState(requestButtonStatus);
   const [step, setStep] = useState(requestButtonStatus ? 3 : 1);
   const toggleIsRequest = () => {
-    console.log(step);
     setStep(1);
     setIsRequest((prev) => !prev);
   };
@@ -248,21 +249,27 @@ const MessageTypeBox = ({
     setStep(2);
     setTimeout(() => setStep(3), 3000);
   };
+  const onSubmitReview = () => {};
   const toggleIsReview = () => setIsReview((prev) => !prev);
   return (
     <>
-      <RequestModal isReview={isReview} />
       <RequestModal
         isRequest={isRequest}
         ontoggle={toggleIsRequest}
         step={step}
         toggleNext={toggleNext}
       />
+      <Review
+        isRequest={isReview}
+        onSubmit={onSubmitReview}
+        ontoggle={toggleIsReview}
+        guideUid={guideUid}
+      />
       <Div onClickPlus={onClickPlus}>
         <ConfirmDiv>
           {requestButtonStatus ? (
             <Confirm onClick={() => toast('이미 완료된 거래입니다.', 1200)}>
-              약속 확정하기
+              여행계획 보기
             </Confirm>
           ) : (
             <Confirm onClick={toggleIsRequest}>약속 확정하기</Confirm>
@@ -332,6 +339,7 @@ MessageTypeBox.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onClickPlus: PropTypes.bool.isRequired,
   requestButtonStatus: PropTypes.bool.isRequired,
+  guideUid: PropTypes.string.isRequired,
 };
 
 export default MessageTypeBox;
