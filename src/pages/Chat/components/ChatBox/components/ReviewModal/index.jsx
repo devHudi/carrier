@@ -1,19 +1,24 @@
-import styled from 'styled-components';
+import { Container } from 'carrier-ui';
+import PropTypes from 'prop-types';
+import Form from './components/Form';
 
-const Wrapper = styled.div`
-  height: 100%;
-  width: 100%;
-  background-color: yellow;
-  z-index: 500;
-  position: absolute;
-  display: ${(props) => {
-    const test = props.isReview;
-    if (test === true) {
-      return 'block';
-    }
-    return 'none';
-  }};
-`;
+import { BackWrapper, Background, Wrapper } from '../RequestModal/styles';
 
-const ReviewModal = () => <Wrapper>리뷰 모달입니다.</Wrapper>;
-export default ReviewModal;
+const Review = ({ isRequest, ontoggle }) => (
+  <>
+    <Background isRequest={isRequest} onClick={ontoggle} />
+    <BackWrapper isRequest={isRequest}>
+      <Wrapper>
+        <Container top={5} padding={10}>
+          <Form ontoggle={ontoggle} />
+        </Container>
+      </Wrapper>
+    </BackWrapper>
+  </>
+);
+Review.propTypes = {
+  isRequest: PropTypes.bool.isRequired,
+  ontoggle: PropTypes.func.isRequired,
+};
+
+export default Review;
