@@ -18,6 +18,7 @@ import {
   ProfileEdit,
   BackOfficeList,
   BackOfficeRoom,
+  RecommendResult,
 } from 'pages';
 import { Tutorial, ResWarning } from 'carrier-ui';
 
@@ -98,6 +99,9 @@ const Router = () => (
       <Route exact path="/back-office/:uid">
         <BodyStyle color="#FFFFFF" />
         <BackOfficeRoom />
+      </Route>
+      <Route path="/result">
+        <RecommendResult />
       </Route>
       <Route path="/*">
         <BodyStyle color="#FFFFFF" />
