@@ -6,6 +6,7 @@ export const createChatRoom = async (employerUid, employeeUid) => {
     await firestore
       .collection('chats')
       .where('employee_uid', '==', employeeUid)
+      .where('employer_uid', '==', employerUid)
       .get()
   ).forEach((querySnapshot) => chats.push(querySnapshot.ref));
 
