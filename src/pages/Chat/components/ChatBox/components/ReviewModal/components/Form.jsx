@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import toast from 'react-simple-toasts';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { addReview } from 'controller/review';
@@ -36,8 +37,8 @@ const Form = ({ ontoggle }) => {
     e.preventDefault();
     const chat = (await firestore.collection('chats').doc(uid).get()).data();
     await addReview(chat?.employer_uid, chat?.employee_uid, score, review);
-    // eslint-disable-next-line no-unused-expressions
-    ontoggle;
+    toast('리뷰가 정상적으로 등록되었습니다.', 1000);
+    ontoggle();
   };
   const onChangeReview = useCallback((e) => {
     setReview(e.target.value);
