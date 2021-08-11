@@ -235,6 +235,7 @@ const MessageTypeBox = ({
   onToggle,
   onClickPlus,
   requestButtonStatus,
+  reviewButtonStatus,
 }) => {
   const placeholder = '메세지를 입력하세요.';
   const [isRequest, setIsRequest] = useState(false);
@@ -269,7 +270,9 @@ const MessageTypeBox = ({
           )}
           <Line src={line} />
           {requestButtonStatus ? (
-            <Confirm onClick={toggleIsReview}>리뷰 작성하기</Confirm>
+            reviewButtonStatus && (
+              <Confirm onClick={toggleIsReview}>리뷰 작성하기</Confirm>
+            )
           ) : (
             <Confirm onClick={() => toast('거래후 사용가능합니다.', 1200)}>
               리뷰 작성하기
@@ -332,6 +335,7 @@ MessageTypeBox.propTypes = {
   onToggle: PropTypes.func.isRequired,
   onClickPlus: PropTypes.bool.isRequired,
   requestButtonStatus: PropTypes.bool.isRequired,
+  reviewButtonStatus: PropTypes.bool.isRequired,
 };
 
 export default MessageTypeBox;
