@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Typography, Flex, Margin } from 'carrier-ui';
 
@@ -65,16 +66,13 @@ const Wrapper = styled.div`
   margin: 0;
   padding: 0;
 `;
-const Profile = () => {
-  const [user, setUser] = useState();
+const Profile = ({ guides }) => {
   const [uid, setUid] = useState();
   const [userName, setUserName] = useState();
   const [likeEmployees, setLikeEmployees] = useState();
   auth.onAuthStateChanged((u) => {
-    setUser(u);
     setUid(u.uid);
   });
-  console.log(user);
 
   useEffect(() => {
     firestore
@@ -102,14 +100,14 @@ const Profile = () => {
             <Flex direction="column" align="center">
               <GoPerson color="blue" />
               <Typography headline bold400>
-                0명
+                {guides?.length || 0}명
               </Typography>
               <City subhead>가이드 매칭</City>
             </Flex>
             <Flex direction="column" align="center">
               <RiHeartFill color="#FF77B2" />
               <Typography headline bold400>
-                {likeEmployees?.length}
+                {likeEmployees?.length || 0}명
               </Typography>
               <City subhead>관심있는 가이드 수</City>
             </Flex>
@@ -120,4 +118,9 @@ const Profile = () => {
     </div>
   );
 };
+
+Profile.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 export default Profile;

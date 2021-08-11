@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Typography, Margin, Flex } from 'carrier-ui';
 import image from '../data/guide.svg';
@@ -62,7 +64,7 @@ const InnerWrapper = styled.div`
 const ImgContainer = styled.div`
   flex: 0 0 80px;
   height: 80px;
-  background: black;
+  background-image: url(${(props) => props.image});
   background-size: cover;
   border-radius: 112px;
   flex-grow: 0;
@@ -75,27 +77,21 @@ const City = styled(Typography)`
   color: #c2c2c2;
   opacity: 1;
 `;
-const GuideMatching = () => {
-  const noneinterest = true;
 
-  return (
-    <div>
-      <DivWrapper>
-        {!noneinterest && (
-          <Container>
-            <Typography headline>가이드 매칭 내역</Typography>
-            <Margin size={22} />
-            <InnerWrapper>
-              <ImageCircle />
-              <Margin size={10} />
-            </InnerWrapper>
-          </Container>
-        )}
-        {noneinterest && (
-          <Container>
-            <Typography headline>가이드 매칭 내역</Typography>
-            <Margin size={22} />
-            <Wrapper>
+const GuideMatching = ({ guides }) => (
+  <div>
+    <DivWrapper>
+      <Container>
+        <Typography headline>거래 확정한 가이드</Typography>
+        <Margin size={22} />
+        {guides.length <= 0 ? (
+          <InnerWrapper>
+            <ImageCircle />
+            <Margin size={10} />
+          </InnerWrapper>
+        ) : (
+          <Wrapper>
+            {_.map(guides, (guide) => (
               <GuideWrapper>
                 <Flex
                   direction="row"
@@ -103,24 +99,28 @@ const GuideMatching = () => {
                   align="center"
                   width="100%"
                 >
-                  <ImgContainer />
+                  <ImgContainer image={guide.profile_image} />
                   <Margin row size={18} />
                   <Flex>
                     <Flex direction="column" align="flex-start">
-                      <Typography headline>name 가이드 </Typography>
+                      <Typography headline>{guide.name} 가이드 </Typography>
                       <Margin size={4} />
-                      <City subhead>sido</City>
+                      <City subhead>{guide.place.sido}</City>
                     </Flex>
                     <Margin size={5} />
                   </Flex>
                 </Flex>
               </GuideWrapper>
-            </Wrapper>
-          </Container>
+            ))}
+          </Wrapper>
         )}
-      </DivWrapper>
-    </div>
-  );
+      </Container>
+    </DivWrapper>
+  </div>
+);
+
+GuideMatching.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default GuideMatching;

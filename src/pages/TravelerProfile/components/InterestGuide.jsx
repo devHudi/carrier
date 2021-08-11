@@ -94,6 +94,7 @@ const HeartContainer = styled.img`
 
 const InterestGuide = ({ likeEmployees }) => {
   const [likeEmployee, setLikeEmployee] = useState();
+
   useEffect(() => {
     const promises = _.map(likeEmployees, (data) =>
       firestore.collection('users').doc(data).get(),
@@ -103,25 +104,21 @@ const InterestGuide = ({ likeEmployees }) => {
       const docs = _.map(refs, (ref) => ref.data());
       setLikeEmployee(docs);
     });
-  }, []);
+  }, [likeEmployees]);
 
   return (
     <div>
       <DivWrapper>
-        {likeEmployees?.length <= 0 && (
-          <Container>
-            <Typography headline>관심 가이드 목록</Typography>
-            <Margin size={22} />
+        <Container>
+          <Typography headline>관심 가이드 목록</Typography>
+          <Margin size={22} />
+
+          {likeEmployees?.length <= 0 ? (
             <InnerWrapper>
               <ImageCircle />
               <Margin size={10} />
             </InnerWrapper>
-          </Container>
-        )}
-        {likeEmployees?.length > 0 && (
-          <Container>
-            <Typography headline>관심 가이드 목록</Typography>
-            <Margin size={22} />
+          ) : (
             <Wrapper>
               {_.map(likeEmployee, (likeEmploye) => (
                 <GuideWrapper>
@@ -142,8 +139,8 @@ const InterestGuide = ({ likeEmployees }) => {
                 </GuideWrapper>
               ))}
             </Wrapper>
-          </Container>
-        )}
+          )}
+        </Container>
       </DivWrapper>
     </div>
   );

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import Profile from './Profile';
 
@@ -20,12 +21,14 @@ const FormWrapper = styled.div`
   padding: 0;
 `;
 
-const ProfileForm = () => (
-  <>
-    <FormWrapper>
-      <Profile />
-    </FormWrapper>
-  </>
+const ProfileForm = ({ guides }) => (
+  <FormWrapper>
+    <Profile guides={guides} />
+  </FormWrapper>
 );
+
+ProfileForm.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default ProfileForm;
