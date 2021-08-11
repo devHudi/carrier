@@ -54,19 +54,6 @@ const ChatList = () => {
           setChatRoomList(list);
         });
       setIsLoading(false);
-    } else if (user === 'employee') {
-      firestore
-        .collection('chats')
-        .orderBy('updated_at', 'desc')
-        .where('employee_uid', '==', userObj?.uid)
-        .onSnapshot((snapshot) => {
-          const list = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setChatRoomList(list);
-        });
-      setIsLoading(false);
     }
   }, [user]);
 
