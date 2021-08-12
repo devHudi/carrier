@@ -29,6 +29,7 @@ export const createGuideProfile = async (employeeUid) => {
       start: startTime,
       end: endTime,
     },
+
     prices,
     faq,
     dummy: true,
