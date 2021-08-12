@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import toast from 'react-simple-toasts';
 
-import { auth } from 'misc/firebase';
+import { firestore, auth } from 'misc/firebase';
 import { Container, Navigation, ProgressBar, Spinner } from 'carrier-ui';
 import { useQuery } from 'hooks';
 import { addSubmit } from 'controller/submits';
@@ -85,6 +85,9 @@ const Hire = () => {
     if (!user) {
       setLogin(true);
     } else {
+      await firestore.collection('submits').doc(docRef.id).update({
+        employer_uid: user.uid,
+      });
       history.push(`/hire/${docRef.id}/result`);
     }
   };
