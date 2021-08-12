@@ -12,10 +12,14 @@ export const addReview = async (employerUid, employeeUid, score, comment) => {
   const employee = (
     await firestore.collection('users').doc(employeeUid).get()
   ).data();
+  const guideProfiles = (
+    await firestore.collection('guide_profiles').doc(employeeUid).get()
+  ).data();
 
   const userReview = employer?.review_created;
   userReview?.push({ guide_uid: employeeUid, review: comment });
-  const guideReview = employee?.written_review;
+
+  const guideReview = guideProfiles?.written_review;
   guideReview?.push({ writer: employerUid, review: comment });
 
   await firestore.collection('users').doc(employerUid).update({
@@ -23,7 +27,7 @@ export const addReview = async (employerUid, employeeUid, score, comment) => {
   });
 
   await firestore.collection('guide_profiles').doc(employeeUid).update({
-    written_review: userReview,
+    written_review: guideReview,
   });
 
   await firestore.collection('reviews').add({
