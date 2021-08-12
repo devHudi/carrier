@@ -37,7 +37,6 @@ export const createGuideProfile = async (employeeUid) => {
       Array.from(Array(18)),
       () => profileImageData[_.random(0, profileImageData.length - 1)],
     ),
-    written_review: [],
   };
 
   return (await firestore.collection('guide_profiles').doc(employeeUid)).set(
