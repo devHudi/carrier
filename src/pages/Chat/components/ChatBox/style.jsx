@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { IoPaperPlaneSharp } from 'react-icons/io5';
 import { AiOutlinePlus } from 'react-icons/ai';
 import toast from 'react-simple-toasts';
+import { useHistory } from 'react-router-dom';
 import line from './assets/line.png';
 import camera from './assets/camera.png';
 import file from './assets/file.png';
@@ -249,6 +250,10 @@ const MessageTypeBox = ({
     setStep(2);
     setTimeout(() => setStep(3), 3000);
   };
+  const history = useHistory();
+  const click = () => {
+    history.push('/result');
+  };
   const toggleIsReview = () => setIsReview((prev) => !prev);
   return (
     <>
@@ -262,15 +267,13 @@ const MessageTypeBox = ({
       <Div onClickPlus={onClickPlus}>
         <ConfirmDiv>
           {requestButtonStatus ? (
-            <Confirm onClick={() => toast('이미 완료된 거래입니다.', 1200)}>
-              여행계획 다시보기
-            </Confirm>
+            <Confirm onClick={click}>여행계획 다시보기</Confirm>
           ) : (
             <Confirm onClick={toggleIsRequest}>약속 확정하기</Confirm>
           )}
           <Line src={line} />
           {requestButtonStatus ? (
-            reviewButtonStatus && (
+            !reviewButtonStatus && (
               <Confirm onClick={toggleIsReview}>리뷰 작성하기</Confirm>
             )
           ) : (
