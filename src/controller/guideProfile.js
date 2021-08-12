@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { firestore } from 'misc/firebase';
 import pick from 'misc/pick';
 import guideProfileData from 'assets/data/guideProfileData';
+import profileImageData from 'assets/data/profileImageData';
 
 // guide_profiles Collection 에 더미 데이터를 생성합니다.
 export const createGuideProfile = async (employeeUid) => {
@@ -31,6 +32,10 @@ export const createGuideProfile = async (employeeUid) => {
     prices,
     faq,
     dummy: true,
+    images: _.map(
+      Array.from(Array(18)),
+      () => profileImageData[_.random(0, profileImageData.length - 1)],
+    ),
   };
 
   return (await firestore.collection('guide_profiles').doc(employeeUid)).set(

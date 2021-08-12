@@ -1,12 +1,11 @@
+import { PropTypes } from 'prop-types';
+import _ from 'lodash';
 import styled from 'styled-components';
 import { Typography, Margin } from 'carrier-ui';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
-import Picture1 from '../data/picture1.png';
-import Picture2 from '../data/picture2.png';
-import Picture3 from '../data/picture3.png';
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,17 +56,19 @@ const StyledSlider = styled(Slider)`
 `;
 
 const ImgContainer = styled.div`
-  margin: 10px;
-  border-radius: 18px;
+  padding: 2px 4px;
   opacity: 1;
 `;
 
-const Image = styled.img`
-  max-width: 90%;
-  max-height: 90%;
+const Image = styled.div`
+  height: 108px;
+  border-radius: 18px;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
 `;
 
-const PictureAndVideo = () => {
+const PictureAndVideo = ({ guide }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -90,65 +91,20 @@ const PictureAndVideo = () => {
         <Margin size={10} />
         <SliderContainer>
           <StyledSlider {...settings}>
-            <ImgContainer>
-              <Image src={Picture1} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture2} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture3} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture1} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture2} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture3} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture1} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture2} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture3} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture1} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture2} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture3} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture1} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture2} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture3} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture1} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture2} />
-            </ImgContainer>
-            <ImgContainer>
-              <Image src={Picture3} />
-            </ImgContainer>
+            {_.map(guide?.images || [], (image) => (
+              <ImgContainer>
+                <Image image={image} />
+              </ImgContainer>
+            ))}
           </StyledSlider>
         </SliderContainer>
       </Container>
     </Wrapper>
   );
+};
+
+PictureAndVideo.propTypes = {
+  guide: PropTypes.object.isRequired,
 };
 
 export default PictureAndVideo;

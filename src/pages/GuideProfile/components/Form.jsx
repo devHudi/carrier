@@ -36,7 +36,7 @@ const Form = ({ user, guide, reviews }) => (
     <Margin size={13} />
     <Price guide={guide} />
     <Margin size={13} />
-    <PictureAndVideo />
+    <PictureAndVideo guide={guide} />
     <Margin size={13} />
     <Review guide={guide} reviews={reviews} />
     <Margin size={13} />
