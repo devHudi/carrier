@@ -34,13 +34,13 @@ const Form = ({ ontoggle }) => {
   const { uid } = useParams();
   const onSubmit = async (e) => {
     e.preventDefault();
+    ontoggle();
     const chat = (await firestore.collection('chats').doc(uid).get()).data();
     await firestore.collection('chats').doc(uid).update({
       review_creation_status: true,
     });
     await addReview(chat?.employer_uid, chat?.employee_uid, score, review);
     toast('리뷰가 정상적으로 등록되었습니다.', 1000);
-    ontoggle();
   };
   const onChangeReview = useCallback((e) => {
     setReview(e.target.value);
