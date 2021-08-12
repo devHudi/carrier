@@ -14,8 +14,7 @@ import ChatBox from './components/ChatBox';
 import UserInfoModal from './components/Modal/LargeInfo';
 
 const Chat = () => {
-  const [userObj, setUserObj] = useState([]);
-  const [conversation, setconversation] = useState([]);
+  const [userObj, setUserObj] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
   const { uid } = useParams();
@@ -24,41 +23,21 @@ const Chat = () => {
     firestore
       .collection('chats')
       .doc(uid)
-      .get()
-      .then((doc) => {
-        setUserObj({
-          id: uid,
-          created_at: doc.data().created_at,
-          employee_name: doc.data().employee_name,
-          employee_profile_img: doc.data().employee_profile_img,
-          employee_uid: doc.data().employee_uid,
-          employer_name: doc.data().employer_name,
-          employer_profile_img: doc.data().employer_profile_img,
-          employer_uid: doc.data().employer_uid,
-        });
-      });
-  }, [uid]);
-
-  useEffect(async () => {
-    firestore
-      .collection('chats')
-      .doc(uid)
-      .collection('conversation')
-      .orderBy('sended_at')
-      .onSnapshot((snapshot) => {
-        setconversation(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-          })),
-        );
+      .onSnapshot((doc) => {
+        setUserObj(doc.data());
       });
     setIsLoading(false);
-  }, []);
+  }, [uid]);
   const history = useHistory();
   const onLeftClick = () => {
     history.goBack();
   };
   const chatRef = useRef();
+  useEffect(async () => {
+    await firestore.collection('chats').doc(uid).update({
+      isNewMessage: false,
+    });
+  }, []);
   return (
     <>
       <ChatNavBar
@@ -72,11 +51,11 @@ const Chat = () => {
       </ChatNavBar>
       <Wrapper>
         <InfoWrapper>
-          <UserInfoModal />
+          <UserInfoModal userUid={userObj?.employer_uid} />
         </InfoWrapper>
         <MsgerChat>
           {isLoading && <Spinner />}
-          {conversation.map((chat) =>
+          {userObj?.conversations?.map((chat) =>
             chat?.sender_uid === user?.uid ? (
               <MyContent
                 key={chat.sended_at}
@@ -103,9 +82,12 @@ const Chat = () => {
           )}
           <div ref={chatRef} />
         </MsgerChat>
-        <InfoWrapper>
-          <ChatBox chatsDoc={userObj} user={user} chatRef={chatRef} />
-        </InfoWrapper>
+        <ChatBox
+          chatsDoc={userObj}
+          user={user}
+          chatRef={chatRef}
+          conversations={userObj?.conversations}
+        />
       </Wrapper>
     </>
   );

@@ -15,6 +15,7 @@ import {
   NotFound,
   GuideProfile,
   TravelerProfile,
+  RecommendResult,
   ProfileEdit,
   BackOfficeList,
   BackOfficeRoom,
@@ -98,6 +99,12 @@ const Router = () => (
       <Route exact path="/back-office/:uid">
         <BodyStyle color="#FFFFFF" />
         <BackOfficeRoom />
+      </Route>
+      <Route path="/result">
+        <RecommendResult />
+      </Route>
+      <Route path="/result">
+        <RecommendResult />
       </Route>
       <Route path="/*">
         <BodyStyle color="#FFFFFF" />

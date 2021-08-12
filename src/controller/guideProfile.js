@@ -29,9 +29,11 @@ export const createGuideProfile = async (employeeUid) => {
       start: startTime,
       end: endTime,
     },
+
     prices,
     faq,
     dummy: true,
+    written_review: [],
     images: _.map(
       Array.from(Array(18)),
       () => profileImageData[_.random(0, profileImageData.length - 1)],
