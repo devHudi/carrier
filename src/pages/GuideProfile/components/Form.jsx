@@ -41,7 +41,7 @@ const Form = ({ user, guide, reviews }) => (
     <Review guide={guide} reviews={reviews} />
     <Margin size={13} />
     <FAQ guide={guide} />
-    <Margin size={13} />
+    <Margin size={100} />
     <NavButton user={user} guide={guide} />
   </FormWrapper>
 );
