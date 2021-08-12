@@ -16,6 +16,7 @@ import {
   GuideProfile,
   TravelerProfile,
   RecommendResult,
+  ProfileEdit,
 } from 'pages';
 import { ResWarning } from 'carrier-ui';
 
