@@ -14,10 +14,14 @@ const ChatList = () => {
   const [userObj, setUserObj] = useState();
   const [isLoading, setIsLoading] = useState(true);
   //* *********************로그인한 사용자로부터 유저 데이터 가져오는 곳************************//
+  const history = useHistory();
   auth.onAuthStateChanged((u) => {
+    if (!u) {
+      toast('로그인 후 사용가능합니다.', 1000);
+      history.push('/');
+    }
     setUserObj(u);
   });
-  const history = useHistory();
   useEffect(async () => {
     if (userObj) {
       await firestore
@@ -38,9 +42,6 @@ const ChatList = () => {
         .catch((error) => {
           console.log('Error getting document:', error);
         });
-    } else {
-      history.push('/');
-      toast('로그인 후 사용가능합니다.', 1000);
     }
   }, [userObj]);
 
