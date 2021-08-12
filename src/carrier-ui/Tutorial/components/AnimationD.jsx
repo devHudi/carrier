@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
-import emoji from '../assets/emoji.svg';
+import emoji from '../assets/emoji.jpeg';
 import stars from '../assets/stars.svg';
 
 const tada = keyframes`
