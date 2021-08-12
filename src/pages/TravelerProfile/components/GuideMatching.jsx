@@ -99,13 +99,13 @@ const GuideMatching = ({ guides }) => (
                   align="center"
                   width="100%"
                 >
-                  <ImgContainer image={guide.profile_image} />
+                  <ImgContainer image={guide?.profile_image} />
                   <Margin row size={18} />
                   <Flex>
                     <Flex direction="column" align="flex-start">
-                      <Typography headline>{guide.name} 가이드 </Typography>
+                      <Typography headline>{guide?.name} 가이드 </Typography>
                       <Margin size={4} />
-                      <City subhead>{guide.place.sido}</City>
+                      <City subhead>{guide?.place.sido}</City>
                     </Flex>
                     <Margin size={5} />
                   </Flex>

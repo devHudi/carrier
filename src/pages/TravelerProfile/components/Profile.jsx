@@ -73,8 +73,9 @@ const Profile = ({ guides }) => {
   const [userName, setUserName] = useState();
   const [likeEmployees, setLikeEmployees] = useState();
   const [profileImage, setProfileImage] = useState();
+  const [count, setCount] = useState(0);
   auth.onAuthStateChanged((u) => {
-    setUid(u.uid);
+    setUid(u?.uid);
   });
 
   useEffect(() => {
@@ -83,12 +84,20 @@ const Profile = ({ guides }) => {
       .doc(uid)
       .get()
       .then((doc) => {
-        setUserName(doc.data()?.name);
-        console.log(userName);
-        setLikeEmployees(doc.data()?.like_employees);
-        setProfileImage(doc.data()?.profile_image);
+        if (doc.exists) {
+          setUserName(doc.data()?.name);
+          setLikeEmployees(doc.data()?.like_employees);
+          setProfileImage(doc.data()?.profile_image);
+        } else {
+          setTimeout(() => {
+            setCount(count + 1);
+          }, 1000);
+        }
       });
-  }, []);
+  }, [count]);
+
+  console.log(guides);
+  console.log(likeEmployees);
 
   return (
     <Wrapper>
