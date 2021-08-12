@@ -49,9 +49,9 @@ const createIcon = (history, type, onClick) => {
 
 const ChatNavigation = ({
   leftIcon,
-  rightIcon,
+  // rightIcon,
   onLeftIconClick,
-  onRightIconClick,
+  // onRightIconClick,
   children,
 }) => {
   const history = useHistory();
@@ -60,24 +60,24 @@ const ChatNavigation = ({
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>
       {children}
-      <Icon>{createIcon(history, rightIcon, onRightIconClick)}</Icon>
+      <div />
     </Wrapper>
   );
 };
 
 ChatNavigation.propTypes = {
   leftIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back', 'more']),
-  rightIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back', 'more']),
+  // rightIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back', 'more']),
   onLeftIconClick: PropTypes.func,
-  onRightIconClick: PropTypes.func,
+  // onRightIconClick: PropTypes.func,
   children: PropTypes.element,
 };
 
 ChatNavigation.defaultProps = {
   leftIcon: 'chat',
-  rightIcon: 'mypage',
+  // rightIcon: 'mypage',
   onLeftIconClick: () => {},
-  onRightIconClick: () => {},
+  // onRightIconClick: () => {},
   children: <></>,
 };
 
