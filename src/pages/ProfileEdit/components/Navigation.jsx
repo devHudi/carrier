@@ -37,7 +37,7 @@ const Navigation = ({
   onRightIconClick,
 }) => {
   const history = useHistory();
-
+  console.log('여개는 내비');
   return (
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>

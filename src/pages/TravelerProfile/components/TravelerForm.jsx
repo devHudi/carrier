@@ -35,7 +35,7 @@ const TravelerForm = ({ guides }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   auth.onAuthStateChanged((u) => {
-    setUid(u.uid);
+    setUid(u?.uid);
   });
 
   useEffect(() => {

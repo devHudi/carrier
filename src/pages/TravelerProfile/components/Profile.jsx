@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { auth, firestore } from 'misc/firebase';
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill } from 'react-icons/ri';
-import Picture from '../data/img1.png';
 
 const BackgroundCircle = styled.div`
   display: flex;
@@ -73,8 +72,9 @@ const Profile = ({ guides }) => {
   const [uid, setUid] = useState();
   const [userName, setUserName] = useState();
   const [likeEmployees, setLikeEmployees] = useState();
+  const [profileImage, setProfileImage] = useState();
   auth.onAuthStateChanged((u) => {
-    setUid(u.uid);
+    setUid(u?.uid);
   });
 
   useEffect(() => {
@@ -85,13 +85,14 @@ const Profile = ({ guides }) => {
       .then((doc) => {
         setUserName(doc.data()?.name);
         setLikeEmployees(doc.data()?.like_employees);
+        setProfileImage(doc.data()?.profile_image);
       });
   }, [uid]);
 
   return (
     <Wrapper>
       <BackgroundCircle>
-        <ImageCircle src={Picture} />
+        <ImageCircle src={profileImage} />
       </BackgroundCircle>
       <Container>
         <Typography headline>{userName}</Typography>
