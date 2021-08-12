@@ -19,7 +19,6 @@ import {
   ProfileEdit,
   BackOfficeList,
   BackOfficeRoom,
-  RecommendResult,
 } from 'pages';
 import { Tutorial, ResWarning } from 'carrier-ui';
 
