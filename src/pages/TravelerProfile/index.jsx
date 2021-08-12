@@ -62,7 +62,6 @@ const TravelerProfile = () => {
 
     doWork();
   }, [uid]);
-  console.log(uid);
 
   return (
     <>

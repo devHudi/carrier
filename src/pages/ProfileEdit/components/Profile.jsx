@@ -83,7 +83,6 @@ const Profile = ({ guides }) => {
   const [uid, setUid] = useState();
   const [userName, setUserName] = useState();
   const [likeEmployees, setLikeEmployees] = useState();
-  console.log(userName);
   const [nameForm, setNameForm] = useState({
     uid: '',
     name: '',
@@ -102,7 +101,10 @@ const Profile = ({ guides }) => {
         setUserName(doc.data()?.name);
         setLikeEmployees(doc.data()?.like_employees);
       });
-  }, [uid]);
+  }, []);
+
+  console.log(guides);
+  console.log(likeEmployees);
 
   return (
     <Wrapper>

@@ -123,15 +123,15 @@ const InterestGuide = ({ likeEmployees }) => {
               {_.map(likeEmployee, (likeEmploye) => (
                 <GuideWrapper>
                   <Flex direction="column" justify="center" align="center">
-                    <ImgContainer image={likeEmploye.profile_image}>
+                    <ImgContainer image={likeEmploye?.profile_image}>
                       <HeartContainer src={heart} />
                     </ImgContainer>
                     <Margin row size={18} />
                     <Flex>
                       <Flex direction="column" align="center" justify="center">
-                        <Typography headline>{likeEmploye.name}</Typography>
+                        <Typography headline>{likeEmploye?.name}</Typography>
                         <Margin size={4} />
-                        <City subhead>{likeEmploye.place.sido}</City>
+                        <City subhead>{likeEmploye?.place.sido}</City>
                       </Flex>
                       <Margin size={5} />
                     </Flex>
