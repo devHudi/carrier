@@ -40,11 +40,7 @@ const Chat = () => {
   }, []);
   return (
     <>
-      <ChatNavBar
-        leftIcon="back"
-        rightIcon="more"
-        onLeftIconClick={onLeftClick}
-      >
+      <ChatNavBar leftIcon="back" onLeftIconClick={onLeftClick}>
         {user?.uid === userObj?.employee_uid
           ? userObj?.employer_name
           : userObj?.employee_name}
