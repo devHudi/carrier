@@ -7,10 +7,12 @@ export const StyledLink = styled(Link)`
 
 export const Img = styled.img`
   opacity: 1;
-  width: 53px;
   height: 53px;
+  width: 100%;
+  max-width: 53px;
   margin-right: 1em;
   border-radius: 70%;
+  overflow: hidden;
 `;
 export const MessageBox = styled.div`
   opacity: 1;
