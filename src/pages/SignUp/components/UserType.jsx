@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Margin } from 'carrier-ui';
-import guide from '../assets/Guide.png';
-import traveler from '../assets/Traveler.svg';
+import guide from '../assets/guide.svg';
+import employer from '../assets/traveler.svg';
 import HoverText from './HoverText';
 
 const Wrapper = styled.div`
@@ -26,18 +26,22 @@ const GuideImage = styled.div`
   left: 104px;
   width: 97px;
   height: 97px;
-  background: url(${guide});
-  background-size: cover;
+  background: url(${guide}) no-repeat;
+  background-position: bottom -5px right 50%;
+  background-size: contain;
   opacity: 1;
+  border-radius: 70%;
+  border: 1px solid #888;
 `;
 
 const ImageWrapper = styled.div`
-  width: 91px;
-  height: 93.5px;
+  width: 93px;
+  height: 98px;
   border-radius: 70%;
   overflow: hidden;
   cursor: pointer;
   transition: border 0.3s;
+  padding: 10px 26px 0 0;
 `;
 
 const TypeG = styled.div`
@@ -71,8 +75,8 @@ const UserType = ({ state }) => {
     setIsHovering(false);
   };
 
-  const [border, setBorder] = useState('#888');
-  const [textColor, setTextColor] = useState('black');
+  const [border, setBorder] = useState('#5061fb');
+  const [textColor, setTextColor] = useState('#5061fb');
 
   // eslint-disable-next-line no-shadow
   const setStyle = (selected, unselected) => {
@@ -106,7 +110,7 @@ const UserType = ({ state }) => {
       <SubWrapper>
         <InputWrapper>
           <ImageWrapper onClick={() => setStyle('#5061fb', '#888')}>
-            <img src={traveler} width="100%" height="100%" object-fit="cover" />
+            <img src={employer} width="100%" height="100%" object-fit="cover" />
           </ImageWrapper>
         </InputWrapper>
         <Margin size={10} />
@@ -129,7 +133,7 @@ UserType.propTypes = {
 };
 
 UserType.defaultProps = {
-  state: 0,
+  state: 1,
 };
 
 export default UserType;
