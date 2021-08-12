@@ -19,12 +19,25 @@ const ButtonWrapper = styled(Flex)`
     margin-left: 10px;
     flex-basis: 75px;
   }
+  width: 100%;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eeefff 0% 0% no-repeat padding-box;
+  padding: 20px 20px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 `;
 
 const StyledButton = styled(RoundedButton)`
   padding: 18px;
   border-radius: 10px;
   font-size: 20px;
+  width: ${(props) => props.width}%;
 `;
 
 const NavButton = ({ user, guide }) => {
@@ -54,39 +67,43 @@ const NavButton = ({ user, guide }) => {
   return (
     <>
       {loading && <Spinner />}
-      <ButtonWrapper>
-        {user ? (
-          <>
+      <ButtonWrapper justify="center">
+        <ButtonContainer>
+          {user ? (
+            <>
+              <StyledButton
+                blue
+                filled
+                width={70}
+                onClick={async () => {
+                  await onChatClick();
+                }}
+              >
+                가이드에게 상담 받기
+              </StyledButton>
+              <StyledButton
+                blue
+                width={25}
+                onClick={() => {
+                  likeGuide(user.uid, guide.uid);
+                  setLike(!like);
+                }}
+              >
+                {like ? <BsHeartFill /> : <BsHeart />}
+              </StyledButton>
+            </>
+          ) : (
             <StyledButton
               blue
               filled
-              onClick={async () => {
-                await onChatClick();
-              }}
-            >
-              가이드에게 상담 받기
-            </StyledButton>
-            <StyledButton
-              blue
               onClick={() => {
-                likeGuide(user.uid, guide.uid);
-                setLike(!like);
+                history.push('/sign-in');
               }}
             >
-              {like ? <BsHeartFill /> : <BsHeart />}
+              상담받으려면 로그인하기
             </StyledButton>
-          </>
-        ) : (
-          <StyledButton
-            blue
-            filled
-            onClick={() => {
-              history.push('/sign-in');
-            }}
-          >
-            상담받으려면 로그인하기
-          </StyledButton>
-        )}
+          )}
+        </ButtonContainer>
       </ButtonWrapper>
     </>
   );
