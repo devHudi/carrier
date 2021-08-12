@@ -77,7 +77,7 @@ ChatNavBar.propTypes = {
 
 ChatNavBar.defaultProps = {
   leftIcon: 'chat',
-  rightIcon: 'mypage',
+  rightIcon: 'none',
   onLeftIconClick: () => {},
   onRightIconClick: () => {},
   children: <></>,
