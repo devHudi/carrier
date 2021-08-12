@@ -44,7 +44,6 @@ const Form = ({ ontoggle }) => {
   };
   const onChangeReview = useCallback((e) => {
     setReview(e.target.value);
-    console.log(e.target.value);
   }, []);
   const onChangeScore = (value) => {
     setScore(value);
