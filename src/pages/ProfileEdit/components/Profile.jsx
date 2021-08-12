@@ -1,30 +1,45 @@
+import PropTypes from 'prop-types';
+
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Typography, Flex, Margin } from 'carrier-ui';
+
+import { useEffect, useState, useRef } from 'react';
+import { auth, firestore } from 'misc/firebase';
 import { GoPerson } from 'react-icons/go';
 import { RiHeartFill } from 'react-icons/ri';
-import Picture from '../data/img1.png';
+
+import { changeUserName, changeUserProfileImage } from 'controller/user';
+import Picture from '../data/img1.svg';
 
 const BackgroundCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 150px;
   position: absolute;
   z-index: 2;
   background-color: ${(props) => props.theme.colors.white};
-  border-radius: 112px;
+  border-radius: 50%;
   opacity: 1;
   box-shadow: 0px -20px 20px -20px #ababab;
 `;
 
-const ImageCircle = styled.div`
+const ImageCircle = styled.input`
   width: 130px;
   height: 130px;
-  position: absolute;
   z-index: 3;
-  top: 15px;
-  background: transparent url(${Picture}) 0% 0% no-repeat padding-box;
+  background-image: url(${(props) => props.src});
+  background-position: center;
   background-size: cover;
+  background-color: #cccccc;
   border-radius: 112px;
+  border: 3rem solid gray;
   opacity: 1;
+  &:hover {
+    border: 4rem solid gray;
+  }
 `;
 
 const Container = styled.div`
@@ -62,13 +77,61 @@ const Wrapper = styled.div`
   margin: 0;
   padding: 0;
 `;
-const Profile = () => {
-  <div>
+const Profile = ({ guides }) => {
+  const history = useHistory();
+  const file = useRef();
+  const [uid, setUid] = useState();
+  const [userName, setUserName] = useState();
+  const [likeEmployees, setLikeEmployees] = useState();
+  console.log(userName);
+  const [nameForm, setNameForm] = useState({
+    uid: '',
+    name: '',
+  });
+
+  auth.onAuthStateChanged((u) => {
+    setUid(u?.uid);
+  });
+
+  useEffect(() => {
+    firestore
+      .collection('users')
+      .doc(uid)
+      .get()
+      .then((doc) => {
+        setUserName(doc.data()?.name);
+        setLikeEmployees(doc.data()?.like_employees);
+      });
+  }, [uid]);
+
+  return (
     <Wrapper>
-      <BackgroundCircle />
-      <ImageCircle />
+      <BackgroundCircle>
+        <ImageCircle src={Picture} type="file" ref={file} />
+      </BackgroundCircle>
       <Container>
-        <Typography headline>userName</Typography>
+        <Typography headline>
+          {' '}
+          <input
+            type="text"
+            onChange={(e) => setNameForm({ ...nameForm, name: e.target.value })}
+            placeholder={userName}
+          />
+        </Typography>
+        <Typography headline>
+          <button
+            onClick={() => {
+              changeUserName(uid, nameForm.name);
+              changeUserProfileImage(
+                uid,
+                file.current.files[0] ? file.current.files[0] : Picture,
+              );
+              history.push('/');
+            }}
+          >
+            변경
+          </button>
+        </Typography>
         <City subhead bold700>
           여행객
         </City>
@@ -77,21 +140,26 @@ const Profile = () => {
           <Flex direction="column" align="center">
             <GoPerson color="blue" />
             <Typography headline bold400>
-              0명
+              {guides?.length || 0}명
             </Typography>
             <City subhead>가이드 매칭</City>
           </Flex>
           <Flex direction="column" align="center">
             <RiHeartFill color="#FF77B2" />
             <Typography headline bold400>
-              0개
+              {likeEmployees?.length || 0}명
             </Typography>
-            <City subhead>리뷰 수</City>
+            <City subhead>관심있는 가이드 수</City>
           </Flex>
         </StatisticsWrapper>
         <Margin size={20} />
       </Container>
     </Wrapper>
-  </div>;
+  );
 };
+
+Profile.propTypes = {
+  guides: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
 export default Profile;

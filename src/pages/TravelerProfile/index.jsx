@@ -6,6 +6,7 @@ import { firestore, auth } from 'misc/firebase';
 import ProfileForm from './components/ProfileForm';
 import TravelerForm from './components/TravelerForm';
 import Navigation from './components/Navigation';
+import LoginGuide from './components/LoginGuide';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,7 +30,7 @@ const TravelerProfile = () => {
   const [guides, setGuides] = useState([]);
 
   auth.onAuthStateChanged((u) => {
-    setUid(u.uid);
+    if (u?.uid) setUid(u?.uid);
   });
 
   useEffect(() => {
@@ -61,14 +62,17 @@ const TravelerProfile = () => {
 
     doWork();
   }, [uid]);
+  console.log(uid);
 
   return (
     <>
+      {uid === undefined && <LoginGuide />}
+
       <GlobalStyle />
       <Navigation
         leftIcon="back"
         rightIcon="home"
-        onLeftIconClick={() => history.goBack()}
+        onLeftIconClick={() => history.push('/search')}
         onRightIconClick={() => history.push('/TravelerProfile/edit')}
       />
       <Container top={0}>
