@@ -271,7 +271,7 @@ const MessageTypeBox = ({
           ) : (
             <Confirm onClick={toggleIsRequest}>약속 확정하기</Confirm>
           )}
-          {!requestButtonStatus && <Line src={line} />}
+          {!reviewButtonStatus && <Line src={line} />}
           {requestButtonStatus ? (
             !reviewButtonStatus && (
               <Confirm onClick={toggleIsReview}>리뷰 작성하기</Confirm>
