@@ -32,7 +32,6 @@ const Form = ({ ontoggle }) => {
   const [review, setReview] = useState('');
   const [score, setScore] = useState(5);
   const { uid } = useParams();
-
   const onSubmit = async (e) => {
     e.preventDefault();
     const chat = (await firestore.collection('chats').doc(uid).get()).data();
@@ -49,7 +48,6 @@ const Form = ({ ontoggle }) => {
   }, []);
   const onChangeScore = (value) => {
     setScore(value);
-    console.log(value);
   };
   return (
     <FormWrapper>
