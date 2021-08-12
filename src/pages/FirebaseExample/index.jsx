@@ -396,6 +396,12 @@ const FirebaseExample = () => {
         <button onClick={async () => await createGuides(1)}>
           가이드 1명 생성하기
         </button>
+        <button onClick={async () => await createGuides(10)}>
+          가이드 10명 생성하기
+        </button>
+        <button onClick={async () => await createGuides(50)}>
+          가이드 50명 생성하기
+        </button>
       </Form>
 
       <Form>

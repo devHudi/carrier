@@ -71,50 +71,54 @@ export const signUpAsGuide = async (
 };
 
 // 샘플 가이드 생성하기
-export const createGuides = async () => {
-  const themes = [
-    'date_course',
-    'flower',
-    'photo_zone',
-    'nature',
-    'ocean',
-    'hand_made',
-    'leisure_sports',
-    'souvenir',
-    'shopping',
-    'foodie',
-    'theme_park',
-    'cultural_heritage',
-    'history',
-  ];
-  const sidos = _.map(placeData, (place) => place.sido);
-  const languages = ['english', 'japanese', 'chinese', 'etc'];
-  const guideTypes = ['planner', 'companion', 'online'];
+export const createGuides = async (count = 1) => {
+  const uids = await Promise.all(
+    _.map(Array.from(Array(count)), () => {
+      const themes = [
+        'date_course',
+        'flower',
+        'photo_zone',
+        'nature',
+        'ocean',
+        'hand_made',
+        'leisure_sports',
+        'souvenir',
+        'shopping',
+        'foodie',
+        'theme_park',
+        'cultural_heritage',
+        'history',
+      ];
+      const sidos = _.map(placeData, (place) => place.sido);
+      const languages = ['english', 'japanese', 'chinese', 'etc'];
+      const guideTypes = ['planner', 'companion', 'online'];
 
-  const email = `${Math.random().toString(36).substr(2, 11)}@guide.com`;
-  const name = namer.generate(true);
-  const password = '12341234';
-  const sido = pick(sidos, 1)[0];
-  const places = _.chain(placeData)
-    .filter((place) => place.sido === sido)
-    .map((place) => place.name)
-    .value();
+      const email = `${Math.random().toString(36).substr(2, 11)}@guide.com`;
+      const name = namer.generate(true);
+      const password = '12341234';
+      const sido = pick(sidos, 1)[0];
+      const places = _.chain(placeData)
+        .filter((place) => place.sido === sido)
+        .map((place) => place.name)
+        .value();
 
-  const employeeUid = await signUpAsGuide(
-    email,
-    name,
-    password,
-    pick(themes),
-    sido,
-    pick(places),
-    pick(languages),
-    pick(guideTypes),
-    _.random(0, 100),
-    _.random(0, 100),
-    true,
+      return signUpAsGuide(
+        email,
+        name,
+        password,
+        pick(themes),
+        sido,
+        pick(places),
+        pick(languages),
+        pick(guideTypes),
+        _.random(0, 100),
+        _.random(0, 100),
+        true,
+      );
+    }),
   );
 
-  await createGuideProfile(employeeUid);
+  await Promise.all(_.map(uids, (uid) => createGuideProfile(uid)));
 };
 
 // 로그인
