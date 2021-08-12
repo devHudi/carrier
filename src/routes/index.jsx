@@ -16,6 +16,8 @@ import {
   GuideProfile,
   TravelerProfile,
   ProfileEdit,
+  BackOfficeList,
+  BackOfficeRoom,
 } from 'pages';
 import { ResWarning } from 'carrier-ui';
 
@@ -86,6 +88,14 @@ const Router = () => (
       <Route exact path="/firebase-examples">
         <BodyStyle color="#FFFFFF" />
         <FirebaseExample />
+      </Route>
+      <Route exact path="/back-office">
+        <BodyStyle />
+        <BackOfficeList />
+      </Route>
+      <Route exact path="/back-office/:uid">
+        <BodyStyle color="#FFFFFF" />
+        <BackOfficeRoom />
       </Route>
       <Route path="/*">
         <BodyStyle color="#FFFFFF" />
