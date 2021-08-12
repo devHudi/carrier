@@ -11,7 +11,6 @@ const Logo = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 24pt;
-  margin-top: 24px;
   font-weight: 600;
 `;
 
@@ -43,31 +42,39 @@ const Content = styled.a`
   align-items: center;
 `;
 
-const Wrapper = styled.div`
+const SubWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
+const Wrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+
 const Intro = () => (
   <>
     <Wrapper>
-      <Content>
-        <Logo>CARRIER</Logo>
-        <Margin size={110} />
-        <img width="375px" src={img} />
-        <Outline />
-      </Content>
+      <SubWrapper>
+        <Content>
+          <Margin size={30} />
+          <Logo>CARRIER</Logo>
+          <Margin size={90} />
+          <img width="375px" src={img} />
+          <Outline />
+        </Content>
+      </SubWrapper>
+      <Container>
+        <Text>어디로 떠나시나요?</Text>
+        <Link to="/search">
+          <HorizonNextButton />
+        </Link>
+        <Link to="/sign-in">
+          <ForGuide>로그인/회원가입</ForGuide>
+        </Link>
+      </Container>
     </Wrapper>
-    <Container>
-      <Text>어디로 떠나시나요?</Text>
-      <Link to="/search">
-        <HorizonNextButton />
-      </Link>
-      <Link to="/sign-in">
-        <ForGuide>로그인/회원가입</ForGuide>
-      </Link>
-    </Container>
   </>
 );
 
