@@ -21,7 +21,7 @@ export const signUp = async (email, name, password) => {
       'https://firebasestorage.googleapis.com/v0/b/likelion-carrier.appspot.com/o/profileImages%2Fdefault.png?alt=media',
     like_employees: [],
     type: 'employer',
-    amdin: false,
+    admin: false,
     review_created: [],
   };
 
