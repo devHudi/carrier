@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md';
 import PropTypes from 'prop-types';
+import OptionButton from 'carrier-ui/OptionButton';
+
+export const OptionCommon = styled(OptionButton)`
+  color: ${(props) => props.theme.colors.white};
+`;
 
 export const Wrapper = styled.div`
   font-weight: lighter;
@@ -72,7 +77,14 @@ export const OptionTextWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const OptionText = styled.div`
+// export const OptionText = styled.div`
+//   border: 1px solid ${(props) => props.theme.colors.white};
+//   border-radius: 32px;
+//   font-size: 13px;
+//   padding: 8px 10px 8px 10px;
+//   margin 0px 7px 7px 0px;
+// `;
+export const OptionText = styled(OptionButton)`
   border: 1px solid ${(props) => props.theme.colors.white};
   border-radius: 32px;
   font-size: 13px;
