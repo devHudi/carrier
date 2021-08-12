@@ -22,6 +22,7 @@
     "function-paren-newline": "off",
     "react/jsx-props-no-spreading": "off",
     "no-alert": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "react/jsx-wrap-multilines": "off"
   }
 }
