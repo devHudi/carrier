@@ -1,7 +1,8 @@
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { IoIosArrowBack, IoIosCreate } from 'react-icons/io';
+import { IoIosArrowBack } from 'react-icons/io';
+import { MdModeEdit } from 'react-icons/md';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -25,7 +26,7 @@ const createIcon = (history, type, onClick) => {
     return <IoIosArrowBack onClick={onClick} />;
   }
   if (type === 'home') {
-    return <IoIosCreate onClick={onClick} />;
+    return <MdModeEdit onClick={onClick} />;
   }
   return null;
 };
