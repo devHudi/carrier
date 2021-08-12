@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Spinner } from 'carrier-ui';
+import toast from 'react-simple-toasts';
 import { firestore, auth } from '../../misc/firebase';
 import ChatNavigation from './Component/ChatListNav/style';
 import Search from './Component/SearchBar/search';
@@ -16,7 +17,7 @@ const ChatList = () => {
   auth.onAuthStateChanged((u) => {
     setUserObj(u);
   });
-
+  const history = useHistory();
   useEffect(async () => {
     if (userObj) {
       await firestore
@@ -37,6 +38,9 @@ const ChatList = () => {
         .catch((error) => {
           console.log('Error getting document:', error);
         });
+    } else {
+      history.push('/');
+      toast('로그인 후 사용가능합니다.', 1000);
     }
   }, [userObj]);
 
@@ -57,7 +61,6 @@ const ChatList = () => {
     }
   }, [user]);
 
-  const history = useHistory();
   const onLeftClick = () => {
     history.goBack();
   };
