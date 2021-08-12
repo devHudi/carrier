@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
+import { firestore } from 'misc/firebase';
+import placeData from 'assets/data/placeData';
+import _ from 'lodash';
+
 import {
   BasicInfo,
   Title,
@@ -20,14 +25,30 @@ import star from './assets/star.png';
 import circle from './assets/circle.png';
 import line from './assets/line.png';
 
-const UserInfoModal = () => {
+const UserInfoModal = ({ userUid }) => {
   const [clickModal, setClickModal] = useState(false);
+  const [submits, setSubmits] = useState([]);
   const ontoggle = () => setClickModal((prev) => !prev);
+
+  const filteredPlaces = useMemo(
+    () =>
+      _.filter(placeData, (place) => _.includes(place.nameKr, submits?.place)),
+    [submits?.place],
+  );
+  useEffect(async () => {
+    const info = (
+      await firestore
+        .collection('submits')
+        .where('empolyer_uid', '===', userUid)
+        .get()
+    ).data();
+    setSubmits(info);
+  }, [userUid]);
   return (
     <Wrapper background="https://blog.kakaocdn.net/dn/6CEcF/btqxVzYzsYJ/hW9z8hX5DgILkKPk8AYr70/img.png">
       <Title>
         <img src={line} />
-        부산
+        {filteredPlaces}
         <img src={line} />
       </Title>
       <BasicInfo onClickModal={clickModal}>
@@ -109,5 +130,9 @@ const UserInfoModal = () => {
       <Slide ontoggle={ontoggle} clickModal={clickModal} />
     </Wrapper>
   );
+};
+
+UserInfoModal.propTypes = {
+  userUid: PropTypes.string.isRequired,
 };
 export default UserInfoModal;

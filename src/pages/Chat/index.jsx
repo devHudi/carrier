@@ -51,7 +51,7 @@ const Chat = () => {
       </ChatNavBar>
       <Wrapper>
         <InfoWrapper>
-          <UserInfoModal />
+          <UserInfoModal userUid={userObj?.employer_uid} />
         </InfoWrapper>
         <MsgerChat>
           {isLoading && <Spinner />}
