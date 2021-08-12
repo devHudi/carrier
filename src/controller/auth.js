@@ -23,7 +23,6 @@ export const signUp = async (email, name, password) => {
     type: 'employer',
     amdin: false,
     review_created: [],
-    review_created: [],
   };
 
   return firestore.collection('users').doc(user.uid).set(userDoc);
