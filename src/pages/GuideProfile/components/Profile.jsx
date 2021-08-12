@@ -15,12 +15,15 @@ const Wrapper = styled.div`
 `;
 
 const BackgroundCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 150px;
   position: absolute;
   z-index: 2;
   background-color: ${(props) => props.theme.colors.white};
-  border-radius: 112px;
+  border-radius: 50%;
   opacity: 1;
   box-shadow: 0px -20px 20px -20px #ababab;
 `;
@@ -28,9 +31,7 @@ const BackgroundCircle = styled.div`
 const ImageCircle = styled.div`
   width: 130px;
   height: 130px;
-  position: absolute;
   z-index: 3;
-  top: 15px;
   background-image: url(${(props) => props.src});
   background-position: center;
   background-size: cover;
@@ -70,8 +71,11 @@ const StatisticsWrapper = styled.div`
 
 const Profile = ({ guide, reviews }) => (
   <Wrapper>
-    <BackgroundCircle />
-    <ImageCircle src={guide?.profile_image} />
+    <BackgroundCircle>
+      {' '}
+      <ImageCircle src={guide?.profile_image} />{' '}
+    </BackgroundCircle>
+
     <Container>
       <Typography headline>{guide?.name}</Typography>
       <City subhead bold700>

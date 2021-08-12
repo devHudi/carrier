@@ -9,12 +9,15 @@ import { RiHeartFill } from 'react-icons/ri';
 import Picture from '../data/img1.png';
 
 const BackgroundCircle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 150px;
   position: absolute;
   z-index: 2;
   background-color: ${(props) => props.theme.colors.white};
-  border-radius: 112px;
+  border-radius: 50%;
   opacity: 1;
   box-shadow: 0px -20px 20px -20px #ababab;
 `;
@@ -22,11 +25,11 @@ const BackgroundCircle = styled.div`
 const ImageCircle = styled.div`
   width: 130px;
   height: 130px;
-  position: absolute;
   z-index: 3;
-  top: 15px;
-  background: transparent url(${Picture}) 0% 0% no-repeat padding-box;
+  background-image: url(${(props) => props.src});
+  background-position: center;
   background-size: cover;
+  background-color: #cccccc;
   border-radius: 112px;
   opacity: 1;
 `;
@@ -86,36 +89,35 @@ const Profile = ({ guides }) => {
   }, [uid]);
 
   return (
-    <div>
-      <Wrapper>
-        <BackgroundCircle />
-        <ImageCircle />
-        <Container>
-          <Typography headline>{userName}</Typography>
-          <City subhead bold700>
-            여행객
-          </City>
-          <Margin size={20} />
-          <StatisticsWrapper>
-            <Flex direction="column" align="center">
-              <GoPerson color="blue" />
-              <Typography headline bold400>
-                {guides?.length || 0}명
-              </Typography>
-              <City subhead>가이드 매칭</City>
-            </Flex>
-            <Flex direction="column" align="center">
-              <RiHeartFill color="#FF77B2" />
-              <Typography headline bold400>
-                {likeEmployees?.length || 0}명
-              </Typography>
-              <City subhead>관심있는 가이드 수</City>
-            </Flex>
-          </StatisticsWrapper>
-          <Margin size={20} />
-        </Container>
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <BackgroundCircle>
+        <ImageCircle src={Picture} />
+      </BackgroundCircle>
+      <Container>
+        <Typography headline>{userName}</Typography>
+        <City subhead bold700>
+          여행객
+        </City>
+        <Margin size={20} />
+        <StatisticsWrapper>
+          <Flex direction="column" align="center">
+            <GoPerson color="blue" />
+            <Typography headline bold400>
+              {guides?.length || 0}명
+            </Typography>
+            <City subhead>가이드 매칭</City>
+          </Flex>
+          <Flex direction="column" align="center">
+            <RiHeartFill color="#FF77B2" />
+            <Typography headline bold400>
+              {likeEmployees?.length || 0}명
+            </Typography>
+            <City subhead>관심있는 가이드 수</City>
+          </Flex>
+        </StatisticsWrapper>
+        <Margin size={20} />
+      </Container>
+    </Wrapper>
   );
 };
 
