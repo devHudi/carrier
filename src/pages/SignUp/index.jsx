@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import toast from 'react-simple-toasts';
 import { Margin, RoundedButton, Spinner, PageCenter } from 'carrier-ui';
+import { useQuery } from 'hooks';
 import { signUp } from 'controller/auth';
 
 import Input from '../SignIn/components/Input';
@@ -32,6 +33,8 @@ const InputContainer = styled.div`
 
 function SignUp() {
   const history = useHistory();
+  const query = useQuery();
+  const submitId = query.get('submitId');
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -56,7 +59,8 @@ function SignUp() {
 
       toast(`회원가입에 성공하였습니다. 환영합니다, ${name}님`);
 
-      history.push('/sign-up/success');
+      if (submitId) history.push(`/sign-up/success?submitId=${submitId}`);
+      else history.push('/sign-up/success');
     } catch (e) {
       const { code } = e;
 

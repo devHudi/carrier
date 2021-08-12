@@ -1,10 +1,13 @@
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { useQuery } from 'hooks';
 import { RoundedButton, Margin, PageCenter } from 'carrier-ui';
 import signinUpSuccess from './assets/signUpSuccess.png';
 
 const SignUpSuccess = () => {
   const history = useHistory();
+  const query = useQuery();
+  const submitId = query.get('submitId');
 
   const Wrapper = styled.div`
     display: flex;
@@ -30,6 +33,11 @@ const SignUpSuccess = () => {
     color: #9b9b9b;
   `;
 
+  const onOkClick = () => {
+    if (submitId) history.push(`/hire/${submitId}/result`);
+    else history.push('/');
+  };
+
   return (
     <PageCenter>
       <ImgWrapper>
@@ -52,9 +60,9 @@ const SignUpSuccess = () => {
           radius="100"
           color="blue"
           fontSize="17"
-          onClick={() => history.push('/')}
+          onClick={onOkClick}
         >
-          나만의 가이드 찾으러 가기
+          {submitId ? '돌아가기' : '나만의 가이드 찾으러 가기'}
         </RoundedButton>
       </Wrapper>
     </PageCenter>
