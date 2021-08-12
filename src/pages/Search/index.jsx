@@ -53,7 +53,10 @@ const Search = () => {
         <Logo>CARRIER</Logo>
       </Navigation>
       <Container top={90} padding={28}>
-        <SearchBar onChange={(e) => setSearch(e.target.value)} />
+        <SearchBar
+          onChange={(e) => setSearch(e.target.value)}
+          placeHolder="어디로 떠나시나요?"
+        />
         <Margin size={32} />
 
         {_.map(filteredSidos, (sido) => (
