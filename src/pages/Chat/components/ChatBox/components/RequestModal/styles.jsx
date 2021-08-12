@@ -119,6 +119,10 @@ export const WrapperThree = styled.div`
     }
     return 'none';
   }};
+  & > img {
+    width: 60%;
+    height: 50%;
+  }
 `;
 export const OptionsDiv = styled.div`
   width: 80%;
@@ -159,9 +163,10 @@ export const SmallFont = styled.div`
   color: #bfbfbf;
 `;
 export const Title = styled.div`
-  font-size: 22px;
+  font-size: 1.5rem;
   color: ${(props) => props.theme.colors.black};
   margin: 12% 0px 24px 0px;
+  text-align: center;
 `;
 
 export const Submit = styled.div`
