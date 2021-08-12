@@ -35,9 +35,10 @@ const ImageCircle = styled.input`
   background-size: cover;
   background-color: #cccccc;
   border-radius: 112px;
+  border: 3rem solid gray;
   opacity: 1;
   &:hover {
-    border: 1rem solid gray;
+    border: 4rem solid gray;
   }
 `;
 
@@ -116,11 +117,16 @@ const Profile = ({ guides }) => {
             onChange={(e) => setNameForm({ ...nameForm, name: e.target.value })}
             placeholder={userName}
           />
+        </Typography>
+        <Typography headline>
           <button
             onClick={() => {
               changeUserName(uid, nameForm.name);
-              changeUserProfileImage(uid, file.current.files[0]);
-              history.push('/profile');
+              changeUserProfileImage(
+                uid,
+                file.current.files[0] ? file.current.files[0] : Picture,
+              );
+              history.push('/');
             }}
           >
             변경

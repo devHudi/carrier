@@ -29,7 +29,6 @@ const ProfileEdit = () => {
         leftIcon="back"
         rightIcon="home"
         onLeftIconClick={() => history.goBack()}
-        onRightIconClick={() => history.push('/')}
       />
       <Container top={0}>
         <ProfileForm />

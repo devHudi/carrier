@@ -72,7 +72,7 @@ const TravelerProfile = () => {
       <Navigation
         leftIcon="back"
         rightIcon="home"
-        onLeftIconClick={() => history.goBack()}
+        onLeftIconClick={() => history.push('/search')}
         onRightIconClick={() => history.push('/TravelerProfile/edit')}
       />
       <Container top={0}>

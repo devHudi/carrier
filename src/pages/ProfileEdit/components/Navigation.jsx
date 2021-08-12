@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { IoIosArrowBack, IoIosCreate } from 'react-icons/io';
+import { IoIosArrowBack } from 'react-icons/io';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -24,40 +24,28 @@ const createIcon = (history, type, onClick) => {
   if (type === 'back') {
     return <IoIosArrowBack onClick={onClick} />;
   }
-  if (type === 'home') {
-    return <IoIosCreate onClick={onClick} />;
-  }
+
   return null;
 };
 
-const Navigation = ({
-  leftIcon,
-  rightIcon,
-  onLeftIconClick,
-  onRightIconClick,
-}) => {
+const Navigation = ({ leftIcon, onLeftIconClick }) => {
   const history = useHistory();
   console.log('여개는 내비');
   return (
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>
-      <Icon>{createIcon(history, rightIcon, onRightIconClick)}</Icon>
     </Wrapper>
   );
 };
 
 Navigation.propTypes = {
   leftIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back']),
-  rightIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back']),
   onLeftIconClick: PropTypes.func,
-  onRightIconClick: PropTypes.func,
 };
 
 Navigation.defaultProps = {
   leftIcon: 'back',
-  rightIcon: 'mypage',
   onLeftIconClick: () => {},
-  onRightIconClick: () => {},
 };
 
 export default Navigation;

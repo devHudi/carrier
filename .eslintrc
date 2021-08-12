@@ -14,7 +14,7 @@
     "no-confusing-arrow": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/button-has-type": "off",
-    "react-hooks/exhaustive-deps": "off",
+    // "react-hooks/exhaustive-deps": "off",
     "no-underscore-dangle": "off",
     "curly": "off",
     "nonblock-statement-body-position": "off",
