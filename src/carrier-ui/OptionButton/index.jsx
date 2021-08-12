@@ -10,9 +10,11 @@ const Wrapper = styled.button`
   padding: 7px 11px;
   border: 1px solid ${(props) => props.theme.colors.inputBorder};
   border-radius: 30px;
-  background-color: transparent;
+  background-color: ${(props) => props.theme.colors.white};
   font-size: 11px;
   transition: background-color 0.3s, border 0.3s, color 0.3s;
+  box-shadow: ${(props) =>
+    props.shadow ? '0 2px 6px rgba(0, 0, 0, .2)' : 'none'};
 
   ${(props) =>
     props.activated &&
@@ -21,7 +23,6 @@ const Wrapper = styled.button`
       border: 1px solid transparent;
       color: ${props.theme.colors.white};
     `}
-
   ${(props) => {
     let color = props.theme.colors.inputBorder;
     if (props.red) color = props.theme.colors.red;
@@ -29,7 +30,7 @@ const Wrapper = styled.button`
 
     if (props.activated && props.border) {
       return css`
-        background-color: transparent;
+        background-color: ${props.theme.colors.white};
         border: 1px solid ${color};
         color: ${color};
         font-weight: bold;
@@ -37,15 +38,14 @@ const Wrapper = styled.button`
     }
     return '';
   }}
-
-  ${(props) =>
+    ${(props) =>
     props.disabled &&
     css`
-      background-color: transparent;
+      background-color: ${props.theme.colors.white};
       border: 1px solid ${props.theme.colors.disabled};
       font-weight: normal;
       color: ${props.theme.colors.disabled};
-    `}
+    `};
 `;
 
 const OptionButton = ({
@@ -56,6 +56,7 @@ const OptionButton = ({
   blue,
   disabled,
   icon,
+  shadow,
   onClick,
   children,
 }) => (
@@ -65,6 +66,7 @@ const OptionButton = ({
     border={border}
     red={red}
     blue={blue}
+    shadow={shadow}
     disabled={disabled}
     onClick={onClick}
   >
@@ -79,6 +81,7 @@ OptionButton.propTypes = {
   border: PropTypes.bool,
   red: PropTypes.bool,
   blue: PropTypes.bool,
+  shadow: PropTypes.bool,
   disabled: PropTypes.bool,
   icon: PropTypes.node,
   onClick: PropTypes.func,
@@ -91,6 +94,7 @@ OptionButton.defaultProps = {
   border: false,
   red: false,
   blue: false,
+  shadow: false,
   disabled: false,
   icon: '',
   onClick: () => {},

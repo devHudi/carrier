@@ -19,7 +19,7 @@ import {
   BackOfficeList,
   BackOfficeRoom,
 } from 'pages';
-import { ResWarning } from 'carrier-ui';
+import { Tutorial, ResWarning } from 'carrier-ui';
 
 // 라우트명은 kebab-case 로 작성합니다
 
@@ -34,7 +34,9 @@ const BodyStyle = createGlobalStyle`
 
 const Router = () => (
   <BrowserRouter>
+    <Tutorial />
     <ResWarning />
+
     <Switch>
       <Route exact path="/">
         <BodyStyle color="#E6E6E6" />
