@@ -53,7 +53,6 @@ const Search = ({ top }) => {
   const onSubmit = () => {
     setSearchWord('');
   };
-  console.log('검색');
   return (
     <Wrapper top={top} onSubmit={onSubmit}>
       <Icon>

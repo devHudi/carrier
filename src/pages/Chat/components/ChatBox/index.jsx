@@ -13,11 +13,9 @@ const ChatBox = ({ conversations, chatsDoc, user, chatRef }) => {
   const { uid } = useParams();
   useEffect(() => {
     setRequestButtonStatus(chatsDoc?.transaction_completed);
-    console.log('transaction');
   }, [chatsDoc?.transaction_completed]);
   useEffect(() => {
     setReviewButtonStatus(chatsDoc?.review_creation_status);
-    console.log('review status');
   }, [chatsDoc?.review_creation_status]);
   const onChangeMessage = useCallback((e) => {
     const {
