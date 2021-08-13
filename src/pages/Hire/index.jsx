@@ -42,7 +42,7 @@ const Hire = () => {
     if (step > 1) {
       setStep(step - 1);
     } else {
-      history.push('/');
+      history.push('/search');
     }
   };
 

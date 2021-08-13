@@ -35,18 +35,21 @@ const UserInfoModal = ({ userUid }) => {
   const start = new Date(submits?.start_date?.toDate());
   const end = new Date(submits?.end_date?.toDate());
   const addData = [];
-  submits.additionals?.forEach((doc) => {
-    addData.push(additionalData?.find((theme) => theme?.id === doc));
-  });
   const result = [];
-  submits.like_themes?.forEach((doc) => {
-    result.push(themes?.find((theme) => theme?.id === doc));
-  });
-  const place = placeData?.find((places) => places.name === submits?.place);
   const dislike = [];
+  const place = placeData?.find((places) => places.name === submits?.place);
+
   const languages = languageData?.find(
     (lang) => lang?.id === submits?.language,
   );
+
+  submits.additionals?.forEach((doc) => {
+    addData.push(additionalData?.find((theme) => theme?.id === doc));
+  });
+  submits.like_themes?.forEach((doc) => {
+    result.push(themes?.find((theme) => theme?.id === doc));
+  });
+
   submits.dislike_themes?.forEach((doc) => {
     dislike.push(themes?.find((theme) => theme?.id === doc));
   });

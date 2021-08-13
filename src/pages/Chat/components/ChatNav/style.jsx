@@ -49,37 +49,27 @@ const createIcon = (history, type, onClick) => {
   return null;
 };
 
-const ChatNavBar = ({
-  leftIcon,
-  rightIcon,
-  onLeftIconClick,
-  onRightIconClick,
-  children,
-}) => {
+const ChatNavBar = ({ leftIcon, onLeftIconClick, children }) => {
   const history = useHistory();
 
   return (
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>
       {children}
-      <Icon>{createIcon(history, rightIcon, onRightIconClick)}</Icon>
+      <div />
     </Wrapper>
   );
 };
 
 ChatNavBar.propTypes = {
   leftIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back', 'more']),
-  rightIcon: PropTypes.oneOf(['chat', 'mypage', 'home', 'back', 'more']),
   onLeftIconClick: PropTypes.func,
-  onRightIconClick: PropTypes.func,
   children: PropTypes.element,
 };
 
 ChatNavBar.defaultProps = {
   leftIcon: 'chat',
-  rightIcon: 'mypage',
   onLeftIconClick: () => {},
-  onRightIconClick: () => {},
   children: <></>,
 };
 

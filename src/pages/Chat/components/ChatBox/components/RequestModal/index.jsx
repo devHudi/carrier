@@ -23,6 +23,7 @@ import company from './assets/company.png';
 import course from './assets/course.png';
 import route from './assets/route.png';
 import travel from './assets/travel.png';
+import map from './assets/map.png';
 
 const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
   const [onClickButton, setOnClickButton] = useState(false);
@@ -95,8 +96,9 @@ const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
           </WrapperTwo>
           <WrapperThree isRequest={step === 3}>
             <Title>
-              가이드가 정해준 루트를 받아보실려면 거래확정버튼을 누르세요!
+              상세내역을 보고싶으시면 <br /> 거래확정을 누르세요!
             </Title>
+            <img src={map} />
             <Submit onClick={onSubmit}>거래확정</Submit>
           </WrapperThree>
         </Wrapper>
