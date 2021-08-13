@@ -5,6 +5,7 @@ import WidthLimit from 'carrier-ui/WidthLimit';
 
 const StyledWidthLimit = styled(WidthLimit)`
   height: 100% !important;
+  min-height: 550px;
 `;
 
 const StyledFlex = styled(Flex)`
