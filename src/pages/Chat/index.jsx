@@ -18,13 +18,17 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(true);
   const user = auth.currentUser;
   const { uid } = useParams();
-
+  const chatRef = useRef();
   useEffect(() => {
     firestore
       .collection('chats')
       .doc(uid)
       .onSnapshot((doc) => {
         setUserObj(doc.data());
+        chatRef?.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
       });
     setIsLoading(false);
   }, [uid]);
@@ -32,7 +36,6 @@ const Chat = () => {
   const onLeftClick = () => {
     history.goBack();
   };
-  const chatRef = useRef();
   useEffect(async () => {
     await firestore.collection('chats').doc(uid).update({
       isNewMessage: false,
