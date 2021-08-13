@@ -305,21 +305,21 @@ const MessageTypeBox = ({
         <FileInputOptions onClickPlus={onClickPlus}>
           <FileOption
             onClickPlus={onClickPlus}
-            onClick={() => toast('점검중인 서비스 입니다.', 1200)}
+            onClick={() => toast('준비중인 서비스 입니다.', 1200)}
           >
             <img src={camera} />
             사진
           </FileOption>
           <FileOption
             onClickPlus={onClickPlus}
-            onClick={() => toast('점검중인 서비스 입니다.', 1200)}
+            onClick={() => toast('준비중인 서비스 입니다.', 1200)}
           >
             <img src={video} />
             동영상
           </FileOption>
           <FileOption
             onClickPlus={onClickPlus}
-            onClick={() => toast('점검중인 서비스 입니다.', 1200)}
+            onClick={() => toast('준비중인 서비스 입니다.', 1200)}
           >
             <img src={file} />
             첨부파일

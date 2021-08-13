@@ -98,9 +98,9 @@ export const WrapperTwo = styled.div`
     }
     return 'none';
   }};
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-
+  flex-direction: column;
   & > img {
     width: 82px;
   }

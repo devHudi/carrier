@@ -9,6 +9,7 @@ const Container = styled.div`
   align-items: center;
   padding: 20px;
   padding-top: 0px;
+  border-radius: 15px;
 `;
 
 const ReviewButton = ({ onClick }) => (

@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Text = styled.textarea`
   width: 100%;
-  height: 300px;
+  height: 100%;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #afafaf;
   border-radius: 20px;

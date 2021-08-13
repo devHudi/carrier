@@ -92,6 +92,7 @@ const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
             )}
           </WrapperOne>
           <WrapperTwo isRequest={step === 2}>
+            <Title>잠시간 기다려주세요.</Title>
             <img src={logo} />
           </WrapperTwo>
           <WrapperThree isRequest={step === 3}>

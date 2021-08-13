@@ -26,7 +26,6 @@ const FormWrapper = styled.div`
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  overflow: scroll;
 `;
 const Form = ({ ontoggle }) => {
   const [review, setReview] = useState('');
