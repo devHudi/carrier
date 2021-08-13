@@ -102,8 +102,7 @@ export const WrapperTwo = styled.div`
   align-items: center;
 
   & > img {
-    width: 65px;
-    height: 61px;
+    width: 82px;
   }
 `;
 export const WrapperThree = styled.div`

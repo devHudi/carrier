@@ -3,6 +3,7 @@ import toast from 'react-simple-toasts';
 import { useState } from 'react';
 import { firestore } from 'misc/firebase';
 import { useParams, useHistory } from 'react-router-dom';
+import logo from 'assets/images/logo-image.png';
 import {
   Wrapper,
   WrapperOne,
@@ -22,7 +23,6 @@ import {
 import company from './assets/company.png';
 import course from './assets/course.png';
 import route from './assets/route.png';
-import travel from './assets/travel.png';
 import map from './assets/map.png';
 
 const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
@@ -92,7 +92,7 @@ const RequestModal = ({ isRequest, ontoggle, step, toggleNext }) => {
             )}
           </WrapperOne>
           <WrapperTwo isRequest={step === 2}>
-            <img src={travel} />
+            <img src={logo} />
           </WrapperTwo>
           <WrapperThree isRequest={step === 3}>
             <Title>

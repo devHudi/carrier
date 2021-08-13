@@ -5,18 +5,14 @@ import toast from 'react-simple-toasts';
 import { Margin, RoundedButton, Spinner, PageCenter } from 'carrier-ui';
 import { useQuery } from 'hooks';
 import { signIn } from 'controller/auth';
+import logo from 'assets/images/logo-text.png';
 import person from './assets/person.svg';
 import lock from './assets/lock.svg';
 
 import Input from './components/Input';
-// import person from '../SignUp/assets/Icon material-person.svg';
 
-// 비밀번호 입력 시 별표(*)로 표시되는지 확인 필요 (지원하지 않는 글꼴의 경우 패스워드 표시가 숨겨짐)
-
-const Logo = styled.p`
-  font-size: 30px;
-  color: ${(props) => props.theme.colors.primary};
-  font-weight: 800;
+const Logo = styled.img`
+  width: 92px;
 `;
 
 const InputContainer = styled.div`
@@ -87,7 +83,7 @@ const SignIn = () => {
     <>
       {loading && <Spinner />}
       <PageCenter>
-        <Logo>CARRIER</Logo>
+        <Logo src={logo} />
         <Margin size={56} />
         <InputContainer>
           <Input
