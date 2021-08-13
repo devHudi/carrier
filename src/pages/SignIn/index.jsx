@@ -5,14 +5,19 @@ import toast from 'react-simple-toasts';
 import { Margin, RoundedButton, Spinner, PageCenter } from 'carrier-ui';
 import { useQuery } from 'hooks';
 import { signIn } from 'controller/auth';
-import logo from 'assets/images/logo-text.png';
+import logoI from 'assets/images/logo-image.png';
+import logoT from 'assets/images/logo-text.png';
 import person from './assets/person.svg';
 import lock from './assets/lock.svg';
 
 import Input from './components/Input';
 
-const Logo = styled.img`
-  width: 92px;
+const LogoI = styled.img`
+  width: 67px;
+`;
+
+const LogoT = styled.img`
+  width: 125px;
 `;
 
 const InputContainer = styled.div`
@@ -83,7 +88,9 @@ const SignIn = () => {
     <>
       {loading && <Spinner />}
       <PageCenter>
-        <Logo src={logo} />
+        <LogoI src={logoI} />
+        <Margin size={10} />
+        <LogoT src={logoT} />
         <Margin size={56} />
         <InputContainer>
           <Input
