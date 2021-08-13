@@ -22,7 +22,6 @@ const Slider = styled.img`
   animation-name: ${(props) => props.animation && moveLeft};
   animation-duration: 4s;
   animation-iteration-count: 1;
-  animation-delay: 0.5s;
   animation-fill-mode: forwards;
 `;
 
