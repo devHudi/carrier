@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Flex, Margin } from 'carrier-ui';
+import logo from 'assets/images/logo-image.png';
 
 const Wrapper = styled(Flex)`
   width: 100%;
@@ -12,13 +13,13 @@ const Text = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 120px;
+  width: 82px;
 `;
 
 const Loading = () => (
   <Wrapper justify="center" align="center" direction="column">
-    <Logo src="http://placehold.it/300x300" />
-    <Margin size={30} />
+    <Logo src={logo} />
+    <Margin size={50} />
     <Text>나에게 꼭 맞는 가이드 찾는중 ···</Text>
   </Wrapper>
 );

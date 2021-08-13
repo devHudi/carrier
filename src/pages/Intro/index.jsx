@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Margin } from 'carrier-ui';
+import logo from 'assets/images/logo-text.png';
 import HorizonNextButton from './components/HorizonNextButton';
 import Outline from './components/Outline';
 import Container from './components/Container';
 import img from './image/intro.png';
 
-const Logo = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24pt;
-  font-weight: 600;
+const Logo = styled.img`
+  width: 92px;
 `;
 
 const Text = styled.div`
@@ -59,7 +56,7 @@ const Intro = () => (
       <SubWrapper>
         <Content>
           <Margin size={30} />
-          <Logo>CARRIER</Logo>
+          <Logo src={logo} />
           <Margin size={90} />
           <img width="375px" src={img} />
           <Outline />

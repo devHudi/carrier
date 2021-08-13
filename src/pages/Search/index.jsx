@@ -6,13 +6,12 @@ import _ from 'lodash';
 import { Navigation, Container, Margin, SearchBar } from 'carrier-ui';
 import sidoData from 'assets/data/sidoData';
 import placeData from 'assets/data/placeData';
+import logo from 'assets/images/logo-text.png';
 
 import CityCarousel from './components/CityCarousel';
 
-const Logo = styled.div`
-  font-size: 20pt;
-  font-weight: 600;
-  color: ${(props) => props.theme.colors.white};
+const Logo = styled.img`
+  width: 92px;
 `;
 
 const Category = styled.div`
@@ -50,7 +49,7 @@ const Search = () => {
           history.push('/profile');
         }}
       >
-        <Logo>CARRIER</Logo>
+        <Logo src={logo} />
       </Navigation>
       <Container top={90} padding={28}>
         <SearchBar onChange={(e) => setSearch(e.target.value)} />
