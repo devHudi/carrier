@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { Spinner, Navigation } from 'carrier-ui';
+import UserInfoModal from 'pages/Chat/components/Modal/LargeInfo';
 import { firestore, auth } from '../../misc/firebase';
 import {
   MyContent,
@@ -10,7 +11,6 @@ import {
   InfoWrapper,
 } from './components/ChatBubble/styles';
 import ChatBox from './components/ChatBox';
-import UserInfoModal from './components/Modal/LargeInfo';
 
 const Chat = () => {
   const history = useHistory();
@@ -78,7 +78,7 @@ const Chat = () => {
       </Navigation>
       <Wrapper>
         <InfoWrapper>
-          <UserInfoModal />
+          <UserInfoModal userUid={userObj?.employer_uid} />
         </InfoWrapper>
         <MsgerChat>
           {isLoading && <Spinner />}

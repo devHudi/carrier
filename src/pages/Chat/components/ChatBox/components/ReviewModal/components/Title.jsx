@@ -26,7 +26,7 @@ const TitleText = styled.div`
 const Title = () => (
   <TitleWrapper>
     <TitleText>
-      <span style={{ fontWeight: 'bold' }}>여행자</span>님의
+      <span style={{ fontWeight: 'bold' }}>이번 여행의</span>
       <br />
       가이드는 어땠나요?
     </TitleText>
