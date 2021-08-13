@@ -324,7 +324,13 @@ const Form = ({ step, onSubmit }) => {
         <Typography headline>외국어 지원</Typography>
         <Margin size={8} />
         <Dropdown
-          items={['필요 없음', '영어', '일본어', '중국어', '기타']}
+          items={[
+            'Select a language',
+            'English',
+            'Japanese',
+            'Chinese',
+            'Other languages',
+          ]}
           onChange={(item) => setLanguage(item)}
         />
 
