@@ -40,6 +40,7 @@ export const signUpAsGuide = async (
   guideTypes,
   hiredCount = 0,
   likedCount = 0,
+  profileImage = '',
   noAuth = false,
 ) => {
   const userDoc = {
@@ -47,7 +48,7 @@ export const signUpAsGuide = async (
     updated_at: new Date(),
     email,
     name,
-    profile_image: profileImageData[_.random(0, profileImageData.length - 1)],
+    profile_image: profileImage,
     type: 'employee',
     themes,
     place: { sido, places },
@@ -73,6 +74,8 @@ export const signUpAsGuide = async (
 
 // 샘플 가이드 생성하기
 export const createGuides = async (count = 1) => {
+  const guides = [];
+
   const uids = await Promise.all(
     _.map(Array.from(Array(count)), () => {
       const themes = [
@@ -103,23 +106,64 @@ export const createGuides = async (count = 1) => {
         .map((place) => place.name)
         .value();
 
-      return signUpAsGuide(
+      const pickedThemes = pick(themes);
+      const pickedPlaces = pick(places);
+      const pickedLanguages = pick(languages);
+      const pickedGuideTypes = pick(guideTypes);
+      const rndHireCount = _.random(0, 100);
+      const rndLikeCount = _.random(0, 100);
+      const rndProfileImage =
+        profileImageData[_.random(0, profileImageData.length - 1)];
+
+      const uid = signUpAsGuide(
         email,
         name,
         password,
-        pick(themes),
+        pickedThemes,
         sido,
-        pick(places),
-        pick(languages),
-        pick(guideTypes),
-        _.random(0, 100),
-        _.random(0, 100),
+        pickedPlaces,
+        pickedLanguages,
+        pickedGuideTypes,
+        rndHireCount,
+        rndLikeCount,
+        rndProfileImage,
         true,
       );
+
+      guides.push({
+        email,
+        name,
+        themes: pickedThemes,
+        place: { sido, places: pickedPlaces },
+        languages: pickedLanguages,
+        guide_types: pickedGuideTypes,
+        profile_image: rndProfileImage,
+        created_at: new Date(),
+        updated_at: new Date(),
+        type: 'employee',
+      });
+
+      return uid;
     }),
   );
 
-  await Promise.all(_.map(uids, (uid) => createGuideProfile(uid)));
+  await Promise.all(
+    _.map(uids, (uid, idx) => {
+      guides[idx].uid = uid;
+      return createGuideProfile(uid);
+    }),
+  );
+
+  const indexedGuides =
+    (await firestore.collection('indexed_guides').doc('guides').get()).data()
+      ?.guides || [];
+
+  await firestore
+    .collection('indexed_guides')
+    .doc('guides')
+    .set({
+      guides: [...indexedGuides, ...guides],
+    });
 };
 
 // 로그인

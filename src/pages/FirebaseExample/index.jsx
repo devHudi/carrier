@@ -86,7 +86,6 @@ const FirebaseExample = () => {
       .get();
     userDoc.forEach((doc) => {
       doc.ref.delete();
-      console.log(`유저 삭제: ${doc.id}`);
     });
 
     const profileDoc = await firestore
@@ -95,8 +94,9 @@ const FirebaseExample = () => {
       .get();
     profileDoc.forEach((doc) => {
       doc.ref.delete();
-      console.log(`가이드 프로필 삭제: ${doc.id}`);
     });
+
+    await firestore.collection('indexed_guides').doc('guides').delete();
   };
 
   return (
