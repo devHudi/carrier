@@ -1,4 +1,3 @@
-import { Container } from 'carrier-ui';
 import PropTypes from 'prop-types';
 import Form from './components/Form';
 
@@ -9,9 +8,7 @@ const Review = ({ isRequest, ontoggle }) => (
     <Background isRequest={isRequest} onClick={ontoggle} />
     <BackWrapper isRequest={isRequest}>
       <Wrapper>
-        <Container top={5} padding={30}>
-          <Form ontoggle={ontoggle} />
-        </Container>
+        <Form ontoggle={ontoggle} />
       </Wrapper>
     </BackWrapper>
   </>

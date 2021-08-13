@@ -76,3 +76,19 @@ export const Wrapper = styled.div`
   margin-bottom: 140px;
   margin: 100px 24px 140px 24px;
 `;
+export const Container = styled.div`
+  position: absolute;
+  top: ${(props) => (props.top ? `${props.top}px` : 'initial')};
+  bottom: 0;
+  width: 80%;
+  padding: ${(props) => (props.padding ? `${props.padding}px` : '30px')};
+  background-color: ${(props) => props.theme.colors.white};
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  overflow: scroll;
+  transition: top 0.5s;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
