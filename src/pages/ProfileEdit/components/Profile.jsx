@@ -131,6 +131,7 @@ const Profile = ({ guides }) => {
       <Wrapper>
         <BackgroundCircle>
           <ImageCircle>
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="picture">
               <RiCameraFill size={60} />
             </label>
