@@ -125,15 +125,12 @@ const Profile = ({ guides }) => {
                 uid,
                 file.current.files[0] ? file.current.files[0] : Picture,
               );
-              history.push('/');
+              history.goBack();
             }}
           >
             변경
           </button>
         </Typography>
-        <City subhead bold700>
-          여행객
-        </City>
         <Margin size={20} />
         <StatisticsWrapper>
           <Flex direction="column" align="center">
