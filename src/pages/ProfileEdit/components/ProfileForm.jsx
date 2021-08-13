@@ -19,7 +19,7 @@ const FormWrapper = styled.div`
   margin: 0;
   padding: 0;
 `;
-console.log('여기능...?');
+
 const ProfileForm = () => (
   <>
     <FormWrapper>

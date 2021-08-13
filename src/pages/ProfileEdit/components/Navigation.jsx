@@ -30,7 +30,7 @@ const createIcon = (history, type, onClick) => {
 
 const Navigation = ({ leftIcon, onLeftIconClick }) => {
   const history = useHistory();
-  console.log('여개는 내비');
+
   return (
     <Wrapper>
       <Icon>{createIcon(history, leftIcon, onLeftIconClick)}</Icon>

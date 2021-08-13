@@ -103,9 +103,6 @@ const Profile = ({ guides }) => {
       });
   }, []);
 
-  console.log(guides);
-  console.log(likeEmployees);
-
   return (
     <Wrapper>
       <BackgroundCircle>

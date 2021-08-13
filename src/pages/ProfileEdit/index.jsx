@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const ProfileEdit = () => {
   const history = useHistory();
-  console.log('여기는 오니');
+
   return (
     <>
       <GlobalStyle />

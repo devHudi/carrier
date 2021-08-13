@@ -15,8 +15,6 @@ export const getRecommendedGuides = async (submitId) => {
     (await firestore.collection('indexed_guides').doc('guides').get()).data()
       ?.guides || [];
 
-  console.log('렝쓰', guides.length, guides);
-
   // 지역(시/도), 가이드유형, 언어지원 일치여부로 1차 가이드 필터링
   const filteredGuides = _.chain(guides).filter((guide) => {
     // 유저가 선택한 지역(시/도)와 가이드의 지역(시/도)가 일치할 경우 true
