@@ -42,12 +42,14 @@ const Content = styled.a`
 
 const SubWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1 0 auto;
 `;
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
 `;
@@ -56,9 +58,9 @@ const Intro = () => (
   <>
     <Wrapper>
       <SubWrapper>
-        <Margin size={30} />
-        <Logo src={logo} />
         <Content>
+          <Margin size={30} />
+          <Logo src={logo} />
           <Margin size={90} />
           <img width="375px" src={img} />
           <Outline />
