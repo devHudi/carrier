@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Margin } from 'carrier-ui';
 import guide from '../assets/guide.svg';
-import employer from '../assets/traveler.svg';
+import employer from '../assets/Traveler.svg';
 import HoverText from './HoverText';
 
 const Wrapper = styled.div`

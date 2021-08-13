@@ -9,6 +9,7 @@ import { getRecommendedGuides } from 'controller/hire';
 import Loading from './components/Loading';
 import Form from './components/Form';
 import Title from './components/Title';
+import NoGuide from './components/NoGuide';
 
 const FlexContainer = styled(Container)`
   display: flex;
@@ -33,6 +34,8 @@ const HireResult = () => {
     doWork();
   }, []);
 
+  console.log({ guides, len: guides.length });
+
   return (
     <>
       <Navigation
@@ -48,7 +51,13 @@ const HireResult = () => {
         {loading ? (
           <Loading />
         ) : (
-          <Form guides={guides} submitId={params.submitId} />
+          <>
+            {guides.length > 0 ? (
+              <Form guides={guides} submitId={params.submitId} />
+            ) : (
+              <NoGuide />
+            )}
+          </>
         )}
       </FlexContainer>
     </>
