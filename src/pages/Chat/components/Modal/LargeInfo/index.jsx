@@ -7,6 +7,8 @@ import languageData from 'assets/data/languageData';
 import additionalData from 'assets/data/additionalData';
 import _ from 'lodash';
 import OptionButton from 'carrier-ui/OptionButton';
+import vehicleData from 'assets/data/vehicleData';
+import guideData from 'assets/data/guideData';
 import {
   BasicInfo,
   Title,
@@ -37,13 +39,20 @@ const UserInfoModal = ({ userUid }) => {
   const addData = [];
   const result = [];
   const dislike = [];
+  const vehicles = [];
+  const guideType = [];
+  submits.guides?.forEach((doc) => {
+    guideType.push(guideData?.find((theme) => theme?.id === doc));
+  });
   const place = placeData?.find((places) => places.name === submits?.place);
 
   const languages = languageData?.find(
     (lang) => lang?.id === submits?.language,
   );
-
-  submits.additionals?.forEach((doc) => {
+  submits.vehicles?.forEach((doc) => {
+    vehicles.push(vehicleData?.find((theme) => theme?.id === doc));
+  });
+  submits?.additionals?.forEach((doc) => {
     addData.push(additionalData?.find((theme) => theme?.id === doc));
   });
   submits.like_themes?.forEach((doc) => {
@@ -69,7 +78,7 @@ const UserInfoModal = ({ userUid }) => {
       });
   }, [userUid]);
   return (
-    <Wrapper background="https://blog.kakaocdn.net/dn/6CEcF/btqxVzYzsYJ/hW9z8hX5DgILkKPk8AYr70/img.png">
+    <Wrapper background={place?.image}>
       <Title>
         <img src={line} />
         {place?.nameKr}
@@ -88,9 +97,9 @@ const UserInfoModal = ({ userUid }) => {
         </div>
         <div>
           <Img src={star} width="20" height="19" />
-          코스 추천/
-          <br />
-          전화 Q&A
+          {guideType.map((data) => (
+            <span>{data?.title}/</span>
+          ))}
         </div>
       </BasicInfo>
       {clickModal && (
@@ -104,9 +113,9 @@ const UserInfoModal = ({ userUid }) => {
             </div>
             <div>
               <Img src={car} width="22" height="19" />
-              자동차,
-              <br />
-              기차
+              {vehicles.map((data) => (
+                <span>{data?.label},</span>
+              ))}
             </div>
             <div>
               <Img src={language} width="19" height="19" />
@@ -114,9 +123,9 @@ const UserInfoModal = ({ userUid }) => {
             </div>
             <div>
               <Img src={circle} width="19" height="19" />
-              반려동물
-              <br />
-              동반
+              {addData.map((data) => (
+                <span>{data?.label},</span>
+              ))}
             </div>
           </BasicInfo>
           <Option>
