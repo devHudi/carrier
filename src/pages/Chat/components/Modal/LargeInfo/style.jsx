@@ -15,7 +15,9 @@ export const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: #444444;
-  background: ${(props) => `url(${props.background}) repeat`};
+  background-image: ${(props) => `url(${props.background})`};
+  background-size: cover;
+  background-position: center;
   box-shadow: inset 2000px 0 0 0 rgba(0, 0, 0, 0.65);
   flex-direction: column;
   border-radius: 17px;
