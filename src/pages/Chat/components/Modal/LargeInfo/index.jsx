@@ -62,7 +62,6 @@ const UserInfoModal = ({ userUid }) => {
   submits.dislike_themes?.forEach((doc) => {
     dislike.push(themes?.find((theme) => theme?.id === doc));
   });
-  console.log(languages);
   useEffect(async () => {
     await firestore
       .collection('submits')
