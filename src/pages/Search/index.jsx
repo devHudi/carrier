@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { Navigation, Container, Margin, SearchBar } from 'carrier-ui';
 import sidoData from 'assets/data/sidoData';
 import placeData from 'assets/data/placeData';
-import logo from 'assets/images/logo-text.png';
+import logo from 'assets/images/logo-text-white.png';
 
 import CityCarousel from './components/CityCarousel';
 
