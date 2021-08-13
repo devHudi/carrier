@@ -66,6 +66,7 @@ const UserInfoModal = ({ userUid }) => {
     await firestore
       .collection('submits')
       .where('employer_uid', '==', userUid)
+      .orderBy('created_at')
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -119,7 +120,7 @@ const UserInfoModal = ({ userUid }) => {
             </div>
             <div>
               <Img src={language} width="19" height="19" />
-              {languages?.languageKr}
+              {submits?.language === null ? '지원없음' : languages?.languageKr}
             </div>
             <div>
               <Img src={circle} width="19" height="19" />
