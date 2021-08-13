@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import _ from 'lodash';
+import { Spinner } from 'carrier-ui';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { firestore, auth } from 'misc/firebase';
@@ -25,16 +26,22 @@ const Container = styled.div`
 `;
 
 const TravelerProfile = () => {
-  const [uid, setUid] = useState();
   const history = useHistory();
+  const [uid, setUid] = useState();
   const [guides, setGuides] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   auth.onAuthStateChanged((u) => {
-    if (u?.uid) setUid(u?.uid);
+    // setLoading(true);
+    if (u?.uid) {
+      setUid(u?.uid);
+      // setLoading(false);
+    }
   });
 
   useEffect(() => {
     const doWork = async () => {
+      setLoading(true);
       if (uid) {
         const completes = _.map(
           await Promise.all(
@@ -57,6 +64,7 @@ const TravelerProfile = () => {
         );
 
         setGuides(completes);
+        setLoading(false);
       }
     };
 
@@ -65,7 +73,8 @@ const TravelerProfile = () => {
 
   return (
     <>
-      {uid === undefined && <LoginGuide />}
+      {loading && <Spinner />}
+      {!loading && !uid && <LoginGuide />}
 
       <GlobalStyle />
       <Navigation

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Typography, Flex, Margin, RoundedButton } from 'carrier-ui';
+import { Typography, Flex, Margin, RoundedButton, Spinner } from 'carrier-ui';
 
 import { useEffect, useState, useRef } from 'react';
 import { auth, firestore } from 'misc/firebase';
@@ -29,6 +29,9 @@ const BackgroundCircle = styled.div`
 const ImageCircle = styled.div`
   width: 130px;
   height: 130px;
+  background-image: url(${(props) => props.image});
+  background-size: cover;
+  background-position: center;
   z-index: 3;
   background-color: #e8e8e8;
   border-radius: 112px;
@@ -36,15 +39,37 @@ const ImageCircle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  & label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+  }
+
+  & label svg {
+    transition: transform 0.3s;
+  }
+
+  & label:hover svg {
+    transform: scale(1.3);
+  }
 `;
 
 const NameInput = styled.input`
+  padding: 4px;
   background: transparent url('img/사각형 320.png') 0% 0% no-repeat padding-box;
   border: 1px solid #b4b4b4;
   border-radius: 22px;
   opacity: 1;
   text-align: center;
-  font: normal normal bold 36px/41px NanumSquare;
+  font-size: 22px;
   letter-spacing: 0px;
   color: #000000;
   margin: 0px 10px;
@@ -104,8 +129,9 @@ const Profile = ({ guides }) => {
   const history = useHistory();
   const file = useRef();
   const [uid, setUid] = useState();
-  const [userName, setUserName] = useState();
+  const [loading, setLoading] = useState(false);
   const [likeEmployees, setLikeEmployees] = useState();
+  const [img, setImg] = useState();
   const [nameForm, setNameForm] = useState({
     uid: '',
     name: '',
@@ -116,37 +142,72 @@ const Profile = ({ guides }) => {
   });
 
   useEffect(() => {
+    setLoading(true);
     firestore
       .collection('users')
       .doc(uid)
       .get()
       .then((doc) => {
-        setUserName(doc.data()?.name);
+        setNameForm({ ...nameForm, name: doc.data()?.name || '' });
         setLikeEmployees(doc.data()?.like_employees);
+        setImg(doc.data()?.profile_image);
+        setLoading(false);
       });
-  }, []);
+  }, [uid]);
+
+  const onImageChange = async () => {
+    const toBase64 = (f) =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(f);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+
+    const base64 = await toBase64(file.current.files[0]);
+    setImg(base64);
+  };
+
+  const onConfirmClick = () => {
+    changeUserName(uid, nameForm.name);
+    if (file.current.files[0]) {
+      setImg(file.current.files[0]);
+      changeUserProfileImage(
+        uid,
+        file.current.files[0] ? file.current.files[0] : Picture,
+      );
+    }
+    history.goBack();
+  };
 
   return (
     <>
+      {loading && <Spinner />}
       <Wrapper>
         <BackgroundCircle>
-          <ImageCircle>
+          <ImageCircle image={img}>
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="picture">
-              <RiCameraFill size={60} />
+              <RiCameraFill />
             </label>
-            <input type="file" id="picture" ref={file} hidden />
+            <input
+              type="file"
+              id="picture"
+              ref={file}
+              hidden
+              onChange={onImageChange}
+            />
           </ImageCircle>
         </BackgroundCircle>
+        <Margin size={20} />
         <Container>
-          {' '}
           <NameInput
             type="text"
             onChange={(e) => {
               setNameForm({ ...nameForm, name: e.target.value });
             }}
             placeholder="User Name"
-            value={userName}
+            value={nameForm.name}
           />
           <Margin size={40} />
           <StatisticsWrapper>
@@ -171,20 +232,7 @@ const Profile = ({ guides }) => {
       <Margin size={100} />
       <Wrapper>
         <ButtonContainer>
-          <StyledButton
-            blue
-            filled
-            onClick={() => {
-              changeUserName(uid, nameForm.name);
-              if (file.current.files[0]) {
-                changeUserProfileImage(
-                  uid,
-                  file.current.files[0] ? file.current.files[0] : Picture,
-                );
-              }
-              history.goBack();
-            }}
-          >
+          <StyledButton blue filled onClick={onConfirmClick}>
             프로필 변경하기
           </StyledButton>
         </ButtonContainer>

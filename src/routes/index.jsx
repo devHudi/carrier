@@ -82,11 +82,11 @@ const Router = () => (
       <Route exact path="/profile">
         <TravelerProfile />
       </Route>
+      <Route exact path="/profile/edit">
+        <ProfileEdit />
+      </Route>
       <Route exact path="/profile/:uid">
         <GuideProfile />
-      </Route>
-      <Route exact path="/TravelerProfile/edit">
-        <ProfileEdit />
       </Route>
       <Route exact path="/firebase-examples">
         <BodyStyle color="#FFFFFF" />
