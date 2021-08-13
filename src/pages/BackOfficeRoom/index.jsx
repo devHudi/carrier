@@ -20,16 +20,6 @@ const Chat = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { uid } = useParams();
 
-  useEffect(() => {
-    firestore
-      .collection('chats')
-      .doc(uid)
-      .onSnapshot((doc) => {
-        setUserObj(doc.data());
-      });
-    setIsLoading(false);
-  }, [uid]);
-
   useEffect(async () => {
     await firestore.collection('chats').doc(uid).update({
       isNewMessage: false,
@@ -64,7 +54,19 @@ const Chat = () => {
   }, [user]);
 
   const chatRef = useRef();
-
+  useEffect(() => {
+    firestore
+      .collection('chats')
+      .doc(uid)
+      .onSnapshot((doc) => {
+        setUserObj(doc.data());
+        chatRef?.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    setIsLoading(false);
+  }, [uid]);
   return (
     <>
       <Navigation
