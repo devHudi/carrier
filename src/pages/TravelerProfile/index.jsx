@@ -81,7 +81,7 @@ const TravelerProfile = () => {
         leftIcon="back"
         rightIcon="home"
         onLeftIconClick={() => history.push('/search')}
-        onRightIconClick={() => history.push('/TravelerProfile/edit')}
+        onRightIconClick={() => history.push('/profile/edit')}
       />
       <Container top={0}>
         <ProfileForm guides={guides} />
