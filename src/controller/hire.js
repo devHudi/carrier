@@ -11,10 +11,11 @@ export const getRecommendedGuides = async (submitId) => {
     place,
   } = (await firestore.collection('submits').doc(submitId).get()).data();
 
-  const guides = [];
-  (
-    await firestore.collection('users').where('type', '==', 'employee').get()
-  ).forEach((querySnapshot) => guides.push(querySnapshot.data()));
+  const guides =
+    (await firestore.collection('indexed_guides').doc('guides').get()).data()
+      ?.guides || [];
+
+  console.log('렝쓰', guides.length, guides);
 
   // 지역(시/도), 가이드유형, 언어지원 일치여부로 1차 가이드 필터링
   const filteredGuides = _.chain(guides).filter((guide) => {
