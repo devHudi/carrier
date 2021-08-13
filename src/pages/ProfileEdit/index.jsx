@@ -25,11 +25,7 @@ const ProfileEdit = () => {
   return (
     <>
       <GlobalStyle />
-      <Navigation
-        leftIcon="back"
-        rightIcon="home"
-        onLeftIconClick={() => history.goBack()}
-      />
+      <Navigation leftIcon="back" onLeftIconClick={() => history.goBack()} />
       <Container top={0}>
         <ProfileForm />
       </Container>

@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { Typography, Flex, Margin } from 'carrier-ui';
+import { Typography, Flex, Margin, RoundedButton } from 'carrier-ui';
 
 import { useEffect, useState, useRef } from 'react';
 import { auth, firestore } from 'misc/firebase';
 import { GoPerson } from 'react-icons/go';
-import { RiHeartFill } from 'react-icons/ri';
+import { RiHeartFill, RiCameraFill } from 'react-icons/ri';
 
 import { changeUserName, changeUserProfileImage } from 'controller/user';
 import Picture from '../data/img1.svg';
@@ -26,20 +26,28 @@ const BackgroundCircle = styled.div`
   box-shadow: 0px -20px 20px -20px #ababab;
 `;
 
-const ImageCircle = styled.input`
+const ImageCircle = styled.div`
   width: 130px;
   height: 130px;
   z-index: 3;
-  background-image: url(${(props) => props.src});
-  background-position: center;
-  background-size: cover;
-  background-color: #cccccc;
+  background-color: #e8e8e8;
   border-radius: 112px;
-  border: 3rem solid gray;
   opacity: 1;
-  &:hover {
-    border: 4rem solid gray;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NameInput = styled.input`
+  background: transparent url('img/사각형 320.png') 0% 0% no-repeat padding-box;
+  border: 1px solid #b4b4b4;
+  border-radius: 22px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal bold 36px/41px NanumSquare;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0px 10px;
 `;
 
 const Container = styled.div`
@@ -57,6 +65,21 @@ const Container = styled.div`
   width: 100%;
   text-align: center;
   box-shadow: 0px 0px 20px -5px #ababab;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #eeefff 0% 0% no-repeat padding-box;
+  width: 100%;
+`;
+
+const StyledButton = styled(RoundedButton)`
+  padding: 18px;
+  border-radius: 10px;
+  font-size: 20px;
+  width: ${(props) => props.width}%;
 `;
 
 const City = styled(Typography)`
@@ -104,56 +127,68 @@ const Profile = ({ guides }) => {
   }, []);
 
   return (
-    <Wrapper>
-      <BackgroundCircle>
-        <ImageCircle src={Picture} type="file" ref={file} />
-      </BackgroundCircle>
-      <Container>
-        <Typography headline>
+    <>
+      <Wrapper>
+        <BackgroundCircle>
+          <ImageCircle>
+            <label htmlFor="picture">
+              <RiCameraFill size={60} />
+            </label>
+            <input type="file" id="picture" ref={file} hidden />
+          </ImageCircle>
+        </BackgroundCircle>
+        <Container>
           {' '}
-          <input
+          <NameInput
             type="text"
-            onChange={(e) => setNameForm({ ...nameForm, name: e.target.value })}
-            placeholder={userName}
+            onChange={(e) => {
+              setNameForm({ ...nameForm, name: e.target.value });
+            }}
+            placeholder="User Name"
+            value={userName}
           />
-        </Typography>
-        <Typography headline>
-          <button
+          <Margin size={40} />
+          <StatisticsWrapper>
+            <Flex direction="column" align="center">
+              <GoPerson color="blue" />
+              <Typography headline bold400>
+                {guides?.length || 0}명
+              </Typography>
+              <City subhead>가이드 매칭</City>
+            </Flex>
+            <Flex direction="column" align="center">
+              <RiHeartFill color="#FF77B2" />
+              <Typography headline bold400>
+                {likeEmployees?.length || 0}명
+              </Typography>
+              <City subhead>관심있는 가이드 수</City>
+            </Flex>
+          </StatisticsWrapper>
+          <Margin size={20} />
+        </Container>
+      </Wrapper>
+      <Margin size={100} />
+      <Wrapper>
+        <ButtonContainer>
+          <StyledButton
+            blue
+            filled
             onClick={() => {
               changeUserName(uid, nameForm.name);
-              changeUserProfileImage(
-                uid,
-                file.current.files[0] ? file.current.files[0] : Picture,
-              );
-              history.push('/');
+              if (file.current.files[0]) {
+                changeUserProfileImage(
+                  uid,
+                  file.current.files[0] ? file.current.files[0] : Picture,
+                );
+              }
+              history.goBack();
             }}
           >
-            변경
-          </button>
-        </Typography>
-        <City subhead bold700>
-          여행객
-        </City>
-        <Margin size={20} />
-        <StatisticsWrapper>
-          <Flex direction="column" align="center">
-            <GoPerson color="blue" />
-            <Typography headline bold400>
-              {guides?.length || 0}명
-            </Typography>
-            <City subhead>가이드 매칭</City>
-          </Flex>
-          <Flex direction="column" align="center">
-            <RiHeartFill color="#FF77B2" />
-            <Typography headline bold400>
-              {likeEmployees?.length || 0}명
-            </Typography>
-            <City subhead>관심있는 가이드 수</City>
-          </Flex>
-        </StatisticsWrapper>
-        <Margin size={20} />
-      </Container>
-    </Wrapper>
+            프로필 변경하기
+          </StyledButton>
+        </ButtonContainer>
+      </Wrapper>
+    </>
   );
 };
 

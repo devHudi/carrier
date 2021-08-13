@@ -24,7 +24,6 @@ const createIcon = (history, type, onClick) => {
   if (type === 'back') {
     return <IoIosArrowBack onClick={onClick} />;
   }
-
   return null;
 };
 
