@@ -79,7 +79,7 @@ const getFormData = (
     end_date: date.endDate,
     kid_headcount: headcount.kid,
     adult_headcount: headcount.adult,
-    budget: 10000000 * (budget / 100),
+    budget: Math.floor(10000000 * (budget / 100)),
     vehicles: _.chain(vehicles)
       .filter({ selected: true })
       .reduce((acc, cur) => [...acc, cur.id], [])
