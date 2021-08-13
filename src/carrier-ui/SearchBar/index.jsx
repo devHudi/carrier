@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { AiOutlineMinus, AiOutlineSearch } from 'react-icons/all';
+import { AiOutlineSearch } from 'react-icons/all';
 
 const Wrapper = styled.div`
   top: ${(props) => (props.top ? `${props.top}px` : 'initial')};
@@ -40,27 +40,24 @@ const Input = styled.input`
     color: ${(props) => props.theme.colors.blue};
   }
 `;
-const Search = ({ top, value, onChange, onSubmit }) => {
-  const placeholder = '검색';
-  return (
-    <Wrapper top={top} onSubmit={onSubmit}>
-      <Icon>
-        <AiOutlineMinus />
-      </Icon>
-      <Input value={value} onChange={onChange} placeholder={placeholder} />
-      <Icon>
-        <AiOutlineSearch onClick={onSubmit} />
-      </Icon>
-    </Wrapper>
-  );
-};
+const Search = ({ top, value, onChange, onSubmit, placeHolder }) => (
+  <Wrapper top={top} onSubmit={onSubmit}>
+    <Input value={value} onChange={onChange} placeholder={placeHolder} />
+    <Icon>
+      <AiOutlineSearch onClick={onSubmit} />
+    </Icon>
+  </Wrapper>
+);
+
 Search.propTypes = {
   top: PropTypes.number,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  placeHolder: PropTypes.string,
 };
 Search.defaultProps = {
   top: 0,
+  placeHolder: '검색',
 };
 export default Search;
