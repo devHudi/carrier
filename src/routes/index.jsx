@@ -5,7 +5,6 @@ import {
   HireResult,
   HireResultMore,
   SignUpSuccess,
-  FirebaseExample,
   Chat,
   ChatList,
   Search,
@@ -87,10 +86,6 @@ const Router = () => (
       </Route>
       <Route exact path="/profile/:uid">
         <GuideProfile />
-      </Route>
-      <Route exact path="/firebase-examples">
-        <BodyStyle color="#FFFFFF" />
-        <FirebaseExample />
       </Route>
       <Route exact path="/back-office">
         <BodyStyle />
