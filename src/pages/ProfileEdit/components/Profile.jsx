@@ -30,7 +30,7 @@ const ImageCircle = styled.input`
   width: 130px;
   height: 130px;
   z-index: 3;
-  background-image: url(${(props) => props.src});
+  background-image: url(${(props) => (props.ref ? props.ref : props.src)});
   background-position: center;
   background-size: cover;
   background-color: #cccccc;
@@ -121,10 +121,12 @@ const Profile = ({ guides }) => {
           <button
             onClick={() => {
               changeUserName(uid, nameForm.name);
-              changeUserProfileImage(
-                uid,
-                file.current.files[0] ? file.current.files[0] : Picture,
-              );
+              if (file.current.files[0]) {
+                changeUserProfileImage(
+                  uid,
+                  file.current.files[0] ? file.current.files[0] : Picture,
+                );
+              }
               history.goBack();
             }}
           >
