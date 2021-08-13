@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  top: 420px;
   width: 100%;
-  padding: 44px 0 0 10%;
+  padding: 44px 0 50px 7%;
+  margin-top: 10px;
 `;
 
 const Text = styled.div`

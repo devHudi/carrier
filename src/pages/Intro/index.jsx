@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Margin } from 'carrier-ui';
-import logo from 'assets/images/logo-text.png';
+import logo from 'assets/images/logo-text-black.png';
 import HorizonNextButton from './components/HorizonNextButton';
 import Outline from './components/Outline';
 import Container from './components/Container';
@@ -34,13 +34,15 @@ const ForGuide = styled.a`
 
 const Content = styled.a`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-top: 1vh;
 `;
 
 const SubWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
@@ -54,9 +56,9 @@ const Intro = () => (
   <>
     <Wrapper>
       <SubWrapper>
+        <Margin size={30} />
+        <Logo src={logo} />
         <Content>
-          <Margin size={30} />
-          <Logo src={logo} />
           <Margin size={90} />
           <img width="375px" src={img} />
           <Outline />
@@ -68,7 +70,7 @@ const Intro = () => (
           <HorizonNextButton />
         </Link>
         <Link to="/sign-in">
-          <ForGuide>로그인/회원가입</ForGuide>
+          <ForGuide>로그인하러 가기</ForGuide>
         </Link>
       </Container>
     </Wrapper>
