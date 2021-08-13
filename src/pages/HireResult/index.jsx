@@ -34,8 +34,6 @@ const HireResult = () => {
     doWork();
   }, []);
 
-  console.log({ guides, len: guides.length });
-
   return (
     <>
       <Navigation
