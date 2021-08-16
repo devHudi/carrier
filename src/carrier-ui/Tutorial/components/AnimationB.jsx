@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
-import slider from '../assets/slider.jpeg';
+import slider from '../assets/slider.jpg';
 
 const moveLeft = keyframes`
   0% {
