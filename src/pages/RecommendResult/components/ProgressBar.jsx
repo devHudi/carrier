@@ -37,7 +37,7 @@ const ProgressBar = ({ size, current, onClick }) => (
       return (
         <>
           <Circle activated={step === current} onClick={() => onClick(step)}>
-            {step === 3 ? <p>PLUS</p> : step + 16}
+            {step === 3 ? <p>PLUS</p> : step + 20}
           </Circle>
           {step < size && <Line />}
         </>
