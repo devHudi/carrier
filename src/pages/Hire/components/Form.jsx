@@ -256,7 +256,7 @@ const Form = ({ step, onSubmit }) => {
         <Typography headline>인당 여행 경비</Typography>
         <Margin size={8} />
 
-        <Budget>0 ~ {(10000000 * (budget / 100)).toLocaleString()} 원</Budget>
+        <Budget>0 ~ {(500000 * (budget / 100)).toLocaleString()} 원</Budget>
         <RangeSlider percentage={budget} onChange={onBudgeRangeChange} />
         <Margin size={25} />
 
