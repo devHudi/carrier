@@ -1,10 +1,20 @@
-# CARRIER
+<h1 align="center">
+CARRIER ✈️
+</h1>
 
-본 프로젝트는 멋쟁이 사자처럼 인하대학교 9기에서 멋쟁이 사자처럼 중앙 해커톤에 출품하기 위한 프로젝트입니다.
+<p align="center">
+멋쟁이 사자처럼 9기중앙 해커톤 110개의 팀 중 BEST 10에 선정된 프로젝트입니다 🎉
+</p>
+
+![](./thumbnail.jpeg)
+
+https://likelion-carrier.netlify.app/
+
+CARRIER 는 여행자의 여행 일정에 맞춘 개인화된 가이드를 추천해주며, 실시간 채팅 등을 통해 성공적인 여행을 마칠 수 있도록 돕는 여행 가이드 매칭 서비스입니다.
 
 ## Project Stack
 
-**Front-end**
+### Front-end
 
 - React
 - Styled Components
@@ -15,7 +25,7 @@
 - slick
 - react-dates
 
-**Back-end**
+### Back-end
 
 - Firebase
   - Firestore
@@ -23,7 +33,7 @@
   - Auth
   - Storage
 
-**Devops**
+### Devops
 
 - Github Actions
   - Auto Assign
